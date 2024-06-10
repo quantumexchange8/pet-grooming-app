@@ -1,0 +1,74 @@
+import 'package:adoptify/const/constant.dart';
+import 'package:adoptify/const/urbanist_textStyle.dart';
+import 'package:flutter/material.dart';
+import 'package:group_button/group_button.dart';
+import 'package:step_progress_indicator/step_progress_indicator.dart';
+
+class ChoicePage extends StatefulWidget {
+  const ChoicePage({super.key});
+
+  @override
+  State<ChoicePage> createState() => _ChoicePageState();
+}
+
+class _ChoicePageState extends State<ChoicePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: StepProgressIndicator(
+          totalSteps: 4,
+          currentStep: 1,
+          size: 10,
+          padding: 0,
+          selectedColor: primaryOrange.shade900,
+          unselectedColor: grey.shade200,
+          roundedEdges: const Radius.circular(15),
+        ),
+        centerTitle: true,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Text('1 / 4',style:heading6Bold),
+          ),
+        ],
+      ),
+
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Tell us about yourself', style: heading3Bold),
+                const SizedBox(height: 10),
+                Text('Are you a Pet Owner or Organization ready to find loving homes? Or a Pet Adopter looking for your new best friend?',style: bodyXLRegular),
+                const SizedBox(height: 30),
+                Center(
+                  child: GroupButton( //editing ing
+                    buttons: [
+                      "Pet Owner or Organization",
+                      "Pet Adopter"
+                    ],
+                    maxSelected: 1,
+                    options: GroupButtonOptions(
+                      //spacing: 50,
+                      runSpacing: 10,
+                      mainGroupAlignment: MainGroupAlignment.center,
+                      crossGroupAlignment: CrossGroupAlignment.center,
+                      groupRunAlignment: GroupRunAlignment.center,
+                      buttonHeight: 50,
+                      buttonWidth: 350,
+                    ),
+                            
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
