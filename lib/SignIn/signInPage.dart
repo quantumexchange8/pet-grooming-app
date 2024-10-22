@@ -1,8 +1,8 @@
-import 'package:adoptify/Pages/homePage.dart';
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
 import 'package:adoptify/forgotPasswordPages/fillEmail.dart';
+import 'package:adoptify/widgets/bottomNaviBar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
@@ -21,8 +21,10 @@ class _SignInState extends State<SignIn> {
   bool isChecked = false;
   bool _isEmailValid = false;
   bool _isPasswordValid = false;
+
+  //login api
   
-   @override
+  @override
   void initState() {
     super.initState();
     emailController.addListener(_validateInput);
@@ -248,7 +250,7 @@ class _SignInState extends State<SignIn> {
                        Navigator.pushReplacement(
                         context, 
                         MaterialPageRoute(
-                          builder: (context)=> const HomePage()),
+                          builder: (context)=> BottomNaviBar()),
                       );
                      });
                     }:null,

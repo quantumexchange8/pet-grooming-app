@@ -1,15 +1,21 @@
+import 'package:adoptify/controllers/favouriteController.dart';
+import 'package:adoptify/onBoardingPages/boardingScreen.dart';
 import 'package:adoptify/theme/themes.dart';
 import 'package:adoptify/theme/themes_provider.dart';
-import 'package:adoptify/onBoardingPages/splashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => ThemeProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => FavouriteController()),
+      ],
       child: const MyApp(),
     ),
+    
   );
 }
 
@@ -27,7 +33,7 @@ class MyApp extends StatelessWidget {
       theme: lightMode,
       darkTheme: darkMode,
       themeMode: themeProvider.themeMode,
-      home: const SplashScreen(),
+      home: const BoardingScreen(),
     );
   }
 }

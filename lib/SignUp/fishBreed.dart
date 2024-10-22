@@ -1,27 +1,28 @@
-import 'package:adoptify/SignUp/selectMatchAnimal.dart';
+import 'package:adoptify/SignUp/finalStepUserInfo.dart';
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:group_button/group_button.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
-class ChoicePage extends StatefulWidget {
-  const ChoicePage({super.key});
+class FishBreedPage extends StatefulWidget {
+  const FishBreedPage({super.key});
 
   @override
-  State<ChoicePage> createState() => _ChoicePageState();
+  State<FishBreedPage> createState() => _FishBreedPageState();
 }
 
-class _ChoicePageState extends State<ChoicePage> {
+class _FishBreedPageState extends State<FishBreedPage> {
+  //List<String> selectedBreeds = [];
+
   @override
-  Widget build(BuildContext context) {
+    Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: StepProgressIndicator(
           totalSteps: 4,
-          currentStep: 1,
+          currentStep: 3,
           size: 10,
           padding: 0,
           selectedColor: primaryOrange.shade900,
@@ -32,7 +33,7 @@ class _ChoicePageState extends State<ChoicePage> {
         actions: [
           Padding(
             padding: const EdgeInsets.all(15.0),
-            child: Text('1 / 4',style:heading6Bold),
+            child: Text('3 / 4',style:heading6Bold),
           ),
         ],
       ),
@@ -46,37 +47,33 @@ class _ChoicePageState extends State<ChoicePage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Tell us about yourself', style: heading3Bold),
+                    Text('Breed Preferences', style: heading3Bold),
                     const SizedBox(height: 10),
-                    Text('Are you a Pet Owner or Organization ready to find loving homes? Or a Pet Adopter looking for your new best friend?',style: bodyXLRegular),
+                    Text('Specify your preferences for the breed of the animal you\'d like to adopt, based on your previous choice. Select all that apply.',style: bodyXLRegular),
                     const SizedBox(height: 30),
+                    
                     Center(
-                      child: GroupButton( //editing ing
+                      child: GroupButton<String>(
                         buttons: [
-                          "Pet Owner or Organization",
-                          "Pet Adopter"
+                          "Betta", "Goldfish", "Guppy", "Molly", "Platy", "Neon Tetra", "Cardinal Tetra", "Angelfish", "Oscars", "Discus", "Swordtail", "Clownfish", "Cherry Barb", "Koi", 
+                          "Dwarf Gourami", "Pearl Gourami", "Rainbowfish", "Endler's Livebearer", "Blue Tang", "Bristlenose Pleco", "African Cichlids", "Bolivian Ram", "Firemouth Cichlid"
                         ],
-                        maxSelected: 1,
+                        maxSelected: 5,
                         options: GroupButtonOptions(
-                          //spacing: 50,
-                          borderRadius: BorderRadius.circular(5),
-                          runSpacing: 10,
-                          mainGroupAlignment: MainGroupAlignment.center,
-                          crossGroupAlignment: CrossGroupAlignment.center,
-                          groupRunAlignment: GroupRunAlignment.center,
-                          buttonHeight: 50,
-                          buttonWidth: 350,
+                          mainGroupAlignment: MainGroupAlignment.start,
                           selectedBorderColor: primaryOrange.shade800,
-                          selectedColor: Colors.transparent,
-                          unselectedColor: Colors.transparent,
                           unselectedBorderColor: grey.shade300,
-                          selectedTextStyle: heading5Semibold,
-                          unselectedTextStyle: heading5Semibold, 
+                          selectedColor: primaryOrange.shade800,
+                          unselectedColor: Theme.of(context).colorScheme.background,
+                          selectedTextStyle: bodyLBold.copyWith(color: Colors.white),
+                          unselectedTextStyle: bodyLBold.copyWith(color: Theme.of(context).colorScheme.primary),
+                          borderRadius: BorderRadius.circular(25),                        
                         ),
-                                
-                      ),
+
+                      ), 
                     ),
-              
+
+                   
               
                   ],
                 ),
@@ -95,7 +92,7 @@ class _ChoicePageState extends State<ChoicePage> {
                         Navigator.push(
                           context, 
                           MaterialPageRoute(
-                            builder: (context)=> MatchAnimal(),
+                            builder: (context)=> FinalStepUserInfo(),
                           ),
                         );
                       }, 
