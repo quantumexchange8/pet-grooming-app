@@ -53,8 +53,8 @@ class _RabbitBreedPageState extends State<RabbitBreedPage> {
                     Center(
                       child: GroupButton(
                         buttons: [
-                          "American Rabbit", "English Lop", "Jersey Wooly", "Harlequin", "Dutch Rabbit", "Dwarf Hotot", "Belgian Hare", "Lionhead Rabbit", "Mini Rex",
-                          "Rex Rabbit", "Netherland Dwarf", "Flemish Giant", "Holland Lop", "Tan Rabbit", "Thrianta", "Satin Rabbit", "Californian Rabbit", "Polish Rabbit"
+                          "American Rabbit", "English Lop", "Jersey Wooly", "Harlequin", "Dutch Rabbit", "Dwarf Angora", "Belgian Hare", "Lionhead Rabbit", "Mini Rex", "Beveren"
+                          "Rex Rabbit", "Netherland Dwarf", "Flemish Giant", "Holland Lop", "Tan Rabbit", "Thrianta", "Satin Rabbit", "Californian Rabbit", "Polish Rabbit", "Fauve de Bourgo"
                         ],
                         maxSelected: null,
                         options: GroupButtonOptions(
