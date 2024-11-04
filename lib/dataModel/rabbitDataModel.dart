@@ -41,7 +41,7 @@ class RabbitDataModel{
 
 
 //temporary data model
-  static List<RabbitDataModel> rabbitrabbitegoryList = [
+  static List<RabbitDataModel> rabbitcategoryList = [
     RabbitDataModel(
       rabbitName: 'Cottontail', 
       rabbitPic: 'assets/image/cottontail_rabbit.png', 

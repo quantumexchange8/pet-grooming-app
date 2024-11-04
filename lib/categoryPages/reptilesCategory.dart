@@ -1,8 +1,10 @@
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
+import 'package:adoptify/controllers/favouriteController.dart';
 import 'package:adoptify/dataModel/reptilesDataModel.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import 'package:provider/provider.dart';
 
 class ReptileCategory extends StatefulWidget {
   const ReptileCategory({super.key});
@@ -50,7 +52,7 @@ class _ReptileCategoryState extends State<ReptileCategory> {
           ), 
           itemBuilder: (context, index){
             final reptile = reptileList[index];
-            //final isFavourite = context.watch<FavouriteController>().isPetFavourite(reptile); // Check favorite status once
+            final isFavourite = context.watch<FavouriteController>().isReptileFavourite(reptile); // Check favorite status once
 
                     return Padding(
                       padding: const EdgeInsets.only(right: 15.0),
@@ -77,7 +79,7 @@ class _ReptileCategoryState extends State<ReptileCategory> {
                                 ),
 
                                 // Favourite Icon Positioned in the top right
-                                /* Positioned(
+                                Positioned(
                                   right: 5,
                                   top: 5,
                                   child: Container(
@@ -90,17 +92,17 @@ class _ReptileCategoryState extends State<ReptileCategory> {
                                     child: FittedBox(
                                       child: IconButton(
                                         icon: Icon(
-                                          isFavourite? IconlyLight.heart: IconlyBold.heart,                        
+                                          isFavourite? IconlyBold.heart: IconlyLight.heart,                        
                                           color: Colors.white, 
                                         ),
                                         iconSize: 35.0,
                                         onPressed: () {
-                                          context.read<FavouriteController>().togglePetFavourite(pet);
+                                          context.read<FavouriteController>().toggleReptileFavourite(reptile);
                                         },
                                       ),
                                     ),
                                   ),
-                                ), */
+                                ), 
                               ],
                             ),
 

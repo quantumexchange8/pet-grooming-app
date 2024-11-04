@@ -1,8 +1,10 @@
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
+import 'package:adoptify/controllers/favouriteController.dart';
 import 'package:adoptify/dataModel/rabbitDataModel.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import 'package:provider/provider.dart';
 
 class RabbitCategory extends StatefulWidget {
   const RabbitCategory({super.key});
@@ -15,7 +17,7 @@ class _RabbitCategoryState extends State<RabbitCategory> {
   @override
   Widget build(BuildContext context) {
 
-    List<RabbitDataModel>rabbitList = RabbitDataModel.rabbitrabbitegoryList;
+    List<RabbitDataModel>rabbitList = RabbitDataModel.rabbitcategoryList;
 
     return Scaffold(
       appBar: AppBar(
@@ -50,7 +52,7 @@ class _RabbitCategoryState extends State<RabbitCategory> {
           ), 
           itemBuilder: (context, index){
             final rabbit = rabbitList[index];
-            //final isFavourite = context.watch<FavouriteController>().isPetFavourite(dog); // Check favorite status once
+            final isFavourite = context.watch<FavouriteController>().isRabbitFavourite(rabbit); // Check favorite status once
 
                     return Padding(
                       padding: const EdgeInsets.only(right: 15.0),
@@ -77,7 +79,7 @@ class _RabbitCategoryState extends State<RabbitCategory> {
                                 ),
 
                                 // Favourite Icon Positioned in the top right
-                                /* Positioned(
+                                 Positioned(
                                   right: 5,
                                   top: 5,
                                   child: Container(
@@ -90,17 +92,17 @@ class _RabbitCategoryState extends State<RabbitCategory> {
                                     child: FittedBox(
                                       child: IconButton(
                                         icon: Icon(
-                                          isFavourite? IconlyLight.heart: IconlyBold.heart,                        
+                                          isFavourite? IconlyBold.heart: IconlyLight.heart,                        
                                           color: Colors.white, 
                                         ),
                                         iconSize: 35.0,
                                         onPressed: () {
-                                          context.read<FavouriteController>().togglePetFavourite(pet);
+                                          context.read<FavouriteController>().toggleRabbitFavourite(rabbit);
                                         },
                                       ),
                                     ),
                                   ),
-                                ), */
+                                ), 
                               ],
                             ),
 

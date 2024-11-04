@@ -1,8 +1,10 @@
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
+import 'package:adoptify/controllers/favouriteController.dart';
 import 'package:adoptify/dataModel/fishDataModel.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import 'package:provider/provider.dart';
 
 class FishCategory extends StatefulWidget {
   const FishCategory({super.key});
@@ -50,7 +52,7 @@ class _FishCategoryState extends State<FishCategory> {
           ), 
           itemBuilder: (context, index){
             final fish = fishList[index];
-            //final isFavourite = context.watch<FavouriteController>().isPetFavourite(fish); // Check favorite status once
+            final isFavourite = context.watch<FavouriteController>().isFishFavourite(fish); // Check favorite status once
 
                     return Padding(
                       padding: const EdgeInsets.only(right: 15.0),
@@ -77,7 +79,7 @@ class _FishCategoryState extends State<FishCategory> {
                                 ),
 
                                 // Favourite Icon Positioned in the top right
-                                /* Positioned(
+                                Positioned(
                                   right: 5,
                                   top: 5,
                                   child: Container(
@@ -90,17 +92,17 @@ class _FishCategoryState extends State<FishCategory> {
                                     child: FittedBox(
                                       child: IconButton(
                                         icon: Icon(
-                                          isFavourite? IconlyLight.heart: IconlyBold.heart,                        
+                                          isFavourite? IconlyBold.heart: IconlyLight.heart,                        
                                           color: Colors.white, 
                                         ),
                                         iconSize: 35.0,
                                         onPressed: () {
-                                          context.read<FavouriteController>().togglePetFavourite(pet);
+                                          context.read<FavouriteController>().toggleFishFavourite(fish);
                                         },
                                       ),
                                     ),
                                   ),
-                                ), */
+                                ), 
                               ],
                             ),
 

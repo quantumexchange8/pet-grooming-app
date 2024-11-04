@@ -1,8 +1,10 @@
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
+import 'package:adoptify/controllers/favouriteController.dart';
 import 'package:adoptify/dataModel/otherDataModel.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import 'package:provider/provider.dart';
 
 class OtherCategory extends StatefulWidget {
   const OtherCategory({super.key});
@@ -38,7 +40,7 @@ class _OtherCategoryState extends State<OtherCategory> {
         ],
       ),
 
-         body: Padding(
+      body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: GridView.builder(
           itemCount: otherList.length,
@@ -50,7 +52,7 @@ class _OtherCategoryState extends State<OtherCategory> {
           ), 
           itemBuilder: (context, index){
             final other = otherList[index];
-            //final isFavourite = context.watch<FavouriteController>().isPetFavourite(other); // Check favorite status once
+            final isFavourite = context.watch<FavouriteController>().isOtherFavourite(other); // Check favorite status once
 
                     return Padding(
                       padding: const EdgeInsets.only(right: 15.0),
@@ -73,11 +75,15 @@ class _OtherCategoryState extends State<OtherCategory> {
                                     width: double.infinity,
                                     height: 170.0,
                                     fit: BoxFit.cover,
+                                    errorBuilder: (context, error, stackTrace) {
+                                      return Icon(Icons.broken_image, size: 150);
+                                    },
+
                                   ),
                                 ),
 
                                 // Favourite Icon Positioned in the top right
-                                /* Positioned(
+                                Positioned(
                                   right: 5,
                                   top: 5,
                                   child: Container(
@@ -90,17 +96,17 @@ class _OtherCategoryState extends State<OtherCategory> {
                                     child: FittedBox(
                                       child: IconButton(
                                         icon: Icon(
-                                          isFavourite? IconlyLight.heart: IconlyBold.heart,                        
+                                          isFavourite? IconlyBold.heart: IconlyLight.heart,                        
                                           color: Colors.white, 
                                         ),
                                         iconSize: 35.0,
                                         onPressed: () {
-                                          context.read<FavouriteController>().togglePetFavourite(pet);
+                                          context.read<FavouriteController>().toggleOtherFavourite(other);
                                         },
                                       ),
                                     ),
                                   ),
-                                ), */
+                                ), 
                               ],
                             ),
 

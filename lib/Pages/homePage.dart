@@ -1,3 +1,5 @@
+import 'package:adoptify/Pages/petDetailPage.dart';
+import 'package:adoptify/Pages/searchPage.dart';
 import 'package:adoptify/categoryPages/birdCategory.dart';
 import 'package:adoptify/categoryPages/catCategory.dart';
 import 'package:adoptify/categoryPages/dogCategory.dart';
@@ -41,7 +43,10 @@ class _HomePageState extends State<HomePage> {
               child: IconButton(
                 icon: Icon(IconlyLight.search, size: 30), 
                 onPressed: (){
-              
+                  Navigator.push(
+                    context, 
+                    MaterialPageRoute(builder: (context)=> SearchPage()),
+                  );
                 },
               ),
             ),
@@ -57,7 +62,7 @@ class _HomePageState extends State<HomePage> {
               child: IconButton(
                 icon: Icon(IconlyLight.notification, size: 30), 
                 onPressed: (){
-              
+                  
                 },
               ),
             ),
@@ -182,7 +187,7 @@ class _HomePageState extends State<HomePage> {
                                     child: FittedBox(
                                       child: IconButton(
                                         icon: Icon(
-                                          isFavourite? IconlyLight.heart: IconlyBold.heart,                        
+                                          isFavourite? IconlyBold.heart: IconlyLight.heart,                        
                                           color: Colors.white, 
                                         ),
                                         iconSize: 35.0,
@@ -299,7 +304,7 @@ class _HomePageState extends State<HomePage> {
                                     child: FittedBox(
                                       child: IconButton(
                                         icon: Icon(
-                                          isFavourite? IconlyLight.heart: IconlyBold.heart,                        
+                                          isFavourite? IconlyBold.heart: IconlyLight.heart,                        
                                           color: Colors.white, 
                                         ),
                                         iconSize: 35.0,

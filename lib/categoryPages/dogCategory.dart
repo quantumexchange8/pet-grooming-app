@@ -51,7 +51,7 @@ class _DogCategoryState extends State<DogCategory> {
           ), 
           itemBuilder: (context, index){
             final dog = dogList[index];
-            //final isFavourite = context.watch<FavouriteController>().isPetFavourite(dog); // Check favorite status once
+            final isFavourite = context.watch<FavouriteController>().isDogFavourite(dog); // Check favorite status once
 
                     return Padding(
                       padding: const EdgeInsets.only(right: 15.0),
@@ -78,7 +78,7 @@ class _DogCategoryState extends State<DogCategory> {
                                 ),
 
                                 // Favourite Icon Positioned in the top right
-                                /* Positioned(
+                                 Positioned(
                                   right: 5,
                                   top: 5,
                                   child: Container(
@@ -91,17 +91,17 @@ class _DogCategoryState extends State<DogCategory> {
                                     child: FittedBox(
                                       child: IconButton(
                                         icon: Icon(
-                                          isFavourite? IconlyLight.heart: IconlyBold.heart,                        
+                                          isFavourite? IconlyBold.heart: IconlyLight.heart,                        
                                           color: Colors.white, 
                                         ),
                                         iconSize: 35.0,
                                         onPressed: () {
-                                          context.read<FavouriteController>().togglePetFavourite(pet);
+                                          context.read<FavouriteController>().toggleDogFavourite(dog);
                                         },
                                       ),
                                     ),
                                   ),
-                                ), */
+                                ), 
                               ],
                             ),
 

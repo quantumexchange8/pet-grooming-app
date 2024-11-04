@@ -1,9 +1,11 @@
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
+import 'package:adoptify/controllers/favouriteController.dart';
 import 'package:adoptify/dataModel/primatesDataModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:iconly/iconly.dart';
+import 'package:provider/provider.dart';
 
 class PrimateCategory extends StatefulWidget {
   const PrimateCategory({super.key});
@@ -51,7 +53,7 @@ class _PrimateCategoryState extends State<PrimateCategory> {
           ), 
           itemBuilder: (context, index){
             final primate = primateList[index];
-            //final isFavourite = context.watch<FavouriteController>().isPetFavourite(primate); // Check favorite status once
+            final isFavourite = context.watch<FavouriteController>().isPrimateFavourite(primate); // Check favorite status once
 
                     return Padding(
                       padding: const EdgeInsets.only(right: 15.0),
@@ -78,7 +80,7 @@ class _PrimateCategoryState extends State<PrimateCategory> {
                                 ),
 
                                 // Favourite Icon Positioned in the top right
-                                /* Positioned(
+                                Positioned(
                                   right: 5,
                                   top: 5,
                                   child: Container(
@@ -91,17 +93,17 @@ class _PrimateCategoryState extends State<PrimateCategory> {
                                     child: FittedBox(
                                       child: IconButton(
                                         icon: Icon(
-                                          isFavourite? IconlyLight.heart: IconlyBold.heart,                        
+                                          isFavourite? IconlyBold.heart: IconlyLight.heart,                        
                                           color: Colors.white, 
                                         ),
                                         iconSize: 35.0,
                                         onPressed: () {
-                                          context.read<FavouriteController>().togglePetFavourite(pet);
+                                          context.read<FavouriteController>().togglePrimateFavourite(primate);
                                         },
                                       ),
                                     ),
                                   ),
-                                ), */
+                                ), 
                               ],
                             ),
 

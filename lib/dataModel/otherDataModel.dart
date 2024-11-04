@@ -74,7 +74,7 @@ class OtherDataModel{
     ),
     OtherDataModel(
       otherName: 'Hammy',
-      otherPic: 'assets/image/hammy_hamster.jpg',
+      otherPic: 'assets/image/hammy_hamster.JPG',
       distanceOther: '3.0km',
       otherBreed: 'Syrian Hamster',
     ),
