@@ -1,4 +1,4 @@
-import 'package:adoptify/SignUp/finalStepUserInfo.dart';
+import 'package:adoptify/Pages/SignUp/finalStepUserInfo.dart';
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
@@ -6,14 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
-class HorseBreedPage extends StatefulWidget {
-  const HorseBreedPage({super.key});
+class FishBreedPage extends StatefulWidget {
+  const FishBreedPage({super.key});
 
   @override
-  State<HorseBreedPage> createState() => _HorseBreedPageState();
+  State<FishBreedPage> createState() => _FishBreedPageState();
 }
 
-class _HorseBreedPageState extends State<HorseBreedPage> {
+class _FishBreedPageState extends State<FishBreedPage> {
+  //List<String> selectedBreeds = [];
+
   @override
     Widget build(BuildContext context) {
     return Scaffold(
@@ -51,11 +53,10 @@ class _HorseBreedPageState extends State<HorseBreedPage> {
                     const SizedBox(height: 30),
                     
                     Center(
-                      child: GroupButton(
+                      child: GroupButton<String>(
                         buttons: [
-                          "Arabian", "Thoroughbred", "American Quarter Horse", "Clydesdale", "Shire", "Friesian", "Mustang", "Appaloosa", "Paint Horse", "Morgan", "Andalusian", "Shetland Pony",
-                          "Tennessee Walking Horse", "Icelandic Horse", "Percheron", "Belgian Draft Horse", "Haflinger", "Paso Fino", "Gypsy Vanner", "Akhal-Teke", "Warmblood", "Rocky Mountain Horse",
-                          "Lippizzaner", "Fjord Horse"
+                          "Betta", "Goldfish", "Guppy", "Molly", "Platy", "Neon Tetra", "Cardinal Tetra", "Angelfish", "Oscars", "Discus", "Swordtail", "Clownfish", "Cherry Barb", "Koi", 
+                          "Dwarf Gourami", "Pearl Gourami", "Rainbowfish", "Endler's Livebearer", "Blue Tang", "Bristlenose Pleco", "African Cichlids", "Bolivian Ram", "Firemouth Cichlid"
                         ],
                         maxSelected: 5,
                         options: GroupButtonOptions(

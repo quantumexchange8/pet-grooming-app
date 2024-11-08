@@ -1,6 +1,6 @@
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
-import 'package:adoptify/forgotPasswordPages/AllSet.dart';
+import 'package:adoptify/Pages/forgotPasswordPages/AllSet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

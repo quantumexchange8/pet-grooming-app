@@ -1,4 +1,4 @@
-import 'package:adoptify/SignUp/finalStepUserInfo.dart';
+import 'package:adoptify/Pages/SignUp/finalStepUserInfo.dart';
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
@@ -6,19 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
-class CatBreedPage extends StatefulWidget {
-  const CatBreedPage({super.key});
+class RabbitBreedPage extends StatefulWidget {
+  const RabbitBreedPage({super.key});
 
   @override
-  State<CatBreedPage> createState() => _CatBreedPageState();
+  State<RabbitBreedPage> createState() => _RabbitBreedPageState();
 }
 
-class _CatBreedPageState extends State<CatBreedPage> {
-  
-  //List<String> selectedBreed = [];
-
+class _RabbitBreedPageState extends State<RabbitBreedPage> {
   @override
-  Widget build(BuildContext context) {
+    Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: StepProgressIndicator(
@@ -40,7 +37,6 @@ class _CatBreedPageState extends State<CatBreedPage> {
       ),
 
       body: Column(
-       // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             child: SingleChildScrollView(
@@ -55,13 +51,12 @@ class _CatBreedPageState extends State<CatBreedPage> {
                     const SizedBox(height: 30),
                     
                     Center(
-                      child: GroupButton<String>(
-                        maxSelected: 5,
-                        enableDeselect: true,
+                      child: GroupButton(
                         buttons: [
-                          "Persian", "Maine Coon", "Siamese", "Ragdoll", "Bengal", "Sphynx", "Scottish Fold", "Abyssinian", "Birman", "Russian Blue", "Siberian",
-                          "British Shorthair", "Exotic Shorthair", "Turkish Angora", "Manx", "Himalayan", "Devon Rex", "Oriental Shorthair", "Cornish Rex"
+                          "American Rabbit", "English Lop", "Jersey Wooly", "Harlequin", "Dutch Rabbit", "Dwarf Angora", "Belgian Hare", "Lionhead Rabbit", "Mini Rex", "Beveren"
+                          "Rex Rabbit", "Netherland Dwarf", "Flemish Giant", "Holland Lop", "Tan Rabbit", "Thrianta", "Satin Rabbit", "Californian Rabbit", "Polish Rabbit", "Fauve de Bourgo"
                         ],
+                        maxSelected: null,
                         options: GroupButtonOptions(
                           mainGroupAlignment: MainGroupAlignment.start,
                           selectedBorderColor: primaryOrange.shade800,
@@ -72,10 +67,9 @@ class _CatBreedPageState extends State<CatBreedPage> {
                           unselectedTextStyle: bodyLBold.copyWith(color: Theme.of(context).colorScheme.primary),
                           borderRadius: BorderRadius.circular(25),
                         ),
-
                       ), 
-                    ),        
-              
+                    ),
+
                   ],
                 ),
               ),

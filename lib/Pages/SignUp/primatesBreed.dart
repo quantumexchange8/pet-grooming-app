@@ -1,4 +1,4 @@
-import 'package:adoptify/SignUp/finalStepUserInfo.dart';
+import 'package:adoptify/Pages/SignUp/finalStepUserInfo.dart';
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
-class RabbitBreedPage extends StatefulWidget {
-  const RabbitBreedPage({super.key});
+class PrimatesBreedPage extends StatefulWidget {
+  const PrimatesBreedPage({super.key});
 
   @override
-  State<RabbitBreedPage> createState() => _RabbitBreedPageState();
+  State<PrimatesBreedPage> createState() => _PrimatesBreedPageState();
 }
 
-class _RabbitBreedPageState extends State<RabbitBreedPage> {
+class _PrimatesBreedPageState extends State<PrimatesBreedPage> {
   @override
     Widget build(BuildContext context) {
     return Scaffold(
@@ -53,10 +53,9 @@ class _RabbitBreedPageState extends State<RabbitBreedPage> {
                     Center(
                       child: GroupButton(
                         buttons: [
-                          "American Rabbit", "English Lop", "Jersey Wooly", "Harlequin", "Dutch Rabbit", "Dwarf Angora", "Belgian Hare", "Lionhead Rabbit", "Mini Rex", "Beveren"
-                          "Rex Rabbit", "Netherland Dwarf", "Flemish Giant", "Holland Lop", "Tan Rabbit", "Thrianta", "Satin Rabbit", "Californian Rabbit", "Polish Rabbit", "Fauve de Bourgo"
+                          "Capuchin Monkey", "Common Marmoset", "Pygmy Marmoset", "Squirrel Monkey", "Tamarin", "Bushbaby", "Slow Loris", "Ring-tailed Lemur"
                         ],
-                        maxSelected: null,
+                        maxSelected: 5,
                         options: GroupButtonOptions(
                           mainGroupAlignment: MainGroupAlignment.start,
                           selectedBorderColor: primaryOrange.shade800,
@@ -65,11 +64,14 @@ class _RabbitBreedPageState extends State<RabbitBreedPage> {
                           unselectedColor: Theme.of(context).colorScheme.background,
                           selectedTextStyle: bodyLBold.copyWith(color: Colors.white),
                           unselectedTextStyle: bodyLBold.copyWith(color: Theme.of(context).colorScheme.primary),
-                          borderRadius: BorderRadius.circular(25),
+                          borderRadius: BorderRadius.circular(25),                        
                         ),
+
                       ), 
                     ),
 
+                   
+              
                   ],
                 ),
               ),

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
-import 'package:adoptify/forgotPasswordPages/resetPassword.dart';
+import 'package:adoptify/Pages/forgotPasswordPages/resetPassword.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

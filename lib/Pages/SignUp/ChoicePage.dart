@@ -1,26 +1,27 @@
-import 'package:adoptify/SignUp/finalStepUserInfo.dart';
+import 'package:adoptify/Pages/SignUp/selectMatchAnimal.dart';
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:group_button/group_button.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
-class PrimatesBreedPage extends StatefulWidget {
-  const PrimatesBreedPage({super.key});
+class ChoicePage extends StatefulWidget {
+  const ChoicePage({super.key});
 
   @override
-  State<PrimatesBreedPage> createState() => _PrimatesBreedPageState();
+  State<ChoicePage> createState() => _ChoicePageState();
 }
 
-class _PrimatesBreedPageState extends State<PrimatesBreedPage> {
+class _ChoicePageState extends State<ChoicePage> {
   @override
-    Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: StepProgressIndicator(
           totalSteps: 4,
-          currentStep: 3,
+          currentStep: 1,
           size: 10,
           padding: 0,
           selectedColor: primaryOrange.shade900,
@@ -31,7 +32,7 @@ class _PrimatesBreedPageState extends State<PrimatesBreedPage> {
         actions: [
           Padding(
             padding: const EdgeInsets.all(15.0),
-            child: Text('3 / 4',style:heading6Bold),
+            child: Text('1 / 4',style:heading6Bold),
           ),
         ],
       ),
@@ -45,32 +46,37 @@ class _PrimatesBreedPageState extends State<PrimatesBreedPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Breed Preferences', style: heading3Bold),
+                    Text('Tell us about yourself', style: heading3Bold),
                     const SizedBox(height: 10),
-                    Text('Specify your preferences for the breed of the animal you\'d like to adopt, based on your previous choice. Select all that apply.',style: bodyXLRegular),
+                    Text('Are you a Pet Owner or Organization ready to find loving homes? Or a Pet Adopter looking for your new best friend?',style: bodyXLRegular),
                     const SizedBox(height: 30),
-                    
                     Center(
-                      child: GroupButton(
+                      child: GroupButton( //editing ing
                         buttons: [
-                          "Capuchin Monkey", "Common Marmoset", "Pygmy Marmoset", "Squirrel Monkey", "Tamarin", "Bushbaby", "Slow Loris", "Ring-tailed Lemur"
+                          "Pet Owner or Organization",
+                          "Pet Adopter"
                         ],
-                        maxSelected: 5,
+                        maxSelected: 1,
                         options: GroupButtonOptions(
-                          mainGroupAlignment: MainGroupAlignment.start,
+                          //spacing: 50,
+                          borderRadius: BorderRadius.circular(5),
+                          runSpacing: 10,
+                          mainGroupAlignment: MainGroupAlignment.center,
+                          crossGroupAlignment: CrossGroupAlignment.center,
+                          groupRunAlignment: GroupRunAlignment.center,
+                          buttonHeight: 50,
+                          buttonWidth: 350,
                           selectedBorderColor: primaryOrange.shade800,
+                          selectedColor: Colors.transparent,
+                          unselectedColor: Colors.transparent,
                           unselectedBorderColor: grey.shade300,
-                          selectedColor: primaryOrange.shade800,
-                          unselectedColor: Theme.of(context).colorScheme.background,
-                          selectedTextStyle: bodyLBold.copyWith(color: Colors.white),
-                          unselectedTextStyle: bodyLBold.copyWith(color: Theme.of(context).colorScheme.primary),
-                          borderRadius: BorderRadius.circular(25),                        
+                          selectedTextStyle: heading5Semibold,
+                          unselectedTextStyle: heading5Semibold, 
                         ),
-
-                      ), 
+                                
+                      ),
                     ),
-
-                   
+              
               
                   ],
                 ),
@@ -89,7 +95,7 @@ class _PrimatesBreedPageState extends State<PrimatesBreedPage> {
                         Navigator.push(
                           context, 
                           MaterialPageRoute(
-                            builder: (context)=> FinalStepUserInfo(),
+                            builder: (context)=> MatchAnimal(),
                           ),
                         );
                       }, 

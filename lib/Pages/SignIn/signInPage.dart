@@ -1,7 +1,7 @@
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
-import 'package:adoptify/forgotPasswordPages/fillEmail.dart';
+import 'package:adoptify/Pages/forgotPasswordPages/fillEmail.dart';
 import 'package:adoptify/widgets/bottomNaviBar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

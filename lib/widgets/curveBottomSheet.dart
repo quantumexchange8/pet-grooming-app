@@ -1,9 +1,9 @@
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
-import 'package:adoptify/onBoardingPages/walkthrough2.dart';
-import 'package:adoptify/onBoardingPages/walkthrough3.dart';
-import 'package:adoptify/onBoardingPages/welcomeScreen.dart';
+import 'package:adoptify/Pages/onBoardingPages/walkthrough2.dart';
+import 'package:adoptify/Pages/onBoardingPages/walkthrough3.dart';
+import 'package:adoptify/Pages/onBoardingPages/welcomeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 

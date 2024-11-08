@@ -1,4 +1,4 @@
-import 'package:adoptify/SignUp/finalStepUserInfo.dart';
+import 'package:adoptify/Pages/SignUp/finalStepUserInfo.dart';
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
@@ -6,18 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
-class FishBreedPage extends StatefulWidget {
-  const FishBreedPage({super.key});
+class ReptilesBreedPage extends StatefulWidget {
+  const ReptilesBreedPage({super.key});
 
   @override
-  State<FishBreedPage> createState() => _FishBreedPageState();
+  State<ReptilesBreedPage> createState() => _ReptilesBreedPageState();
 }
 
-class _FishBreedPageState extends State<FishBreedPage> {
-  //List<String> selectedBreeds = [];
-
+class _ReptilesBreedPageState extends State<ReptilesBreedPage> {
   @override
-    Widget build(BuildContext context) {
+   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: StepProgressIndicator(
@@ -53,10 +51,11 @@ class _FishBreedPageState extends State<FishBreedPage> {
                     const SizedBox(height: 30),
                     
                     Center(
-                      child: GroupButton<String>(
+                      child: GroupButton(
                         buttons: [
-                          "Betta", "Goldfish", "Guppy", "Molly", "Platy", "Neon Tetra", "Cardinal Tetra", "Angelfish", "Oscars", "Discus", "Swordtail", "Clownfish", "Cherry Barb", "Koi", 
-                          "Dwarf Gourami", "Pearl Gourami", "Rainbowfish", "Endler's Livebearer", "Blue Tang", "Bristlenose Pleco", "African Cichlids", "Bolivian Ram", "Firemouth Cichlid"
+                          "Leopard Gecko", "Bearded Dragon", "Crested Gecko", "Ball Python", "Corn Snake","King Snake", "Milk Snake", "Blue-Tongued Skink", "Green Anole","Uromastyx",
+                          "Russian Tortoise", "Sulcata Tortoise", "Veiled Chameleon", "Savannah Monitor", "Argentine Black and White Tegu", "Chinese Water Dragon",
+                          "African Fat-Tailed Gecko", "Greek Tortoise", "Kenyan Sand Boa", "Red-Eared Slider Turtle"
                         ],
                         maxSelected: 5,
                         options: GroupButtonOptions(

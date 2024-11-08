@@ -1,4 +1,4 @@
-import 'package:adoptify/SignUp/finalStepUserInfo.dart';
+import 'package:adoptify/Pages/SignUp/finalStepUserInfo.dart';
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
@@ -6,16 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
-class OtherBreedPage extends StatefulWidget {
-  const OtherBreedPage({super.key});
+class BirdBreedPage extends StatefulWidget {
+  const BirdBreedPage({super.key});
 
   @override
-  State<OtherBreedPage> createState() => _OtherBreedPageState();
+  State<BirdBreedPage> createState() => _BirdBreedPageState();
 }
 
-class _OtherBreedPageState extends State<OtherBreedPage> {
+class _BirdBreedPageState extends State<BirdBreedPage> {
   @override
-    Widget build(BuildContext context) {
+   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: StepProgressIndicator(
@@ -53,8 +53,8 @@ class _OtherBreedPageState extends State<OtherBreedPage> {
                     Center(
                       child: GroupButton(
                         buttons: [
-                          "Cattle", "Sheep", "Goats", "Pigs", "Guinea Pigs", "Hamsters", "Chinchillas", "Ferrets", "Hedgehogs", "Sugar Gliders", "Lizards", "Rats",
-                          "Stick Insects", "Domestic Ferret"
+                          "Budgerigar", "Cockatiel", "Lovebird", "Parrotlet", "Canary", "Finch","Gouldian Finch", "Zebra Finch", "Quaker Parrot", "Conure", "African Grey Parrot",
+                          "Amazon Parrot", "Cockatoo", "Eclectus Parrot", "Sun Conure", "Pionus Parrot", "Macaw", "Mynah Bird", "Dove", "Pigeon"
                         ],
                         maxSelected: 5,
                         options: GroupButtonOptions(
@@ -67,8 +67,12 @@ class _OtherBreedPageState extends State<OtherBreedPage> {
                           unselectedTextStyle: bodyLBold.copyWith(color: Theme.of(context).colorScheme.primary),
                           borderRadius: BorderRadius.circular(25),                        
                         ),
+                        
+
                       ), 
                     ),
+
+                   
               
                   ],
                 ),

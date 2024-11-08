@@ -21,8 +21,8 @@ class FinalStepUserInfo extends StatefulWidget {
 class _FinalStepUserInfoState extends State<FinalStepUserInfo> {
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneNoController = TextEditingController();
-  bool _isNameFilled = false;
-  bool _isPhoneNoFilled = false;
+  // bool _isNameFilled = false;
+  // bool _isPhoneNoFilled = false;
   final genderList = ['Male', 'Female'];
   String? selectedGender;
   File? _profilePicFile;

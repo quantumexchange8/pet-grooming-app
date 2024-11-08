@@ -1,10 +1,12 @@
-import 'package:adoptify/Pages/searchResultPage.dart';
+import 'package:adoptify/Pages/aboutPetPages/searchResultPage.dart';
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:geocoding/geocoding.dart' as geo;
 import 'package:iconly/iconly.dart';
+import 'package:location/location.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -21,7 +23,70 @@ class _SearchPageState extends State<SearchPage> {
   String selectedAge = '';
 
   @override
+  void initState(){
+    super.initState();
+    _accessLocation();
+  }
+
+  Future<void> _accessLocation() async {
+    Location location = /* new */ Location();
+    bool serviceEnabled;
+    PermissionStatus permissionGranted;
+    LocationData locationData;
+
+    serviceEnabled = await location.serviceEnabled();
+    if(!serviceEnabled){
+      serviceEnabled = await location.requestService();
+        if(!serviceEnabled){
+          return;
+        }
+    }
+    permissionGranted = await location.hasPermission();
+    if(permissionGranted == PermissionStatus.denied){
+      permissionGranted = await location.requestPermission();
+      if(permissionGranted != PermissionStatus.granted){
+        return;
+      }
+    }
+    locationData = await location.getLocation();
+
+    //this is latitude and longitude
+    setState(() { 
+      selectedLocation = '${locationData.latitude},${locationData.longitude}';
+    });
+
+    //need to convert the latitude and longitude to the city and country name, need to use Google Maps Api
+    //final String apiKey = 'Google Api Key';
+    //final String url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=${locationData.latitude}, ${locationData.longitude}&key=$apiKey'; // example
+    //the api code below here
+
+    //use other package (geocoding) to translate latitude and longitude
+    try{
+      List<geo.Placemark> placemarks = await geo.placemarkFromCoordinates(
+        locationData.latitude!, locationData.longitude!
+      );
+      geo.Placemark place = placemarks[0];
+
+      setState(() {
+        selectedLocation = '${place.locality}, ${place.country}';
+      });
+      
+    }catch(e){
+      _showMessage('Failed to get the location (city and country).');
+    }
+  }
+
+  void _showMessage(String message){
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message,style: bodySBold),
+      )
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -45,7 +110,25 @@ class _SearchPageState extends State<SearchPage> {
                   children: [
                     //location
                     Text('Location', style: heading5Bold),
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 10),
+                    Container(
+                      padding: const EdgeInsets.all(15),
+                      decoration: BoxDecoration(
+                        color: grey.shade100,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(IconlyLight.location, size:20, color: Colors.black),
+                          const SizedBox(width: 10),
+                          Text(selectedLocation, style: bodyXLSemibold.copyWith(color: Colors.black)),
+                        ],
+                      ),
+                    ),
+
+
+
+                    const SizedBox(height: 20),
                     //pet types
                     Text('Pet Types', style: heading5Bold),
                     const SizedBox(height: 8),
@@ -61,7 +144,7 @@ class _SearchPageState extends State<SearchPage> {
                         selectedSearchPet('assets/buttonPic/other.png','Other', selectedPetType, (value) => selectedPetType = value),
                       ],
                     ),
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 20),
               
                     //gender(optional)
                     Row(
@@ -79,7 +162,7 @@ class _SearchPageState extends State<SearchPage> {
                         searchOptionalChoice('Female', selectedGender, (value) => selectedGender = value),
                       ],
                     ),
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 20),
               
               
                     //size(optional)
@@ -98,7 +181,7 @@ class _SearchPageState extends State<SearchPage> {
                         searchOptionalChoice('Large', selectedSize, (value) => selectedSize = value),
                       ],
                     ),
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 20),
               
               
                     //age(optional)

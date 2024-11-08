@@ -1,4 +1,4 @@
-import 'package:adoptify/SignUp/finalStepUserInfo.dart';
+import 'package:adoptify/Pages/SignUp/finalStepUserInfo.dart';
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
-class BirdBreedPage extends StatefulWidget {
-  const BirdBreedPage({super.key});
+class DogBreedPage extends StatefulWidget {
+  const DogBreedPage({super.key});
 
   @override
-  State<BirdBreedPage> createState() => _BirdBreedPageState();
+  State<DogBreedPage> createState() => _DogBreedPageState();
 }
 
-class _BirdBreedPageState extends State<BirdBreedPage> {
+class _DogBreedPageState extends State<DogBreedPage> {
   @override
    Widget build(BuildContext context) {
     return Scaffold(
@@ -53,8 +53,8 @@ class _BirdBreedPageState extends State<BirdBreedPage> {
                     Center(
                       child: GroupButton(
                         buttons: [
-                          "Budgerigar", "Cockatiel", "Lovebird", "Parrotlet", "Canary", "Finch","Gouldian Finch", "Zebra Finch", "Quaker Parrot", "Conure", "African Grey Parrot",
-                          "Amazon Parrot", "Cockatoo", "Eclectus Parrot", "Sun Conure", "Pionus Parrot", "Macaw", "Mynah Bird", "Dove", "Pigeon"
+                          "Golden Retriever", "Labrador Retriever", "German Shepherd", "Bulldog", "Poodle", "Beagle", "Dachshund", "Shih Tzu", "Siberian Husky", "Boxer", "Chihuahua",
+                          "Great Dane", "Doberman Pinscher", "Cocker Spaniel", "Rottweiler", "Shiba Inu","Welsh Corgi", "Maltese"
                         ],
                         maxSelected: 5,
                         options: GroupButtonOptions(
@@ -67,8 +67,6 @@ class _BirdBreedPageState extends State<BirdBreedPage> {
                           unselectedTextStyle: bodyLBold.copyWith(color: Theme.of(context).colorScheme.primary),
                           borderRadius: BorderRadius.circular(25),                        
                         ),
-                        
-
                       ), 
                     ),
 

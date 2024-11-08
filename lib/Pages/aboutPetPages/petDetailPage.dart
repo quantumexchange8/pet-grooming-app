@@ -1,14 +1,20 @@
-import 'package:adoptify/Pages/adoptPage.dart';
+
+import 'package:adoptify/Pages/aboutOrganizationPages/chatOwnerPage.dart';
+import 'package:adoptify/Pages/aboutOrganizationPages/ownerDetailPage.dart';
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
 import 'package:adoptify/controllers/favouriteController.dart';
 import 'package:adoptify/dataModel/animalDetailDataModel.dart';
+import 'package:adoptify/dataModel/ownerDetailDataModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
+
 
 class PetDetailPage extends StatefulWidget {
   final PetDetailDataModel petDetails;
@@ -19,17 +25,59 @@ class PetDetailPage extends StatefulWidget {
 }
 
 class _PetDetailPageState extends State<PetDetailPage> {
-
-  @override
-  void initState(){
-    super.initState();
-    //petDetailsData = getPetDetailsByName(widget.animal.animalName);
+ 
+  void _showMessage(String message){
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message)),
+    );
   }
+
+  OwnerDetailDataModel? getOwnerDetailsByOrganization(String organizationName) {
+    
+    return ownerDetailList.firstWhere(
+      (owner) => owner.ownerName == organizationName,
+      orElse: () => OwnerDetailDataModel(
+        ownerName: '', 
+        ownerPlaceAddress: '', 
+        ownerPhoneNo: '', 
+        ownerEmail: '', 
+        ownerWebsite: '', 
+        petListBasedOnOwner: [], 
+        ownerIntro: '', 
+        adoptionApplication: '', 
+        policy2: '', 
+        policy3: '', 
+        adoptionFee: ''
+      ),
+    );
+  }
+
+  /* Future<void> _sharePetInfo() async {
+    try{
+      String assetPath = widget.petDetails.petImage;
+      Directory tempDir = await getTemporaryDirectory();
+      File tempFile = File('${tempDir.path}/');
+
+      ByteData data = await rootBundle.load(assetPath);
+      List<int> bytes = data.buffer.asUint8List();
+      await tempFile.writeAsBytes(bytes);
+      
+      XFile xFile = XFile(tempFile.path);
+
+      await Share.shareXFiles(
+        [xFile],
+        text: 'Check out this pet for adoption: ${widget.petDetails.petName}'
+      );
+    } catch (e){
+      _showMessage('Failed to share content');
+    }
+  } */
 
   @override
   Widget build(BuildContext context) {
-    
+
     final isFavourite = context.watch<FavouriteController>().isPetAdoptionFavourite(widget.petDetails);
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -41,10 +89,17 @@ class _PetDetailPageState extends State<PetDetailPage> {
         title: Text('Pet Details', style: heading4Bold),
         centerTitle: true,
         actions: [
-          IconButton(
-            onPressed: (){}, 
-            icon: Icon(Icons.share_outlined, size: 25)
-          ),
+        
+          IconButton( 
+            onPressed: (){
+              // the sharing info is supposed be like sharing a link like shopee or lazada product and click and navigate to the exact pet
+              Share.share('🐾 Check out this adorable pet, ${widget.petDetails.petName} (${widget.petDetails.petBreed}/${widget.petDetails.petType}) for adoption.');
+            },
+            
+            icon: Icon(Icons.share_outlined, size: 25),
+            
+          ), 
+
           IconButton(
             onPressed: (){}, 
             icon: Icon(Icons.more_vert, size: 30)
@@ -62,17 +117,29 @@ class _PetDetailPageState extends State<PetDetailPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    //pet picture
-                    Image.asset(widget.petDetails.petImage, width: 200, height: 200),
+                    
+                    // Pet picture
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15), // problem cannot show the rounded edge
+                      ),
+                      child: Image.asset(
+                        widget.petDetails.petImage,
+                        width: double.infinity, // Full width of the screen
+                        height: 300, // Adjust height as needed for a larger display
+                        fit: BoxFit.cover, // Ensures the image fills the space
+                      ),
+                    ),
+
               
                     const SizedBox(height: 10),
 
                     //pet name (pet breed)
                     RichText(
                       text: TextSpan(
-                        text: widget.petDetails.petName,style: heading4Bold.copyWith(color: Theme.of(context).primaryColor), 
+                        text: widget.petDetails.petName,style: heading4Bold.copyWith(color: Theme.of(context).colorScheme.primary), 
                         children: <TextSpan>[
-                          TextSpan(text: '   (${widget.petDetails.petBreed})', style: bodyLMedium.copyWith(color: Theme.of(context).primaryColor)),
+                          TextSpan(text: '   (${widget.petDetails.petBreed})', style: bodyLMedium.copyWith(color: Theme.of(context).colorScheme.primary)),
                         ],
                       ),
                     ),
@@ -148,22 +215,48 @@ class _PetDetailPageState extends State<PetDetailPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
-                          children: [
-                            ClipOval(
-                              child: Image.asset('assets/logo/no_image.png', width: 50, height: 50),
-                            ),
-                            const SizedBox(width: 15),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(widget.petDetails.petOrganization, style: heading6Bold),
-                                Text(widget.petDetails.petOrganizationAddress, style: bodyMMedium),
-                              ],
-                            ),
-                          ],
+                        GestureDetector(
+                          onTap: () { 
+                            final petOwnerDetail = getOwnerDetailsByOrganization(widget.petDetails.petOrganization);
+                             if (petOwnerDetail != null) {
+                            Navigator.push(
+                              context, 
+                              MaterialPageRoute(
+                                builder: (context) => OwnerDetailPage(petOwnerDetail: petOwnerDetail),
+                              ),
+                            );
+                          } else {
+                            _showMessage('Organization details not found.');
+                          }
+                          },
+                          child: Row(
+                            children: [
+                              ClipOval(
+                                child: Image.asset('assets/logo/no_image.png', width: 50, height: 50),
+                              ),
+                              const SizedBox(width: 15),
+                               
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(widget.petDetails.petOrganization, style: heading6Bold),
+                                  Text(widget.petDetails.petOrganizationAddress, style: bodyMMedium),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                        Icon(IconlyBold.send, color: primaryOrange.shade800),
+                        IconButton(
+                          icon: Icon(IconlyBold.send, color: primaryOrange.shade800),
+                          onPressed: (){
+                            Navigator.push(
+                              context, 
+                              MaterialPageRoute(
+                                builder: (context)=> ChatOwnerPage(),
+                              ),
+                            );
+                          },
+                        ),
                       ],
                     ),
 
@@ -204,7 +297,7 @@ class _PetDetailPageState extends State<PetDetailPage> {
                     height: 48,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Color(0xFFFDF6EE),
+                      color: Theme.of(context).colorScheme.tertiary,
                     ),
                     child: FittedBox(
                       child: IconButton(
@@ -215,6 +308,29 @@ class _PetDetailPageState extends State<PetDetailPage> {
                         iconSize: 30.0,
                         onPressed: () {
                           context.read<FavouriteController>().toggleAllPetFavourite(widget.petDetails);
+
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              backgroundColor: Theme.of(context).colorScheme.background,
+                              behavior: SnackBarBehavior.floating,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              margin: const EdgeInsets.symmetric(horizontal: 45,  vertical: 115), // Positioning margin
+                              content: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset('assets/logo/click_icon.png', height: 35, width: 35),
+                                  const SizedBox(width: 10),
+                                  Text(isFavourite? 'Removed from Favorites!':'Added to Favorites!', 
+                                      style: heading5Bold.copyWith(color: Theme.of(context).colorScheme.primary), 
+                                      textAlign: TextAlign.center),
+                                ],
+                              ),
+                            ),
+                          );
+                         
                         },
                       ),
                     ),
@@ -226,7 +342,7 @@ class _PetDetailPageState extends State<PetDetailPage> {
                         Navigator.push(
                           context, 
                           MaterialPageRoute(
-                            builder: (context) => AdoptPage(),
+                            builder: (context) => ChatOwnerPage(),
                           ),
                         );
                       }, 

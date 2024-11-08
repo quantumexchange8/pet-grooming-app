@@ -1,4 +1,4 @@
-import 'package:adoptify/SignUp/finalStepUserInfo.dart';
+import 'package:adoptify/Pages/SignUp/finalStepUserInfo.dart';
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
@@ -6,16 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
-class DogBreedPage extends StatefulWidget {
-  const DogBreedPage({super.key});
+class HorseBreedPage extends StatefulWidget {
+  const HorseBreedPage({super.key});
 
   @override
-  State<DogBreedPage> createState() => _DogBreedPageState();
+  State<HorseBreedPage> createState() => _HorseBreedPageState();
 }
 
-class _DogBreedPageState extends State<DogBreedPage> {
+class _HorseBreedPageState extends State<HorseBreedPage> {
   @override
-   Widget build(BuildContext context) {
+    Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: StepProgressIndicator(
@@ -53,8 +53,9 @@ class _DogBreedPageState extends State<DogBreedPage> {
                     Center(
                       child: GroupButton(
                         buttons: [
-                          "Golden Retriever", "Labrador Retriever", "German Shepherd", "Bulldog", "Poodle", "Beagle", "Dachshund", "Shih Tzu", "Siberian Husky", "Boxer", "Chihuahua",
-                          "Great Dane", "Doberman Pinscher", "Cocker Spaniel", "Rottweiler", "Shiba Inu","Welsh Corgi", "Maltese"
+                          "Arabian", "Thoroughbred", "American Quarter Horse", "Clydesdale", "Shire", "Friesian", "Mustang", "Appaloosa", "Paint Horse", "Morgan", "Andalusian", "Shetland Pony",
+                          "Tennessee Walking Horse", "Icelandic Horse", "Percheron", "Belgian Draft Horse", "Haflinger", "Paso Fino", "Gypsy Vanner", "Akhal-Teke", "Warmblood", "Rocky Mountain Horse",
+                          "Lippizzaner", "Fjord Horse"
                         ],
                         maxSelected: 5,
                         options: GroupButtonOptions(
@@ -67,6 +68,7 @@ class _DogBreedPageState extends State<DogBreedPage> {
                           unselectedTextStyle: bodyLBold.copyWith(color: Theme.of(context).colorScheme.primary),
                           borderRadius: BorderRadius.circular(25),                        
                         ),
+
                       ), 
                     ),
 

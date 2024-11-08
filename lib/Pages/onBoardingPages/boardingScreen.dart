@@ -1,5 +1,5 @@
 import 'package:adoptify/const/constant.dart';
-import 'package:adoptify/onBoardingPages/splashScreen.dart';
+import 'package:adoptify/Pages/onBoardingPages/splashScreen.dart';
 import 'package:flutter/material.dart';
 
 

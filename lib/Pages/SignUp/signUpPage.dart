@@ -1,5 +1,5 @@
-import 'package:adoptify/SignIn/signInPage.dart';
-import 'package:adoptify/SignUp/ChoicePage.dart';
+import 'package:adoptify/Pages/SignIn/signInPage.dart';
+import 'package:adoptify/Pages/SignUp/ChoicePage.dart';
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';

@@ -1,4 +1,4 @@
-import 'package:adoptify/SignIn/signInPage.dart';
+import 'package:adoptify/Pages/SignIn/signInPage.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/widgets/curveBottomSheet.dart';
 import 'package:flutter/material.dart';

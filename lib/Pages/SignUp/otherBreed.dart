@@ -1,4 +1,4 @@
-import 'package:adoptify/SignUp/finalStepUserInfo.dart';
+import 'package:adoptify/Pages/SignUp/finalStepUserInfo.dart';
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
@@ -6,16 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
-class ReptilesBreedPage extends StatefulWidget {
-  const ReptilesBreedPage({super.key});
+class OtherBreedPage extends StatefulWidget {
+  const OtherBreedPage({super.key});
 
   @override
-  State<ReptilesBreedPage> createState() => _ReptilesBreedPageState();
+  State<OtherBreedPage> createState() => _OtherBreedPageState();
 }
 
-class _ReptilesBreedPageState extends State<ReptilesBreedPage> {
+class _OtherBreedPageState extends State<OtherBreedPage> {
   @override
-   Widget build(BuildContext context) {
+    Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: StepProgressIndicator(
@@ -53,9 +53,8 @@ class _ReptilesBreedPageState extends State<ReptilesBreedPage> {
                     Center(
                       child: GroupButton(
                         buttons: [
-                          "Leopard Gecko", "Bearded Dragon", "Crested Gecko", "Ball Python", "Corn Snake","King Snake", "Milk Snake", "Blue-Tongued Skink", "Green Anole","Uromastyx",
-                          "Russian Tortoise", "Sulcata Tortoise", "Veiled Chameleon", "Savannah Monitor", "Argentine Black and White Tegu", "Chinese Water Dragon",
-                          "African Fat-Tailed Gecko", "Greek Tortoise", "Kenyan Sand Boa", "Red-Eared Slider Turtle"
+                          "Cattle", "Sheep", "Goats", "Pigs", "Guinea Pigs", "Hamsters", "Chinchillas", "Ferrets", "Hedgehogs", "Sugar Gliders", "Lizards", "Rats",
+                          "Stick Insects", "Domestic Ferret"
                         ],
                         maxSelected: 5,
                         options: GroupButtonOptions(
@@ -68,11 +67,8 @@ class _ReptilesBreedPageState extends State<ReptilesBreedPage> {
                           unselectedTextStyle: bodyLBold.copyWith(color: Theme.of(context).colorScheme.primary),
                           borderRadius: BorderRadius.circular(25),                        
                         ),
-
                       ), 
                     ),
-
-                   
               
                   ],
                 ),

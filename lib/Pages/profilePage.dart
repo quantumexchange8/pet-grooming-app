@@ -1,5 +1,5 @@
 import 'package:adoptify/const/urbanist_textStyle.dart';
-import 'package:adoptify/insideProfilePage/Appearance.dart';
+import 'package:adoptify/Pages/insideProfilePage/Appearance.dart';
 import 'package:adoptify/widgets/ProfileMenu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

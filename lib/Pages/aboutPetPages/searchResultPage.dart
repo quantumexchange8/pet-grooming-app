@@ -1,5 +1,5 @@
-import 'package:adoptify/Pages/petDetailPage.dart';
-import 'package:adoptify/Pages/searchPage.dart';
+import 'package:adoptify/Pages/aboutPetPages/petDetailPage.dart';
+import 'package:adoptify/Pages/aboutPetPages/searchPage.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
 import 'package:adoptify/controllers/favouriteController.dart';
@@ -180,7 +180,7 @@ class _SearchResultState extends State<SearchResult> {
                         width: 140.0,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5.0),
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.background,
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -287,8 +287,8 @@ class _SearchResultState extends State<SearchResult> {
       ), 
       selected: selectedValue == label,
       labelStyle: bodyLSemibold.copyWith(
-        color: selectedValue == label? Colors.white: Colors.black),
-      backgroundColor: Colors.white,
+        color: selectedValue == label? Colors.white: Theme.of(context).colorScheme.primary),
+      backgroundColor: Theme.of(context).colorScheme.background,
       selectedColor: primaryOrange.shade800,
       onSelected: (bool isSelected){
         setState(() {
