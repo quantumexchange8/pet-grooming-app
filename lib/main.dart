@@ -2,19 +2,42 @@ import 'package:adoptify/controllers/favouriteController.dart';
 import 'package:adoptify/Pages/onBoardingPages/boardingScreen.dart';
 import 'package:adoptify/theme/themes.dart';
 import 'package:adoptify/theme/themes_provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() {
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+
+
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => ThemeProvider()),
-        ChangeNotifierProvider(create: (_) => FavouriteController()),
-      ],
-      child: const MyApp(),
+    EasyLocalization(
+      supportedLocales: [
+        Locale('en','US'),
+        Locale('es','ES'),
+        Locale('ja','JP'),
+        Locale('ar','AR'),
+        Locale('zh','CN'),
+        Locale('en','UK'),
+        Locale('fr','FR'),
+        Locale('hi','IN'),
+        Locale('ru','RU'),
+      ], 
+      path: 'assets/languages',
+      fallbackLocale: Locale('en','US'),
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => ThemeProvider()),
+          ChangeNotifierProvider(create: (_) => FavouriteController()),
+        ],
+        child: const MyApp(),
+      ),
     ),
+   
     
   );
 }
@@ -33,6 +56,16 @@ class MyApp extends StatelessWidget {
       theme: lightMode,
       darkTheme: darkMode,
       themeMode: themeProvider.themeMode,
+      localizationsDelegates: [
+        
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        EasyLocalization.of(context)!.delegate,
+        //...context.localizationDelegates,
+      ],
+      supportedLocales: EasyLocalization.of(context)!.supportedLocales,//context.supportedLocales,
+      locale: EasyLocalization.of(context)!.locale,//context.locale,
       home: const BoardingScreen(),
     );
   }

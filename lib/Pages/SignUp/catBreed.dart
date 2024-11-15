@@ -14,8 +14,6 @@ class CatBreedPage extends StatefulWidget {
 }
 
 class _CatBreedPageState extends State<CatBreedPage> {
-  
-  //List<String> selectedBreed = [];
 
   @override
   Widget build(BuildContext context) {
@@ -56,9 +54,10 @@ class _CatBreedPageState extends State<CatBreedPage> {
                     
                     Center(
                       child: GroupButton<String>(
-                        maxSelected: 5,
+                        maxSelected: 6,
+                        isRadio: false,
                         enableDeselect: true,
-                        buttons: [
+                        buttons: const [
                           "Persian", "Maine Coon", "Siamese", "Ragdoll", "Bengal", "Sphynx", "Scottish Fold", "Abyssinian", "Birman", "Russian Blue", "Siberian",
                           "British Shorthair", "Exotic Shorthair", "Turkish Angora", "Manx", "Himalayan", "Devon Rex", "Oriental Shorthair", "Cornish Rex"
                         ],
@@ -72,10 +71,8 @@ class _CatBreedPageState extends State<CatBreedPage> {
                           unselectedTextStyle: bodyLBold.copyWith(color: Theme.of(context).colorScheme.primary),
                           borderRadius: BorderRadius.circular(25),
                         ),
-
                       ), 
                     ),        
-              
                   ],
                 ),
               ),
@@ -93,7 +90,7 @@ class _CatBreedPageState extends State<CatBreedPage> {
                         Navigator.push(
                           context, 
                           MaterialPageRoute(
-                            builder: (context)=> FinalStepUserInfo(),
+                            builder: (context)=> const FinalStepUserInfo(),
                           ),
                         );
                       }, 

@@ -52,10 +52,12 @@ class _PrimatesBreedPageState extends State<PrimatesBreedPage> {
                     
                     Center(
                       child: GroupButton(
-                        buttons: [
+                        buttons: const [
                           "Capuchin Monkey", "Common Marmoset", "Pygmy Marmoset", "Squirrel Monkey", "Tamarin", "Bushbaby", "Slow Loris", "Ring-tailed Lemur"
                         ],
-                        maxSelected: 5,
+                        maxSelected: 6,
+                        isRadio: false,
+                        enableDeselect: true,
                         options: GroupButtonOptions(
                           mainGroupAlignment: MainGroupAlignment.start,
                           selectedBorderColor: primaryOrange.shade800,
@@ -89,7 +91,7 @@ class _PrimatesBreedPageState extends State<PrimatesBreedPage> {
                         Navigator.push(
                           context, 
                           MaterialPageRoute(
-                            builder: (context)=> FinalStepUserInfo(),
+                            builder: (context)=> const FinalStepUserInfo(),
                           ),
                         );
                       }, 

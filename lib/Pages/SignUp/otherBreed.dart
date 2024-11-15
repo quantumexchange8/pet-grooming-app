@@ -52,11 +52,13 @@ class _OtherBreedPageState extends State<OtherBreedPage> {
                     
                     Center(
                       child: GroupButton(
-                        buttons: [
+                        buttons: const [
                           "Cattle", "Sheep", "Goats", "Pigs", "Guinea Pigs", "Hamsters", "Chinchillas", "Ferrets", "Hedgehogs", "Sugar Gliders", "Lizards", "Rats",
                           "Stick Insects", "Domestic Ferret"
                         ],
-                        maxSelected: 5,
+                        maxSelected: 6,
+                        isRadio: false,
+                        enableDeselect: true,
                         options: GroupButtonOptions(
                           mainGroupAlignment: MainGroupAlignment.start,
                           selectedBorderColor: primaryOrange.shade800,
@@ -87,7 +89,7 @@ class _OtherBreedPageState extends State<OtherBreedPage> {
                         Navigator.push(
                           context, 
                           MaterialPageRoute(
-                            builder: (context)=> FinalStepUserInfo(),
+                            builder: (context)=> const FinalStepUserInfo(),
                           ),
                         );
                       }, 

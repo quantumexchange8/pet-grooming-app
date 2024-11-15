@@ -321,7 +321,7 @@ class _PetDetailPageState extends State<PetDetailPage> {
                                 mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Image.asset('assets/logo/click_icon.png', height: 35, width: 35),
+                                  Image.asset('assets/icon/click_icon.png', height: 35, width: 35),
                                   const SizedBox(width: 10),
                                   Text(isFavourite? 'Removed from Favorites!':'Added to Favorites!', 
                                       style: heading5Bold.copyWith(color: Theme.of(context).colorScheme.primary), 

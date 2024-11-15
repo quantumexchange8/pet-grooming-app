@@ -3,7 +3,8 @@ import 'package:adoptify/const/urbanist_textStyle.dart';
 import 'package:adoptify/Pages/forgotPasswordPages/OTPcode.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:iconly/iconly.dart';
+
 
 class ResetPasswordEmail extends StatefulWidget {
   const ResetPasswordEmail({super.key});
@@ -52,7 +53,7 @@ class _ResetPasswordEmailState extends State<ResetPasswordEmail> {
                       isDense: true,
                       hintText: 'Email',
                       hintStyle: bodyLRegular,
-                      prefixIcon: const Icon(Iconsax.sms),
+                      prefixIcon: const Icon(IconlyLight.message),
                     ),
                   ),
                 
@@ -73,7 +74,7 @@ class _ResetPasswordEmailState extends State<ResetPasswordEmail> {
                         onPressed: (){
                           Navigator.push(
                             context, 
-                            MaterialPageRoute(builder: (context)=>OTPcode(),
+                            MaterialPageRoute(builder: (context)=>const OTPcode(),
                             ),
                           );
                         }, 

@@ -35,25 +35,25 @@ class _WelcomePageState extends State<WelcomePage> {
 
             GreyOutlineButton(
               onPressed: (){}, 
-              iconUrl: 'assets/logo/google_icon.png', 
+              iconUrl: 'assets/icon/google_icon.png', 
               text: 'Continue with Google',
             ),
             const SizedBox(height: 15.0),
             GreyOutlineButton(
               onPressed: (){}, 
-              iconUrl: isLightMode? 'assets/logo/apple_icon.png':'assets/logo/white_apple_logo.png', 
+              iconUrl: isLightMode? 'assets/icon/apple_icon.png':'assets/icon/white_apple_logo.png', 
               text: 'Continue with Apple'
             ),
             const SizedBox(height: 15.0),
             GreyOutlineButton(
               onPressed: (){}, 
-              iconUrl: 'assets/logo/fb_icon.png', 
+              iconUrl: 'assets/icon/fb_icon.png', 
               text: 'Continue with Facebook'
             ),
             const SizedBox(height: 15.0),
             GreyOutlineButton(
               onPressed: (){}, 
-              iconUrl: 'assets/logo/twitter_icon.png', 
+              iconUrl: 'assets/icon/twitter_icon.png', 
               text: 'Continue with Twitter'
             ),
             const SizedBox(height: 50.0),

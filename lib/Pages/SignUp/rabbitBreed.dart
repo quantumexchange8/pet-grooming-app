@@ -52,11 +52,13 @@ class _RabbitBreedPageState extends State<RabbitBreedPage> {
                     
                     Center(
                       child: GroupButton(
-                        buttons: [
+                        buttons: const [
                           "American Rabbit", "English Lop", "Jersey Wooly", "Harlequin", "Dutch Rabbit", "Dwarf Angora", "Belgian Hare", "Lionhead Rabbit", "Mini Rex", "Beveren"
                           "Rex Rabbit", "Netherland Dwarf", "Flemish Giant", "Holland Lop", "Tan Rabbit", "Thrianta", "Satin Rabbit", "Californian Rabbit", "Polish Rabbit", "Fauve de Bourgo"
                         ],
-                        maxSelected: null,
+                        maxSelected: 6,
+                        isRadio: false,
+                        enableDeselect: true,
                         options: GroupButtonOptions(
                           mainGroupAlignment: MainGroupAlignment.start,
                           selectedBorderColor: primaryOrange.shade800,
@@ -87,7 +89,7 @@ class _RabbitBreedPageState extends State<RabbitBreedPage> {
                         Navigator.push(
                           context, 
                           MaterialPageRoute(
-                            builder: (context)=> FinalStepUserInfo(),
+                            builder: (context)=> const FinalStepUserInfo(),
                           ),
                         );
                       }, 

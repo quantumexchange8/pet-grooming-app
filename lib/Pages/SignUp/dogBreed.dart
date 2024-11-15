@@ -52,11 +52,12 @@ class _DogBreedPageState extends State<DogBreedPage> {
                     
                     Center(
                       child: GroupButton(
-                        buttons: [
+                        buttons: const [
                           "Golden Retriever", "Labrador Retriever", "German Shepherd", "Bulldog", "Poodle", "Beagle", "Dachshund", "Shih Tzu", "Siberian Husky", "Boxer", "Chihuahua",
                           "Great Dane", "Doberman Pinscher", "Cocker Spaniel", "Rottweiler", "Shiba Inu","Welsh Corgi", "Maltese"
                         ],
-                        maxSelected: 5,
+                        maxSelected: 6,
+                        isRadio: false,
                         options: GroupButtonOptions(
                           mainGroupAlignment: MainGroupAlignment.start,
                           selectedBorderColor: primaryOrange.shade800,
@@ -89,7 +90,7 @@ class _DogBreedPageState extends State<DogBreedPage> {
                         Navigator.push(
                           context, 
                           MaterialPageRoute(
-                            builder: (context)=> FinalStepUserInfo(),
+                            builder: (context)=> const FinalStepUserInfo(),
                           ),
                         );
                       }, 

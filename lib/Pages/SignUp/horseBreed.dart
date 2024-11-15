@@ -52,12 +52,14 @@ class _HorseBreedPageState extends State<HorseBreedPage> {
                     
                     Center(
                       child: GroupButton(
-                        buttons: [
+                        buttons: const [
                           "Arabian", "Thoroughbred", "American Quarter Horse", "Clydesdale", "Shire", "Friesian", "Mustang", "Appaloosa", "Paint Horse", "Morgan", "Andalusian", "Shetland Pony",
                           "Tennessee Walking Horse", "Icelandic Horse", "Percheron", "Belgian Draft Horse", "Haflinger", "Paso Fino", "Gypsy Vanner", "Akhal-Teke", "Warmblood", "Rocky Mountain Horse",
                           "Lippizzaner", "Fjord Horse"
                         ],
-                        maxSelected: 5,
+                        maxSelected: 6,
+                        enableDeselect: true,
+                        isRadio: false,
                         options: GroupButtonOptions(
                           mainGroupAlignment: MainGroupAlignment.start,
                           selectedBorderColor: primaryOrange.shade800,
@@ -68,12 +70,8 @@ class _HorseBreedPageState extends State<HorseBreedPage> {
                           unselectedTextStyle: bodyLBold.copyWith(color: Theme.of(context).colorScheme.primary),
                           borderRadius: BorderRadius.circular(25),                        
                         ),
-
                       ), 
                     ),
-
-                   
-              
                   ],
                 ),
               ),
@@ -91,7 +89,7 @@ class _HorseBreedPageState extends State<HorseBreedPage> {
                         Navigator.push(
                           context, 
                           MaterialPageRoute(
-                            builder: (context)=> FinalStepUserInfo(),
+                            builder: (context)=> const FinalStepUserInfo(),
                           ),
                         );
                       }, 

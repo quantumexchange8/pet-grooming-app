@@ -119,7 +119,7 @@ class _SearchPageState extends State<SearchPage> {
                       ),
                       child: Row(
                         children: [
-                          Icon(IconlyLight.location, size:20, color: Colors.black),
+                          const Icon(IconlyLight.location, size:20, color: Colors.black),
                           const SizedBox(width: 10),
                           Text(selectedLocation, style: bodyXLSemibold.copyWith(color: Colors.black)),
                         ],
@@ -247,7 +247,7 @@ class _SearchPageState extends State<SearchPage> {
       ), 
       selected: selectedValue == label,
       labelStyle: bodyLSemibold.copyWith(
-        color: selectedValue == label? Colors.white: Colors.black),
+      color: selectedValue == label? Colors.white: Colors.black),
       backgroundColor: Colors.white,
       selectedColor: primaryOrange.shade800,
       onSelected: (bool isSelected){

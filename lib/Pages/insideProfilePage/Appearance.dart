@@ -1,10 +1,13 @@
+import 'package:adoptify/Pages/insideProfilePage/SidePages/AppLanguagePage.dart';
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
 import 'package:adoptify/theme/themes_provider.dart';
+import 'package:adoptify/widgets/ProfileDetailSelection.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
-import 'package:iconsax/iconsax.dart';
 
 enum ThemeModeOption { system, light, dark }
 
@@ -18,6 +21,21 @@ class AppearancePage extends StatefulWidget {
 class _AppearancePageState extends State<AppearancePage> {
   ThemeModeOption _themeModeOption = ThemeModeOption.system;
   ThemeModeOption _selectedOption = ThemeModeOption.system;
+  Locale? _currentLocale;
+
+  @override
+  void initState(){
+    super.initState();
+    final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+    _selectedOption = _getThemeModeOption(themeProvider.themeMode);
+    //_currentLocale = context.locale;
+  }
+
+  @override
+  void didChangeDependencies(){
+    super.didChangeDependencies();
+    _currentLocale ??= context.locale;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +49,22 @@ class _AppearancePageState extends State<AppearancePage> {
             centerTitle: true,
           ),
           backgroundColor: Theme.of(context).colorScheme.background,
+
           body: Column(
             children: [
+
               ListTile(
-                title: Text('Theme', style: heading6Bold),
-                trailing: const Icon(Iconsax.arrow_right_34, size: 15),
-                onTap: () {
-                  showModalBottomSheet<void>(
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Theme', style: heading6Bold),
+                    Text(_getThemeSelection(_selectedOption), style: bodyXLSemibold.copyWith(color: Theme.of(context).colorScheme.primary, fontSize:16)),
+                  ],
+                ),
+                
+                trailing: const Icon(IconlyLight.arrow_right_2, size:20),
+                onTap: (){
+                    showModalBottomSheet<void>(
                     backgroundColor: Theme.of(context).colorScheme.background,
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
@@ -126,11 +153,30 @@ class _AppearancePageState extends State<AppearancePage> {
                   );
                 },
               ),
+
               ListTile(
-                title: Text('App Language', style: heading6Bold),
-                trailing: const Icon(Iconsax.arrow_right_34, size: 15),
-                onTap: () {},
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('App Language', style: heading6Bold),
+                    Text(_getCurrentLanguage(), style: bodyXLSemibold.copyWith(color: Theme.of(context).colorScheme.primary, fontSize:16)),
+                  ],
+                ),
+                trailing: const Icon(IconlyLight.arrow_right_2, size:20),
+                onTap: (){
+                  Navigator.push(
+                    context, 
+                    MaterialPageRoute(
+                      builder: (context)=> const AppLanguagePage(),
+                    ),
+                  ).then((_){
+                    setState(() {
+                      _currentLocale = context.locale;
+                    });
+                  });
+                },
               ),
+
             ],
           ),
         );
@@ -162,4 +208,47 @@ class _AppearancePageState extends State<AppearancePage> {
         break;
     }
   }
+
+  String _getThemeSelection(ThemeModeOption option){
+    switch(option){
+      case ThemeModeOption.system:
+       return 'System Default';
+
+      case ThemeModeOption.light:
+       return 'Light';
+
+      case ThemeModeOption.dark:
+       return 'Dark';
+
+      default:
+        return 'System Default';
+    }
+  }
+
+  String _getCurrentLanguage(){
+    switch(_currentLocale.toString()){
+      case 'en_US':
+       return 'English (US)';
+      case 'en_UK':
+       return 'English (UK)';
+      case 'zh_CN':
+       return 'Mandarin';
+      case 'es_ES':
+       return 'Spanish';
+      case 'hi_IN':
+       return 'Hindi';
+      case 'fr_FR':
+       return 'France';
+      case 'ar_AR':
+       return 'Arabic';
+      case 'ru_RU':
+       return 'Russian';
+      case 'ja_JP':
+       return 'Japanese';
+      default:
+       return 'English (US)';
+
+    }
+  }
+
 }

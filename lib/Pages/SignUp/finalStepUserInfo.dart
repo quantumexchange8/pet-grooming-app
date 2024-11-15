@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:adoptify/Pages/homePage.dart';
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
+import 'package:adoptify/widgets/bottomNaviBar.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:editable_image/editable_image.dart';
 import 'package:flutter/cupertino.dart';
@@ -24,7 +24,7 @@ class _FinalStepUserInfoState extends State<FinalStepUserInfo> {
   // bool _isNameFilled = false;
   // bool _isPhoneNoFilled = false;
   final genderList = ['Male', 'Female'];
-  String? selectedGender;
+  String? selectedGender = 'Male';
   File? _profilePicFile;
 
   void _uploadImage(File? file) async {
@@ -113,7 +113,7 @@ class _FinalStepUserInfoState extends State<FinalStepUserInfo> {
                         imageDefaultColor: primaryOrange.shade800, 
                       
                         // Define the border of the image.
-                        imageBorder: Border.all(color: primaryOrange.shade800, width: 2.0),
+                        imageBorder: Border.all(color: primaryOrange.shade200, width: 2.0),
                       
                         // Define the border of the icon.
                         editIconBorder: Border.all(color: primaryOrange.shade800, width: 2.0),
@@ -133,7 +133,10 @@ class _FinalStepUserInfoState extends State<FinalStepUserInfo> {
                         });
                       }, */
                       controller: nameController,
+                      style: bodyXLSemibold,
                       decoration: InputDecoration(
+                        hintText: 'Andrew Ainsley',
+                        hintStyle: bodyLRegular.copyWith(color: grey.shade500),
                         filled: true,
                         fillColor: Theme.of(context).colorScheme.secondary,
                         border: OutlineInputBorder(
@@ -155,6 +158,7 @@ class _FinalStepUserInfoState extends State<FinalStepUserInfo> {
                         });
                       }, */
                       controller: phoneNoController,
+                      style: bodyXLSemibold,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         fillColor: Theme.of(context).colorScheme.secondary,
@@ -196,7 +200,7 @@ class _FinalStepUserInfoState extends State<FinalStepUserInfo> {
                       icon: const Icon(Icons.keyboard_arrow_down, size: 25),
                       items: genderList.map((e) => DropdownMenuItem<String>(
                           value: e,
-                          child: Text(e, style: bodyMSemibold))).toList(), 
+                          child: Text(e, style: bodyXLSemibold))).toList(), 
                       onChanged: (String? gender){
                         setState(() {
                           selectedGender = gender;
@@ -224,7 +228,7 @@ class _FinalStepUserInfoState extends State<FinalStepUserInfo> {
                         Navigator.push(
                           context, 
                           MaterialPageRoute(
-                            builder: (context)=> HomePage(),
+                            builder: (context)=> const BottomNaviBar(),
                           ),
                         );
                       }, 

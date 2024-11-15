@@ -1,4 +1,6 @@
+import 'package:adoptify/const/urbanist_textStyle.dart';
 import 'package:flutter/material.dart';
+import 'package:iconly/iconly.dart';
 
 class MapsPage extends StatefulWidget {
   const MapsPage({super.key});
@@ -10,6 +12,24 @@ class MapsPage extends StatefulWidget {
 class _MapsPageState extends State<MapsPage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        leading: Image.asset('assets/logo/paw_small.png'),
+        title: Text('Maps', style: heading4Bold),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: (){}, 
+            icon: const Icon(IconlyLight.search),
+          ),
+        ],
+      ),
+
+    body: Column(
+      children: [
+
+      ],
+    ),
+    );
   }
 }

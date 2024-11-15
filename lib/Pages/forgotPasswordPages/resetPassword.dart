@@ -4,7 +4,8 @@ import 'package:adoptify/Pages/forgotPasswordPages/AllSet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:iconly/iconly.dart';
+
 
 class EditNewPassword extends StatefulWidget {
   const EditNewPassword({super.key});
@@ -16,10 +17,13 @@ class EditNewPassword extends StatefulWidget {
 class _EditNewPasswordState extends State<EditNewPassword> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
+  bool _isVisible = false;
+  bool _isVisible2 = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(),
 
       body: Column(
@@ -46,6 +50,7 @@ class _EditNewPasswordState extends State<EditNewPassword> {
                   TextField(
                     //onChanged:,
                     controller: passwordController,
+                    obscureText: !_isVisible,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Theme.of(context).colorScheme.secondary,
@@ -56,15 +61,23 @@ class _EditNewPasswordState extends State<EditNewPassword> {
                       isDense: true,
                       hintText: 'New Password',
                       hintStyle: bodyLRegular,
-                      prefixIcon: const Icon(Iconsax.sms),
+                      prefixIcon: const Icon(IconlyLight.lock),
+                      suffixIcon: IconButton(
+                        onPressed: (){
+                          setState(() {
+                            _isVisible = !_isVisible;
+                          });
+                        },
+                        icon: _isVisible? const Icon(IconlyLight.show):const Icon(IconlyLight.hide),
+                      ),
                     ),
                   ),
                     const SizedBox(height: 15),
                   Text('Confirm New Password', style: heading6Bold, textAlign: TextAlign.start,),
                   const SizedBox(height: 10),
                   TextField(
-                    //onChanged:,
-                    controller: passwordController,
+                    controller: confirmPasswordController,
+                    obscureText: !_isVisible2,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Theme.of(context).colorScheme.secondary,
@@ -75,7 +88,15 @@ class _EditNewPasswordState extends State<EditNewPassword> {
                       isDense: true,
                       hintText: 'Confirm New Password',
                       hintStyle: bodyLRegular,
-                      prefixIcon: const Icon(Iconsax.sms),
+                      prefixIcon: const Icon(IconlyLight.lock),
+                      suffixIcon: IconButton(
+                        onPressed: (){
+                          setState(() {
+                            _isVisible2 = !_isVisible2;
+                          });
+                        },
+                        icon: _isVisible2? const Icon(IconlyLight.show): const Icon(IconlyLight.hide),
+                      ),
                     ),
                   ),
                 

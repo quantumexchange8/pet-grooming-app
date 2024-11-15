@@ -54,11 +54,13 @@ class _FishBreedPageState extends State<FishBreedPage> {
                     
                     Center(
                       child: GroupButton<String>(
-                        buttons: [
+                        buttons: const [
                           "Betta", "Goldfish", "Guppy", "Molly", "Platy", "Neon Tetra", "Cardinal Tetra", "Angelfish", "Oscars", "Discus", "Swordtail", "Clownfish", "Cherry Barb", "Koi", 
                           "Dwarf Gourami", "Pearl Gourami", "Rainbowfish", "Endler's Livebearer", "Blue Tang", "Bristlenose Pleco", "African Cichlids", "Bolivian Ram", "Firemouth Cichlid"
                         ],
-                        maxSelected: 5,
+                        maxSelected: 6,
+                        isRadio: false,
+                        enableDeselect: true,
                         options: GroupButtonOptions(
                           mainGroupAlignment: MainGroupAlignment.start,
                           selectedBorderColor: primaryOrange.shade800,
@@ -71,10 +73,7 @@ class _FishBreedPageState extends State<FishBreedPage> {
                         ),
 
                       ), 
-                    ),
-
-                   
-              
+                    ),              
                   ],
                 ),
               ),
@@ -92,7 +91,7 @@ class _FishBreedPageState extends State<FishBreedPage> {
                         Navigator.push(
                           context, 
                           MaterialPageRoute(
-                            builder: (context)=> FinalStepUserInfo(),
+                            builder: (context)=> const FinalStepUserInfo(),
                           ),
                         );
                       }, 

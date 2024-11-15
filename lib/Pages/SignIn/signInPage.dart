@@ -5,7 +5,8 @@ import 'package:adoptify/Pages/forgotPasswordPages/fillEmail.dart';
 import 'package:adoptify/widgets/bottomNaviBar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:iconly/iconly.dart';
+
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -93,7 +94,7 @@ class _SignInState extends State<SignIn> {
                         isDense: true,
                         hintText: 'Email',
                         hintStyle: bodyLRegular,
-                        prefixIcon: const Icon(Iconsax.sms),
+                        prefixIcon: const Icon(IconlyLight.message),
                       ),
                     ),
                     const SizedBox(height: 15),
@@ -114,7 +115,7 @@ class _SignInState extends State<SignIn> {
                               _isVisible = !_isVisible;
                             });
                           },
-                          icon: _isVisible? const Icon(Iconsax.eye):const Icon(Iconsax.eye_slash),
+                          icon: _isVisible? const Icon(IconlyLight.show):const Icon(IconlyLight.hide),
                         ),
                         filled: true,
                         fillColor: Theme.of(context).colorScheme.secondary,
@@ -125,7 +126,7 @@ class _SignInState extends State<SignIn> {
                         isDense: true,
                         hintText: 'Password',
                         hintStyle: bodyLRegular,
-                        prefixIcon: const Icon(Iconsax.lock_1),
+                        prefixIcon: const Icon(IconlyLight.lock),
                       ),
                     ),
               
@@ -183,25 +184,25 @@ class _SignInState extends State<SignIn> {
                     const SizedBox(height: 15),
                     GreyOutlineButton(
                       onPressed: (){}, 
-                      iconUrl: 'assets/logo/google_icon.png', 
+                      iconUrl: 'assets/icon/google_icon.png', 
                       text: 'Continue with Google'
                     ),
                     const SizedBox(height: 15.0),
                     GreyOutlineButton(
                       onPressed: (){}, 
-                      iconUrl: isLightMode? 'assets/logo/apple_icon.png':'assets/logo/white_apple_logo.png', 
+                      iconUrl: isLightMode? 'assets/icon/apple_icon.png':'assets/icon/white_apple_logo.png', 
                       text: 'Continue with Apple'
                     ),
                     const SizedBox(height: 15.0),
                     GreyOutlineButton(
                       onPressed: (){}, 
-                      iconUrl: 'assets/logo/fb_icon.png', 
+                      iconUrl: 'assets/icon/fb_icon.png', 
                       text: 'Continue with Facebook'
                     ),
                     const SizedBox(height: 15.0),
                     GreyOutlineButton(
                       onPressed: (){}, 
-                      iconUrl: 'assets/logo/twitter_icon.png', 
+                      iconUrl: 'assets/icon/twitter_icon.png', 
                       text: 'Continue with Twitter'
                     ),
                   ],
@@ -246,11 +247,11 @@ class _SignInState extends State<SignIn> {
                       ),
                       ),
                       );
-                     Future.delayed(Duration(seconds: 2),(){
+                     Future.delayed(const Duration(seconds: 2),(){
                        Navigator.pushReplacement(
                         context, 
                         MaterialPageRoute(
-                          builder: (context)=> BottomNaviBar()),
+                          builder: (context)=> const BottomNaviBar()),
                       );
                      });
                     }:null,

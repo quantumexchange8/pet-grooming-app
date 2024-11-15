@@ -52,12 +52,14 @@ class _ReptilesBreedPageState extends State<ReptilesBreedPage> {
                     
                     Center(
                       child: GroupButton(
-                        buttons: [
+                        buttons: const [
                           "Leopard Gecko", "Bearded Dragon", "Crested Gecko", "Ball Python", "Corn Snake","King Snake", "Milk Snake", "Blue-Tongued Skink", "Green Anole","Uromastyx",
                           "Russian Tortoise", "Sulcata Tortoise", "Veiled Chameleon", "Savannah Monitor", "Argentine Black and White Tegu", "Chinese Water Dragon",
                           "African Fat-Tailed Gecko", "Greek Tortoise", "Kenyan Sand Boa", "Red-Eared Slider Turtle"
                         ],
-                        maxSelected: 5,
+                        maxSelected: 6,
+                        isRadio: false,
+                        enableDeselect: true,
                         options: GroupButtonOptions(
                           mainGroupAlignment: MainGroupAlignment.start,
                           selectedBorderColor: primaryOrange.shade800,
@@ -91,7 +93,7 @@ class _ReptilesBreedPageState extends State<ReptilesBreedPage> {
                         Navigator.push(
                           context, 
                           MaterialPageRoute(
-                            builder: (context)=> FinalStepUserInfo(),
+                            builder: (context)=> const FinalStepUserInfo(),
                           ),
                         );
                       }, 

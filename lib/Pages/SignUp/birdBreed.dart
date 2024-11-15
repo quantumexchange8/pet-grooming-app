@@ -52,11 +52,13 @@ class _BirdBreedPageState extends State<BirdBreedPage> {
                     
                     Center(
                       child: GroupButton(
-                        buttons: [
+                        buttons: const [
                           "Budgerigar", "Cockatiel", "Lovebird", "Parrotlet", "Canary", "Finch","Gouldian Finch", "Zebra Finch", "Quaker Parrot", "Conure", "African Grey Parrot",
                           "Amazon Parrot", "Cockatoo", "Eclectus Parrot", "Sun Conure", "Pionus Parrot", "Macaw", "Mynah Bird", "Dove", "Pigeon"
                         ],
-                        maxSelected: 5,
+                        maxSelected: 6,
+                        isRadio: false,
+                        enableDeselect: true,
                         options: GroupButtonOptions(
                           mainGroupAlignment: MainGroupAlignment.start,
                           selectedBorderColor: primaryOrange.shade800,
@@ -91,7 +93,7 @@ class _BirdBreedPageState extends State<BirdBreedPage> {
                         Navigator.push(
                           context, 
                           MaterialPageRoute(
-                            builder: (context)=> FinalStepUserInfo(),
+                            builder: (context)=> const FinalStepUserInfo(),
                           ),
                         );
                       }, 

@@ -1,6 +1,6 @@
-import 'package:adoptify/Pages/homePage.dart';
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
+import 'package:adoptify/widgets/bottomNaviBar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -47,7 +47,7 @@ class AllSet extends StatelessWidget {
                         Navigator.push(
                           context, 
                           MaterialPageRoute(
-                            builder: (context)=>const HomePage(),
+                            builder: (context)=>const BottomNaviBar(),
                           ),
                         );
                       }, 

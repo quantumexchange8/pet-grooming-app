@@ -9,7 +9,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
-import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 
 class OwnerDetailPage extends StatefulWidget {
@@ -22,7 +21,12 @@ class OwnerDetailPage extends StatefulWidget {
 
 class _OwnerDetailPageState extends State<OwnerDetailPage> {
 
-  List<String> get listPageForPetAndPolicy => ["Pets()", "Adoption Policy"];
+  //List<String> get listPageForPetAndPolicy => ["Pets()", "Adoption Policy"];
+  List<String> get listPageForPetAndPolicy {
+    int petCount = widget.petOwnerDetail.petListBasedOnOwner.length;
+    return [ "Pet($petCount)", "Adoption Policy"];
+  }
+
   int selectedIndex = 0;
 
   PetDetailDataModel? getPetDetailsByName(String petName){
@@ -57,7 +61,6 @@ class _OwnerDetailPageState extends State<OwnerDetailPage> {
   @override
   Widget build(BuildContext context) {
 
-
     final owner = widget.petOwnerDetail;
 
     return Scaffold(
@@ -65,7 +68,7 @@ class _OwnerDetailPageState extends State<OwnerDetailPage> {
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         leading: IconButton(
-          icon: Icon(IconlyLight.arrow_left), 
+          icon: const Icon(IconlyLight.arrow_left), 
           onPressed: (){
             Navigator.pop(context);
           },
@@ -75,7 +78,7 @@ class _OwnerDetailPageState extends State<OwnerDetailPage> {
         actions: [ 
           IconButton(
             onPressed: (){}, 
-            icon: Icon(Icons.more_vert, size: 30)
+            icon: const Icon(Icons.more_vert, size: 30)
           ),
         ],
       ),
@@ -138,9 +141,9 @@ class _OwnerDetailPageState extends State<OwnerDetailPage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            _contactInfoOfPetOwner(Color(0xFF4AAF57), (){}, IconlyBold.calling, 'Phone'),
-                            _contactInfoOfPetOwner(Color(0xFF1A96F0), (){}, IconlyBold.message, 'Email'),
-                            _contactInfoOfPetOwner(Color(0xFFF54336), (){}, IconlyBold.discovery, 'Website'),
+                            _contactInfoOfPetOwner(const Color(0xFF4AAF57), (){}, IconlyBold.calling, 'Phone'),
+                            _contactInfoOfPetOwner(const Color(0xFF1A96F0), (){}, IconlyBold.message, 'Email'),
+                            _contactInfoOfPetOwner(const Color(0xFFF54336), (){}, IconlyBold.discovery, 'Website'),
                             _contactInfoOfPetOwner(primaryOrange.shade900, (){}, IconlyBold.send, 'Navigate'),                   
                           ],
                         ),
@@ -188,7 +191,7 @@ class _OwnerDetailPageState extends State<OwnerDetailPage> {
                         Navigator.push(
                           context, 
                           MaterialPageRoute(
-                            builder: (context) => ChatOwnerPage(),
+                            builder: (context) => const ChatOwnerPage(),
                           ),
                         );
                       }, 
@@ -239,8 +242,8 @@ class _OwnerDetailPageState extends State<OwnerDetailPage> {
   Widget _petListContent(List<PetDetailDataModel> pets){
     return GridView.builder(
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10, childAspectRatio: 0.75,
       ), 
       itemCount: pets.length,
