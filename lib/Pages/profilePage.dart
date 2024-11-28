@@ -9,6 +9,8 @@ import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
 import 'package:adoptify/Pages/insideProfilePage/Appearance.dart';
 import 'package:adoptify/widgets/ProfileMenu.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:editable_image/editable_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //import 'package:group_button/group_button.dart';
@@ -28,19 +30,19 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     final isLightMode = Theme.of(context).brightness == Brightness.light;
     final petOptions = [
-      {'label': 'Dogs', 'image': 'assets/buttonPic/dog.png'},
-      {'label': 'Cats', 'image': 'assets/buttonPic/cat.png'},
-      {'label': 'Rabbits', 'image': 'assets/buttonPic/rabbit.png'},
-      {'label': 'Birds', 'image': 'assets/buttonPic/bird.png'},
-      {'label': 'Reptiles', 'image': 'assets/buttonPic/snake.png'},
-      {'label': 'Fish', 'image': 'assets/buttonPic/fish.png'},
-      {'label': 'Primates', 'image': 'assets/buttonPic/monkey.png'},
-      {'label': 'Other', 'image': 'assets/buttonPic/other.png'},
+      {'label': context.tr('animals.dogs'), 'image': 'assets/buttonPic/dog.png'},
+      {'label': context.tr('animals.cats'), 'image': 'assets/buttonPic/cat.png'},
+      {'label': context.tr('animals.rabbits'), 'image': 'assets/buttonPic/rabbit.png'},
+      {'label': context.tr('animals.birds'), 'image': 'assets/buttonPic/bird.png'},
+      {'label': context.tr('animals.reptiles'), 'image': 'assets/buttonPic/snake.png'},
+      {'label': context.tr('animals.fish'), 'image': 'assets/buttonPic/fish.png'},
+      {'label': context.tr('animals.primates'), 'image': 'assets/buttonPic/monkey.png'},
+      {'label': context.tr('animals.other'), 'image': 'assets/buttonPic/other.png'},
     ];
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Account',style: heading4Bold),
+        title: Text(context.tr('Account'),style: heading4Bold),
         leading: Image.asset('assets/logo/paw_small.png'),
         centerTitle: true,
         automaticallyImplyLeading: false,
@@ -56,6 +58,37 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(
           children: [
             //user profile simple info
+
+            ListTile(
+              title: Row(
+                children: [
+
+                  ClipOval(
+                    child: Image.asset('assets/image/eg_picProfile.png'),
+                  ),
+                  const SizedBox(width: 12),              
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      //display the name of the user (from profile fetch data)
+                      Text('Andrew Ainsley', style: heading6Bold),
+                      //display the user email (from profile fetch data)
+                      Text('andrew.ainsley@yourdomain.com', style: bodyMMedium.copyWith(color: grey.shade700)),
+                    ],
+                  ),
+
+                ],
+              ),
+              trailing: const Icon(IconlyLight.arrow_right_2, size:20),
+              onTap: (){
+                Navigator.push(
+                  context, 
+                  MaterialPageRoute(
+                    builder: (context)=> const EditProfile(),
+                  ),
+                );
+              },
+            ),
 
             Divider(thickness: 1, color: grey.shade200, indent: 15, endIndent: 15),
             //for List of buttons
@@ -290,7 +323,59 @@ class _ProfilePageState extends State<ProfilePage> {
             ListTile(
               leading: const Icon(IconlyLight.logout, color: Color(0xFFF75555)),
               title: Text('Logout', style: heading6Bold.copyWith(color:const Color(0xFFF75555))),
-              onTap: (){},
+              onTap: (){
+                showModalBottomSheet(
+                  backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+                  context: context, 
+                  builder: (BuildContext context){
+                    return StatefulBuilder(
+                      builder: (BuildContext context, StateSetter setState){
+                        return SizedBox(
+                          height: 320,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Column(
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 30.0),
+                                  child: Text('Logout',style: heading4Bold.copyWith(color: const Color(0xFFF75555)),),
+                                ),
+                                Divider(thickness: 1, color: grey.shade300, height: 60),
+                                Text('Are you sure you want to log out?', style: heading5Medium),
+                                Divider(thickness: 1, color: grey.shade300, height: 60),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                        Expanded(
+                                          child: LightOrangeButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            text: 'Cancel',
+                                          ),
+                                        ),
+                                        const SizedBox(width: 10),
+                                        Expanded(
+                                          child: OrangeButton(
+                                            onPressed: () {
+                                              //save function
+                                              Navigator.pop(context);
+                                            },
+                                            text: 'Yes, Logout',
+                                          ),
+                                        ),
+                                  ],
+                                ),
+                            
+                              ],
+                            ),
+                          ),
+                        );
+                      }
+                    );
+                  }
+                );
+              },
             ),
             
           ],

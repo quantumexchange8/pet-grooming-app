@@ -95,7 +95,7 @@ void displayPetsUnderOwner(OwnerDetailDataModel owner){
 List<OwnerDetailDataModel> ownerDetailList = [
   OwnerDetailDataModel(
     ownerName: 'Happy Tails Animal Rescue', 
-    ownerPlaceAddress: '123 Paws Street. NYC, NY 10001', 
+    ownerPlaceAddress: '123 Paws Street, NYC, NY 10001', 
     ownerPhoneNo: '(555) 123-4567', 
     ownerEmail: 'animalrescue@happytails.org', 
     ownerWebsite: 'www.happytailsanimalrescue.org', 

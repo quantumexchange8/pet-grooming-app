@@ -19,7 +19,7 @@ class SearchResult extends StatefulWidget {
 }
 
 class _SearchResultState extends State<SearchResult> {
-  //String selectedField = 'All';
+  
   String selectedPetCategory = '';
 
   @override
@@ -104,42 +104,49 @@ class _SearchResultState extends State<SearchResult> {
                         selectedPetCategory = value;
                       });
                     }),
+
                   petCategoryButton('assets/buttonPic/cat.png', 'Cats', selectedPetCategory,  
                     (value){
                       setState(() {
                         selectedPetCategory = value;
                       });
                     }),
+
                   petCategoryButton('assets/buttonPic/rabbit.png', 'Rabbits', selectedPetCategory,  
                     (value){
                       setState(() {
                         selectedPetCategory = value;
                       });
                     }),
+
                   petCategoryButton('assets/buttonPic/bird.png', 'Birds', selectedPetCategory,  
                     (value){
                       setState(() {
                         selectedPetCategory = value;
                       });
                     }),
+
                   petCategoryButton('assets/buttonPic/snake.png', 'Reptiles', selectedPetCategory, 
                     (value){
                       setState(() {
                         selectedPetCategory = value;
                       });
                     }), 
+
                   petCategoryButton('assets/buttonPic/fish.png', 'Fish', selectedPetCategory,  
                     (value){
                       setState(() {
                         selectedPetCategory = value;
                       });
                     }),
+
                   petCategoryButton('assets/buttonPic/monkey.png', 'Primates', selectedPetCategory,  
                     (value){
                       setState(() {
                         selectedPetCategory = value;
                       });
                     }),
+
                   petCategoryButton('assets/buttonPic/other.png', 'Other', selectedPetCategory,  
                     (value){
                       setState(() {
@@ -154,7 +161,7 @@ class _SearchResultState extends State<SearchResult> {
           //list of animals
           Expanded(
             child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10, childAspectRatio: 0.75,
               ), 
               itemCount: animalList.length,

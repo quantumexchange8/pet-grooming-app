@@ -67,12 +67,12 @@ class _OwnerDetailPageState extends State<OwnerDetailPage> {
         backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-        leading: IconButton(
-          icon: const Icon(IconlyLight.arrow_left), 
-          onPressed: (){
-            Navigator.pop(context);
-          },
-        ),
+          leading: IconButton(
+            icon: const Icon(IconlyLight.arrow_left), 
+            onPressed: (){
+              Navigator.pop(context);
+            },
+          ),
         title: Text(owner.ownerName, style: heading4Bold),
         centerTitle: true,
         actions: [ 

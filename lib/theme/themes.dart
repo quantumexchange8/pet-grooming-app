@@ -6,7 +6,7 @@ ThemeData lightMode = ThemeData(
   brightness: Brightness.light,
   colorScheme: ColorScheme.light(
     primary: Colors.black,
-    secondary: grey.shade200.withOpacity(0.5), //text field
+    secondary: grey.shade300.withOpacity(0.5), //text field
     tertiary: primaryOrange.shade100, //button for light orange
     background: Colors.white,
     primaryContainer: const Color(0xFFF5F5F5),

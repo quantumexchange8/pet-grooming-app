@@ -18,11 +18,12 @@ class _CatCategoryState extends State<CatCategory> {
   Widget build(BuildContext context) {
 
     List<CatDataModel> catList = CatDataModel.catCategoryList;
+    
 
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(IconlyLight.arrow_left), 
+          icon: const Icon(IconlyLight.arrow_left), 
           onPressed: (){
             Navigator.pop(context);
           },
@@ -33,7 +34,7 @@ class _CatCategoryState extends State<CatCategory> {
           Padding(
             padding: const EdgeInsets.only(right: 10.0),
             child: IconButton(
-              icon: Icon(IconlyLight.search),
+              icon: const Icon(IconlyLight.search),
               onPressed: (){},
             ),
           ),
@@ -44,7 +45,7 @@ class _CatCategoryState extends State<CatCategory> {
         padding: const EdgeInsets.all(10.0),
         child: GridView.builder(
           itemCount: catList.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             mainAxisSpacing: 8,
             crossAxisSpacing: 8,

@@ -3,7 +3,6 @@ import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
 import 'package:adoptify/theme/themes_provider.dart';
-import 'package:adoptify/widgets/ProfileDetailSelection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
@@ -45,7 +44,7 @@ class _AppearancePageState extends State<AppearancePage> {
 
         return Scaffold(
           appBar: AppBar(
-            title: Text('App Appearance', style: heading4Bold),
+            title: Text(context.tr('App Appearance'), style: heading4Bold),
             centerTitle: true,
           ),
           backgroundColor: Theme.of(context).colorScheme.background,

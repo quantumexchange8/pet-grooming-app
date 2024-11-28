@@ -11,6 +11,7 @@ import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
 import 'package:adoptify/controllers/favouriteController.dart';
 import 'package:adoptify/dataModel/petCardData.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
@@ -40,11 +41,11 @@ class _HomePageState extends State<HomePage> {
             ),
             child: FittedBox(
               child: IconButton(
-                icon: Icon(IconlyLight.search, size: 30), 
+                icon: const Icon(IconlyLight.search, size: 30), 
                 onPressed: (){
                   Navigator.push(
                     context, 
-                    MaterialPageRoute(builder: (context)=> SearchPage()),
+                    MaterialPageRoute(builder: (context)=> const SearchPage()),
                   );
                 },
               ),
@@ -59,7 +60,7 @@ class _HomePageState extends State<HomePage> {
             ),
             child: FittedBox(
               child: IconButton(
-                icon: Icon(IconlyLight.notification, size: 30), 
+                icon: const Icon(IconlyLight.notification, size: 30), 
                 onPressed: (){
                   
                 },
@@ -83,17 +84,17 @@ class _HomePageState extends State<HomePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _animalCategories('assets/buttonPic/dog.png', 'Dogs',(){ 
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> DogCategory()));
+                  _animalCategories('assets/buttonPic/dog.png', 'animals.dogs',(){ 
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const DogCategory()));
                   }),
-                  _animalCategories('assets/buttonPic/cat.png', 'Cats', (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> CatCategory(),));
+                  _animalCategories('assets/buttonPic/cat.png', 'animals.cats', (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const CatCategory(),));
                   }),                
-                  _animalCategories('assets/buttonPic/rabbit.png', 'Rabbits', (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> RabbitCategory(),));
+                  _animalCategories('assets/buttonPic/rabbit.png', 'animals.rabbits', (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const RabbitCategory(),));
                   }),                
-                  _animalCategories('assets/buttonPic/bird.png', 'Birds', (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> BirdCategory(),));
+                  _animalCategories('assets/buttonPic/bird.png', 'animals.birds', (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const BirdCategory(),));
                   }),
                 ],
               ),
@@ -102,17 +103,17 @@ class _HomePageState extends State<HomePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _animalCategories('assets/buttonPic/snake.png', 'Reptiles', (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> ReptileCategory(),));
+                  _animalCategories('assets/buttonPic/snake.png', 'animals.reptiles', (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const ReptileCategory(),));
                   }),
-                  _animalCategories('assets/buttonPic/fish.png', 'Fish', (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> FishCategory(),));
+                  _animalCategories('assets/buttonPic/fish.png', 'animals.fish', (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const FishCategory(),));
                   }),                
-                  _animalCategories('assets/buttonPic/monkey.png', 'Primates', (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> PrimateCategory(),));
+                  _animalCategories('assets/buttonPic/monkey.png', 'animals.primates', (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const PrimateCategory(),));
                   }),                
-                  _animalCategories('assets/buttonPic/other.png', 'Other', (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> OtherCategory(),));
+                  _animalCategories('assets/buttonPic/other.png', 'animals.other', (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const OtherCategory(),));
                   }),
                 ],
               ),
@@ -367,7 +368,7 @@ class _HomePageState extends State<HomePage> {
           onPressed: onPress,
           style: ButtonStyle(
             shape: MaterialStateProperty.all<OutlinedBorder>(
-              CircleBorder(),
+              const CircleBorder(),
             ),
             fixedSize: MaterialStateProperty.all<Size>(const Size.fromHeight(60)),
             side: MaterialStateProperty.all<BorderSide>(
@@ -377,7 +378,7 @@ class _HomePageState extends State<HomePage> {
           child: Image.asset(image, width: 30, height: 30),
         ),
         const SizedBox(height: 8),
-        Text(animal, style: bodyLMedium),
+        Text(context.tr(animal), style: bodyLMedium),
       ],
     );
   }

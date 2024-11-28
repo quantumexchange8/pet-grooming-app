@@ -15,7 +15,7 @@ class AppLanguagePage extends StatefulWidget {
 }
 
 class _AppLanguagePageState extends State<AppLanguagePage> {
-  Locale selectedLocale = Locale('en', 'US');
+  Locale selectedLocale = const Locale('en', 'US');
 
   @override
   void initState(){
@@ -75,6 +75,7 @@ class _AppLanguagePageState extends State<AppLanguagePage> {
               const SizedBox(height: 10),
               buildLanguageButton(context, Locale('ja','JP'), 'Japanese', 'assets/flags/jp.png'),
               const SizedBox(height: 10),
+              buildLanguageButton(context, Locale('ko','KR'), 'Korean', 'assets/flags/korea.png'),
           
             ],
           ),

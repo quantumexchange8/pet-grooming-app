@@ -5,6 +5,7 @@
 import FlutterMacOS
 import Foundation
 
+import awesome_notifications
 import flutter_localization
 import location
 import path_provider_foundation
@@ -14,6 +15,7 @@ import shared_preferences_foundation
 import video_player_avfoundation
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
+  AwesomeNotificationsPlugin.register(with: registry.registrar(forPlugin: "AwesomeNotificationsPlugin"))
   FlutterLocalizationPlugin.register(with: registry.registrar(forPlugin: "FlutterLocalizationPlugin"))
   LocationPlugin.register(with: registry.registrar(forPlugin: "LocationPlugin"))
   PathProviderPlugin.register(with: registry.registrar(forPlugin: "PathProviderPlugin"))

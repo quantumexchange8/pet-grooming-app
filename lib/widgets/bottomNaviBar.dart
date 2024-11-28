@@ -5,6 +5,7 @@ import 'package:adoptify/Pages/messagePage.dart';
 import 'package:adoptify/Pages/profilePage.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
@@ -53,23 +54,23 @@ class _BottomNaviBarState extends State<BottomNaviBar> {
           destinations: [
             NavigationDestination(
               icon: controller.selectedIndex.value == 0? Icon(IconlyBold.home, color: primaryOrange.shade800): Icon(IconlyLight.home),
-              label:'Home',
+              label:context.tr('Home'),
             ),
             NavigationDestination(
               icon: controller.selectedIndex.value == 1? Icon(IconlyBold.location, color: primaryOrange.shade800): Icon(IconlyLight.location), 
-              label: 'Maps'
+              label: context.tr('Maps'),
             ),
             NavigationDestination(
               icon: controller.selectedIndex.value == 2? Icon(IconlyBold.heart, color: primaryOrange.shade800): Icon(IconlyLight.heart), 
-              label: 'Favourites'
+              label: context.tr('Favorites'),
             ),
             NavigationDestination(
               icon: controller.selectedIndex.value == 3? Icon(IconlyBold.chat, color: primaryOrange.shade800): Icon(IconlyLight.chat), 
-              label: 'Messages'
+              label: context.tr('Messages'),
             ),
             NavigationDestination(
               icon: controller.selectedIndex.value == 4? Icon(IconlyBold.profile, color: primaryOrange.shade800): Icon(IconlyLight.profile), 
-              label: 'Account'
+              label: context.tr('Account'),
             ),
           ],
           ),

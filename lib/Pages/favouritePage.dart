@@ -1,4 +1,5 @@
 import 'package:adoptify/const/urbanist_textStyle.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
@@ -15,7 +16,7 @@ class _FavouritePageState extends State<FavouritePage> {
     return Scaffold(
       appBar: AppBar(
         leading: Image.asset('assets/logo/paw_small.png'),
-        title: Text('Favorites()', style: heading4Bold),
+        title: Text(context.tr('Favorites'), style: heading4Bold),
         centerTitle: true,
         actions: [ 
           IconButton(

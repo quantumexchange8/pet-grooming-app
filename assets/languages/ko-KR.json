@@ -1,6 +1,6 @@
 {
-   "animals":{
-        "dogs":"perras",
+    "animals": {
+        "dogs":"Dogs",
         "cats": "Cats",
         "rabbits":"Rabbits",
         "birds":"Birds",
@@ -12,7 +12,7 @@
     
     "Home":"Home",
     "Maps":"Maps",
-    "Favorites":"Favourites",
+    "Favourites":"Favorites",
     "Messages":"Messages",
     "Account":"Account",
 
@@ -67,8 +67,6 @@
     "Website":"Website",
     "WhatsApp": "WhatsApp",
     "Instagram": "Instagram",
-    "Phone":"Phone",
-    
 
     "Theme": "Theme",
     "App Language": "App Language",
@@ -162,4 +160,6 @@
     "Are you sure you want to log out?": "Are you sure you want to log out?",
     "cancel": "cancel",
     "Yes, Logout": "Yes, Logout"
+
+
 }
