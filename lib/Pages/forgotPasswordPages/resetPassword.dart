@@ -1,6 +1,7 @@
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
 import 'package:adoptify/Pages/forgotPasswordPages/AllSet.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -37,15 +38,15 @@ class _EditNewPasswordState extends State<EditNewPassword> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text('Secure Your Account', style: heading3Bold),
+                      Text(context.tr('Secure Your Account'), style: heading3Bold),
                       const SizedBox(width: 5),
                       Image.asset('assets/image/lock.png'),
                     ],
                   ),
                   const SizedBox(height: 10),
-                  Text('Almost there! Create a new password for your Adoptify account to keep it secure. Remember to choose a strong and unique password.',style: bodyXLRegular),
+                  Text(context.tr('Almost there! Create a new password for your Adoptify account to keep it secure. Remember to choose a strong and unique password.'),style: bodyXLRegular),
                   const SizedBox(height: 35),
-                  Text('New Password', style: heading6Bold, textAlign: TextAlign.start,),
+                  Text(context.tr('New Password'), style: heading6Bold, textAlign: TextAlign.start,),
                   const SizedBox(height: 10),
                   TextField(
                     //onChanged:,
@@ -59,7 +60,7 @@ class _EditNewPasswordState extends State<EditNewPassword> {
                         borderSide: BorderSide.none,                
                       ),
                       isDense: true,
-                      hintText: 'New Password',
+                      hintText: context.tr('New Password'),
                       hintStyle: bodyLRegular,
                       prefixIcon: const Icon(IconlyLight.lock),
                       suffixIcon: IconButton(
@@ -73,7 +74,7 @@ class _EditNewPasswordState extends State<EditNewPassword> {
                     ),
                   ),
                     const SizedBox(height: 15),
-                  Text('Confirm New Password', style: heading6Bold, textAlign: TextAlign.start,),
+                  Text(context.tr('Confirm New Password'), style: heading6Bold, textAlign: TextAlign.start,),
                   const SizedBox(height: 10),
                   TextField(
                     controller: confirmPasswordController,
@@ -86,7 +87,7 @@ class _EditNewPasswordState extends State<EditNewPassword> {
                         borderSide: BorderSide.none,                
                       ),
                       isDense: true,
-                      hintText: 'Confirm New Password',
+                      hintText: context.tr('Confirm New Password'),
                       hintStyle: bodyLRegular,
                       prefixIcon: const Icon(IconlyLight.lock),
                       suffixIcon: IconButton(

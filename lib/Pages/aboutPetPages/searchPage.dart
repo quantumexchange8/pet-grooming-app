@@ -2,6 +2,7 @@ import 'package:adoptify/Pages/aboutPetPages/searchResultPage.dart';
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:geocoding/geocoding.dart' as geo;
@@ -90,12 +91,12 @@ class _SearchPageState extends State<SearchPage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(IconlyLight.arrow_left), 
+          icon: const Icon(IconlyLight.arrow_left), 
           onPressed: (){
             Navigator.pop(context);
           },
         ),
-        title: Text('Pet Search', style: heading4Bold),
+        title: Text(context.tr('Pet Search'), style: heading4Bold),
         centerTitle: true,
       ),
 
@@ -109,19 +110,19 @@ class _SearchPageState extends State<SearchPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     //location
-                    Text('Location', style: heading5Bold),
+                    Text(context.tr('Location'), style: heading5Bold),
                     const SizedBox(height: 10),
                     Container(
                       padding: const EdgeInsets.all(15),
                       decoration: BoxDecoration(
-                        color: grey.shade100,
+                        color: Theme.of(context).colorScheme.tertiaryContainer,
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Row(
                         children: [
-                          const Icon(IconlyLight.location, size:20, color: Colors.black),
+                          Icon(IconlyLight.location, size:20, color: Theme.of(context).colorScheme.primary),
                           const SizedBox(width: 10),
-                          Text(selectedLocation, style: bodyXLSemibold.copyWith(color: Colors.black)),
+                          Text(selectedLocation, style: bodyXLSemibold.copyWith(color: Theme.of(context).colorScheme.primary)),
                         ],
                       ),
                     ),
@@ -130,7 +131,7 @@ class _SearchPageState extends State<SearchPage> {
 
                     const SizedBox(height: 20),
                     //pet types
-                    Text('Pet Types', style: heading5Bold),
+                    Text(context.tr('Pet Types'), style: heading5Bold),
                     const SizedBox(height: 8),
                     Wrap(
                       spacing: 12, children: [
@@ -149,9 +150,9 @@ class _SearchPageState extends State<SearchPage> {
                     //gender(optional)
                     Row(
                       children: [
-                        Text('Gender', style: heading5Bold),
+                        Text(context.tr('Gender'), style: heading5Bold),
                         const SizedBox(width: 5),
-                        Text('(Optional)', style: bodyLRegular.copyWith(color: grey.shade600)),
+                        Text(context.tr('(Optional)'), style: bodyLRegular.copyWith(color: grey.shade600)),
                       ],
                     ),
                     const SizedBox(height: 8),
@@ -168,9 +169,9 @@ class _SearchPageState extends State<SearchPage> {
                     //size(optional)
                     Row(
                       children: [
-                        Text('Size', style: heading5Bold),
+                        Text(context.tr('Size'), style: heading5Bold),
                         const SizedBox(width: 5),
-                        Text('(Optional)', style: bodyLRegular.copyWith(color: grey.shade600)),
+                        Text(context.tr('(Optional)'), style: bodyLRegular.copyWith(color: grey.shade600)),
                       ],
                     ),
                     const SizedBox(height: 8),
@@ -187,9 +188,9 @@ class _SearchPageState extends State<SearchPage> {
                     //age(optional)
                      Row(
                       children: [
-                        Text('Age', style: heading5Bold),
+                        Text(context.tr('Age'), style: heading5Bold),
                         const SizedBox(width: 5),
-                        Text('(Optional)', style: bodyLRegular.copyWith(color: grey.shade600)),
+                        Text(context.tr('(Optional)'), style: bodyLRegular.copyWith(color: grey.shade600)),
                       ],
                     ),
                     const SizedBox(height: 8),
@@ -242,13 +243,13 @@ class _SearchPageState extends State<SearchPage> {
         children: [
           Image.asset(url, width: 15,height: 15),
           const SizedBox(width: 3),
-          Text(label),
+          Text(context.tr(label)),
         ],
       ), 
       selected: selectedValue == label,
       labelStyle: bodyLSemibold.copyWith(
-      color: selectedValue == label? Colors.white: Colors.black),
-      backgroundColor: Colors.white,
+      color: selectedValue == label? Colors.white: Theme.of(context).colorScheme.primary),
+      backgroundColor: Theme.of(context).colorScheme.background,
       selectedColor: primaryOrange.shade800,
       onSelected: (bool isSelected){
         setState(() {
@@ -257,7 +258,7 @@ class _SearchPageState extends State<SearchPage> {
       },
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(25),
-        side: BorderSide(color: grey.shade300),
+        side: BorderSide(color: grey.shade600),
       ),
     );
   }
@@ -265,11 +266,11 @@ class _SearchPageState extends State<SearchPage> {
   Widget searchOptionalChoice (String label, String selectedValue, Function(String) onSelected){
     return ChoiceChip(
       showCheckmark: false,
-      label: Text(label), 
+      label: Text(context.tr(label)), 
       selected: selectedValue == label,
       labelStyle: bodyLSemibold.copyWith(
-        color: selectedValue == label? Colors.white: Colors.black),
-      backgroundColor: Colors.white,
+        color: selectedValue == label? Colors.white: Theme.of(context).colorScheme.primary),
+      backgroundColor: Theme.of(context).colorScheme.background,
       selectedColor: primaryOrange.shade800,
       onSelected: (bool isSelected){
         setState(() {
@@ -278,7 +279,7 @@ class _SearchPageState extends State<SearchPage> {
       },
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(25),
-        side: BorderSide(color: grey.shade300),
+        side: BorderSide(color: grey.shade600),
       ),
     );
   }

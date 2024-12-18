@@ -32,13 +32,13 @@ class _SplashScreenState extends State<SplashScreen> {
   void nextPage() {
     if(_activePage < _pages.length - 1){
       _pageController.nextPage(
-        duration: Duration(milliseconds: 300), 
+        duration: const Duration(milliseconds: 300), 
         curve: Curves.easeInOut,
       );
     }else{
       Navigator.push(context, 
         MaterialPageRoute(
-          builder: (context)=> SignIn(),
+          builder: (context)=> const SignIn(),
         ),
       );
     }
@@ -47,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void previousPage(){
     if(_activePage > 0){
       _pageController.previousPage(
-        duration: Duration(milliseconds: 300), 
+        duration: const Duration(milliseconds: 300), 
         curve: Curves.easeInOut,
       );
     }

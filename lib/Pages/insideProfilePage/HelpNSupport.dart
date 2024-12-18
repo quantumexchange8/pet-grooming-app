@@ -4,6 +4,7 @@ import 'package:adoptify/Pages/insideProfilePage/SidePages/PrivacyPolicy.dart';
 import 'package:adoptify/Pages/insideProfilePage/SidePages/TermsOfService.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
 import 'package:adoptify/widgets/ProfileDetailSelection.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,7 @@ class _HelpAndSupportState extends State<HelpAndSupport> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Help & Support', style: heading4Bold),
+        title: Text(context.tr('Help & Support'), style: heading4Bold),
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.onPrimary,
       ),

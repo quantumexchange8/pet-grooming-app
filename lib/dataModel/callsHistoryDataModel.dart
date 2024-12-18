@@ -7,6 +7,7 @@ class CallsHistoryData{
   final DateTime callDateTime;
   final bool isVoiceCall;
   final bool isCallAccept;
+  
   // final bool isCallReach;
 
   CallsHistoryData({

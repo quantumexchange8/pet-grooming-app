@@ -56,7 +56,7 @@ class _AppearancePageState extends State<AppearancePage> {
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Theme', style: heading6Bold),
+                    Text(context.tr('Theme'), style: heading6Bold),
                     Text(_getThemeSelection(_selectedOption), style: bodyXLSemibold.copyWith(color: Theme.of(context).colorScheme.primary, fontSize:16)),
                   ],
                 ),
@@ -78,10 +78,10 @@ class _AppearancePageState extends State<AppearancePage> {
                               padding: const EdgeInsets.all(15.0),
                               child: Column(
                                 children: <Widget>[
-                                  Text('Choose Theme', style: heading6Bold),
+                                  Text(context.tr('Choose Theme'), style: heading6Bold),
                                   Divider(thickness: 1, color: grey.shade300, height: 15.0),
                                   RadioListTile<ThemeModeOption>(
-                                    title: Text('System Default', style: heading6Regular),
+                                    title: Text(context.tr('System Default'), style: heading6Regular),
                                     value: ThemeModeOption.system,
                                     groupValue: _selectedOption,
                                     fillColor: MaterialStateColor.resolveWith((states) => primaryOrange.shade900),
@@ -93,7 +93,7 @@ class _AppearancePageState extends State<AppearancePage> {
                                     },
                                   ),
                                   RadioListTile<ThemeModeOption>(
-                                    title: Text('Light', style: heading6Regular),
+                                    title: Text(context.tr('Light'), style: heading6Regular),
                                     value: ThemeModeOption.light,
                                     groupValue: _selectedOption,
                                     fillColor: MaterialStateColor.resolveWith((states) => primaryOrange.shade900),
@@ -105,7 +105,7 @@ class _AppearancePageState extends State<AppearancePage> {
                                     },
                                   ),
                                   RadioListTile<ThemeModeOption>(
-                                    title: Text('Dark', style: heading6Regular),
+                                    title: Text(context.tr('Dark'), style: heading6Regular),
                                     value: ThemeModeOption.dark,
                                     groupValue: _selectedOption,
                                     fillColor: MaterialStateColor.resolveWith((states) => primaryOrange.shade900),
@@ -127,7 +127,7 @@ class _AppearancePageState extends State<AppearancePage> {
                                           onPressed: () {
                                             Navigator.pop(context);
                                           },
-                                          text: 'Cancel',
+                                          text: context.tr('Cancel'),
                                         ),
                                       ),
                                       const SizedBox(width: 10),
@@ -137,7 +137,7 @@ class _AppearancePageState extends State<AppearancePage> {
                                             _setThemeMode(_selectedOption, themeProvider);
                                             Navigator.pop(context);
                                           },
-                                          text: 'OK',
+                                          text: context.tr('OK'),
                                         ),
                                       ),
                                     ],
@@ -157,7 +157,7 @@ class _AppearancePageState extends State<AppearancePage> {
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('App Language', style: heading6Bold),
+                    Text(context.tr('App Language'), style: heading6Bold),
                     Text(_getCurrentLanguage(), style: bodyXLSemibold.copyWith(color: Theme.of(context).colorScheme.primary, fontSize:16)),
                   ],
                 ),
@@ -211,41 +211,41 @@ class _AppearancePageState extends State<AppearancePage> {
   String _getThemeSelection(ThemeModeOption option){
     switch(option){
       case ThemeModeOption.system:
-       return 'System Default';
+       return context.tr('System Default');
 
       case ThemeModeOption.light:
-       return 'Light';
+       return context.tr('Light');
 
       case ThemeModeOption.dark:
-       return 'Dark';
+       return context.tr('Dark');
 
       default:
-        return 'System Default';
+        return context.tr('System Default');
     }
   }
 
   String _getCurrentLanguage(){
     switch(_currentLocale.toString()){
       case 'en_US':
-       return 'English (US)';
+       return context.tr('English (US)');
       case 'en_UK':
-       return 'English (UK)';
+       return context.tr('English (UK)');
       case 'zh_CN':
-       return 'Mandarin';
+       return context.tr('Mandarin');
       case 'es_ES':
-       return 'Spanish';
+       return context.tr('Spanish');
       case 'hi_IN':
-       return 'Hindi';
+       return context.tr('Hindi');
       case 'fr_FR':
-       return 'France';
+       return context.tr('France');
       case 'ar_AR':
-       return 'Arabic';
+       return context.tr('Arabic');
       case 'ru_RU':
-       return 'Russian';
+       return context.tr('Russian');
       case 'ja_JP':
-       return 'Japanese';
+       return context.tr('Japanese');
       default:
-       return 'English (US)';
+       return context.tr('English (US)');
 
     }
   }

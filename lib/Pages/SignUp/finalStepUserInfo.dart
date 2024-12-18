@@ -5,6 +5,7 @@ import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
 import 'package:adoptify/widgets/bottomNaviBar.dart';
 import 'package:country_code_picker/country_code_picker.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:editable_image/editable_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class _FinalStepUserInfoState extends State<FinalStepUserInfo> {
   TextEditingController phoneNoController = TextEditingController();
   // bool _isNameFilled = false;
   // bool _isPhoneNoFilled = false;
-  final genderList = ['Male', 'Female'];
+  
   String? selectedGender = 'Male';
   File? _profilePicFile;
 
@@ -37,6 +38,10 @@ class _FinalStepUserInfoState extends State<FinalStepUserInfo> {
 
   @override
   Widget build(BuildContext context) {
+
+    final genderList = [context.tr('Male'), context.tr('Female')];
+
+
     return Scaffold(
       appBar: AppBar(
       title: Container(
@@ -90,9 +95,9 @@ class _FinalStepUserInfoState extends State<FinalStepUserInfo> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Final Steps!', style: heading3Bold),
+                    Text(context.tr('Final Steps!'), style: heading3Bold),
                     const SizedBox(height: 10),
-                    Text('We\'re almost there! Fill in your personal details to create a profile and start your journey towards a furry friendship.',style: bodyXLRegular),
+                    Text(context.tr('We\'re almost there! Fill in your personal details to create a profile and start your journey towards a furry friendship.'),style: bodyXLRegular),
                     const SizedBox(height: 30),
 
               //profile photo
@@ -124,7 +129,7 @@ class _FinalStepUserInfoState extends State<FinalStepUserInfo> {
                     const SizedBox(height: 30),
 
               //name
-                    Text('Full Name', style: heading6Bold),
+                    Text(context.tr('Full Name'), style: heading6Bold),
                     const SizedBox(height: 5),
                     TextField(
                       /* onChanged: (value){
@@ -149,7 +154,7 @@ class _FinalStepUserInfoState extends State<FinalStepUserInfo> {
                     const SizedBox(height: 30),
 
               //phone no
-                    Text('Phone Number', style: heading6Bold),
+                    Text(context.tr('Phone Number'), style: heading6Bold),
                     const SizedBox(height: 5),
                     TextField(
                       /* onChanged: (value){
@@ -186,7 +191,7 @@ class _FinalStepUserInfoState extends State<FinalStepUserInfo> {
                     const SizedBox(height: 30),
 
               //gender
-                    Text('Gender', style: heading6Bold),
+                    Text(context.tr('Gender'), style: heading6Bold),
                     const SizedBox(height: 5),
                     DropdownButtonFormField<String>(
                       decoration: InputDecoration(
@@ -206,7 +211,9 @@ class _FinalStepUserInfoState extends State<FinalStepUserInfo> {
                           selectedGender = gender;
                         });
                       },
-                      value: selectedGender,
+                      value: selectedGender == 'Male'
+                          ? context.tr('Male')
+                          : context.tr('Female'),
                     ),
                     const SizedBox(height: 30),
                   ],

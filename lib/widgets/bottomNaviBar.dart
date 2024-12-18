@@ -1,7 +1,7 @@
 import 'package:adoptify/Pages/favouritePage.dart';
 import 'package:adoptify/Pages/homePage.dart';
 import 'package:adoptify/Pages/mapsPage.dart';
-import 'package:adoptify/Pages/messagePage.dart';
+import 'package:adoptify/Pages/aboutMessages/messagePage.dart';
 import 'package:adoptify/Pages/profilePage.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';

@@ -1,5 +1,6 @@
 import 'package:adoptify/const/urbanist_textStyle.dart';
 import 'package:adoptify/widgets/ProfileDetailSelection.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,7 @@ class _DataAnalyticsState extends State<DataAnalytics> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Data & Analytics', style: heading4Bold),
+        title: Text(context.tr('Data & Analytics'), style: heading4Bold),
         centerTitle: true,
       ),
 
@@ -28,7 +29,7 @@ class _DataAnalyticsState extends State<DataAnalytics> {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 15, right: 40),
-              child: Text('Control how your data is used for analytics. Customize your preferences.', style: bodyLRegular),
+              child: Text(context.tr('Control how your data is used for analytics. Customize your preferences.'), style: bodyLRegular),
             ),
             const SizedBox(height: 15),
 
@@ -38,7 +39,7 @@ class _DataAnalyticsState extends State<DataAnalytics> {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 15, right: 40),
-              child: Text('Manage ad personalization settings. Tailor your ad experience.', style: bodyLRegular),
+              child: Text(context.tr('Manage ad personalization settings. Tailor your ad experience.'), style: bodyLRegular),
             ),
             const SizedBox(height: 15),
 
@@ -48,7 +49,7 @@ class _DataAnalyticsState extends State<DataAnalytics> {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 15, right: 40),
-              child: Text('Request a copy of your data. Your information, your control.', style: bodyLRegular),
+              child: Text(context.tr('Request a copy of your data. Your information, your control.'), style: bodyLRegular),
             ),
             const SizedBox(height: 15),
 

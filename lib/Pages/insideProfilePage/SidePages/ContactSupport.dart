@@ -1,4 +1,5 @@
 import 'package:adoptify/const/urbanist_textStyle.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
@@ -16,7 +17,7 @@ class _ContactSupportState extends State<ContactSupport> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.onPrimary,
       appBar: AppBar(
-        title: Text('Contact Support', style: heading4Bold),
+        title: Text(context.tr('Contact Support'), style: heading4Bold),
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.onPrimary,
       ),
@@ -64,7 +65,7 @@ class _ContactSupportState extends State<ContactSupport> {
                 children: [
                   Image.asset(iconPicUrl),
                   const SizedBox(width: 10),
-                  Text(label, style: bodyXLBold.copyWith(color: Theme.of(context).colorScheme.primary),),
+                  Text(context.tr(label), style: bodyXLBold.copyWith(color: Theme.of(context).colorScheme.primary),),
                 ],
               ),
               const Icon(IconlyLight.arrow_right_2, size:20),

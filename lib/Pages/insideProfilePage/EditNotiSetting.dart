@@ -1,5 +1,6 @@
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -60,7 +61,7 @@ class _NotiSettingsState extends State<NotiSettings> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Notifications', style: heading4Bold),
+        title: Text(context.tr('Notifications'), style: heading4Bold),
         centerTitle: true,
       ),
 
@@ -86,7 +87,7 @@ class _NotiSettingsState extends State<NotiSettings> {
               const SizedBox(height: 15),
               switchBuilder('General App Updates'),
               const SizedBox(height: 15),
-              switchBuilder('Important Annoucements'),
+              switchBuilder('Important Announcements'),
               const SizedBox(height: 15),
               switchBuilder('App Tips and Tutorials'),
         
@@ -101,7 +102,9 @@ class _NotiSettingsState extends State<NotiSettings> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(label, style: heading5Semibold),
+        Expanded(
+          child: Text(context.tr(label), style: heading5Semibold, overflow: TextOverflow.ellipsis, maxLines: 1),
+        ),
         Switch(
           value: _switchStates[label] ?? false,
           onChanged: (value){

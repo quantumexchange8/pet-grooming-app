@@ -1,10 +1,12 @@
-import 'package:adoptify/Pages/aboutOrganizationPages/chatOwnerPage.dart';
+import 'package:adoptify/Pages/aboutMessages/chatOwnerPage.dart';
 import 'package:adoptify/Pages/aboutPetPages/petDetailPage.dart';
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
 import 'package:adoptify/dataModel/animalDetailDataModel.dart';
+import 'package:adoptify/dataModel/chatsDataModel.dart';
 import 'package:adoptify/dataModel/ownerDetailDataModel.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -21,10 +23,11 @@ class OwnerDetailPage extends StatefulWidget {
 
 class _OwnerDetailPageState extends State<OwnerDetailPage> {
 
-  //List<String> get listPageForPetAndPolicy => ["Pets()", "Adoption Policy"];
-  List<String> get listPageForPetAndPolicy {
+  
+  List<String> listPageForPetAndPolicy(BuildContext context){
     int petCount = widget.petOwnerDetail.petListBasedOnOwner.length;
-    return [ "Pet($petCount)", "Adoption Policy"];
+    return [ '${context.tr("Pet")} ($petCount)', context.tr("Adoption Policy")];
+    
   }
 
   int selectedIndex = 0;
@@ -78,7 +81,7 @@ class _OwnerDetailPageState extends State<OwnerDetailPage> {
         actions: [ 
           IconButton(
             onPressed: (){}, 
-            icon: const Icon(Icons.more_vert, size: 30)
+            icon: const Icon(Icons.more_vert, size: 30),
           ),
         ],
       ),
@@ -154,7 +157,7 @@ class _OwnerDetailPageState extends State<OwnerDetailPage> {
                     FlutterToggleTab(
                       width: 92,
                       borderRadius: 5,
-                      labels: listPageForPetAndPolicy, 
+                      labels: listPageForPetAndPolicy(context), 
                       selectedBackgroundColors: [primaryOrange.shade800],
                       selectedTextStyle: bodyLBold.copyWith(color: Colors.white),
                       unSelectedBackgroundColors: [Theme.of(context).colorScheme.secondary],
@@ -185,19 +188,32 @@ class _OwnerDetailPageState extends State<OwnerDetailPage> {
               child: Row(
                 children: [   
                   const SizedBox(width: 15),
+
                   Expanded(
                     child: OrangeButton(
                       onPressed: (){
+
+                        final matchingChat = temporaryChatEg.firstWhere(
+                          (data) => data.petOrganiationName == widget.petOwnerDetail.ownerName,
+                          orElse: ()=> ChatList(
+                            petOrganiationName: 'Not Available', 
+                            petOrganizationPicUrl: 'assets/logo/no_image.png', 
+                            messageList: [],
+                          ),
+                        );
+
+
                         Navigator.push(
                           context, 
                           MaterialPageRoute(
-                            builder: (context) => const ChatOwnerPage(),
+                            builder: (context) => ChatOwnerPage(chat: matchingChat),
                           ),
                         );
                       }, 
                       text: 'Send Message',
                     ),
                   ),
+
                 ],
               ),
             ),
@@ -234,7 +250,7 @@ class _OwnerDetailPageState extends State<OwnerDetailPage> {
           child: IconButton(onPressed: onPressed, icon: Icon(iconContact, color: Colors.white)),
         ),
         const SizedBox(height: 5),
-        Text(labelContact, style: bodyMMedium),
+        Text(context.tr(labelContact), style: bodyMMedium),
       ],
     );
   }
@@ -362,19 +378,19 @@ class _OwnerDetailPageState extends State<OwnerDetailPage> {
         const SizedBox(height: 10),
         Text(owner.ownerIntro, style: bodyXLMedium),
         const SizedBox(height: 10),
-        Text('1. Adoption Application:', style: heading5Bold),
+        Text(context.tr('1. Adoption Application:'), style: heading5Bold),
         const SizedBox(height: 10),
         Text(owner.adoptionApplication, style: bodyXLMedium),
         const SizedBox(height: 10),
-        Text('2. Meet and Greet:', style: heading5Bold),
+        Text(context.tr('2. Meet and Greet:'), style: heading5Bold),
         const SizedBox(height: 10),
         Text(owner.policy2, style: bodyXLMedium),
         const SizedBox(height: 10),
-        Text('3. Home Visit:', style: heading5Bold),
+        Text(context.tr('3. Home Visit:'), style: heading5Bold),
         const SizedBox(height: 10),
         Text(owner.policy3, style: bodyXLMedium),
         const SizedBox(height: 10),
-        Text('4. Adoption Fee:', style: heading5Bold),
+        Text(context.tr('4. Adoption Fee:'), style: heading5Bold),
         const SizedBox(height: 10),
         Text(owner.adoptionFee, style: bodyXLMedium),
         const SizedBox(height: 10),

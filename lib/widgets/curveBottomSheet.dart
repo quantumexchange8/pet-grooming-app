@@ -4,6 +4,8 @@ import 'package:adoptify/const/urbanist_textStyle.dart';
 import 'package:adoptify/Pages/onBoardingPages/walkthrough2.dart';
 import 'package:adoptify/Pages/onBoardingPages/walkthrough3.dart';
 import 'package:adoptify/Pages/onBoardingPages/welcomeScreen.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
@@ -27,15 +29,15 @@ class CurveBottomSheet extends StatelessWidget {
       clipper: BottomSheetClipper(),
       child: Container(
         color: Theme.of(context).colorScheme.background, //light mode
-        height: 450,
+        height: 470,
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Text(titleText, style: heading3Bold, textAlign: TextAlign.center),
+              Text(context.tr(titleText), style: heading3Bold, textAlign: TextAlign.center),
               const SizedBox(height: 8.0),
-              Text(descriptionText, style: bodyXLRegular, textAlign: TextAlign.center),
+              Text(context.tr(descriptionText), style: bodyXLRegular, textAlign: TextAlign.center),
               const SizedBox(height: 15.0),
           
               Padding(
@@ -103,7 +105,7 @@ Widget _buttonBuilder(BuildContext context){
                     builder: (context)=>const WelcomePage()),
                 );
               }, 
-              text: 'Skip'),
+              text: context.tr('Skip')),
           ),
           const SizedBox(width: 15.0),
           Expanded(
@@ -115,7 +117,7 @@ Widget _buttonBuilder(BuildContext context){
                     builder: (context)=>const Walkthrough2(),),
                 );
               },  
-              text: 'Continue',
+              text: context.tr('Continue'),
             ),
           ),
         ],
@@ -137,7 +139,7 @@ Widget _buttonBuilder(BuildContext context){
                     builder: (context)=>const WelcomePage()),
                 );
               }, 
-              text: 'Skip'),
+              text: context.tr('Skip')),
           ),
           const SizedBox(width: 15.0),
 
@@ -150,7 +152,7 @@ Widget _buttonBuilder(BuildContext context){
                     builder: (context)=>const Walkthrough3(),),
                 );
               },  
-              text: 'Continue',
+              text: context.tr('Continue'),
             ),
           ),
         ],
@@ -171,7 +173,7 @@ Widget _buttonBuilder(BuildContext context){
                     builder: (context)=>const WelcomePage(),),
                 );
               },  
-              text: 'Let\'s Get Started',
+              text: context.tr('Let\'s Get Started'),
             ),
 
           ),

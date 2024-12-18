@@ -142,7 +142,7 @@ class _MapsPageState extends State<MapsPage> {
                     children: [
                       Icon(IconlyLight.location, color: Theme.of(context).colorScheme.primary, size: 17),
                       const SizedBox(width: 10),
-                      Text('Radius Area', style: bodyXLRegular.copyWith(color: grey.shade500)),
+                      Text(context.tr('Radius Area'), style: bodyXLRegular.copyWith(color: grey.shade500)),
                     ],
                   ),
 

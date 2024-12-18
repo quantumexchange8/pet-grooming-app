@@ -3,9 +3,13 @@ import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
 import 'package:adoptify/Pages/forgotPasswordPages/fillEmail.dart';
 import 'package:adoptify/widgets/bottomNaviBar.dart';
+import 'package:easy_localization/easy_localization.dart';
+//import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
+import 'package:local_auth/local_auth.dart';
+
 
 
 class SignIn extends StatefulWidget {
@@ -24,12 +28,36 @@ class _SignInState extends State<SignIn> {
   bool _isPasswordValid = false;
 
   //login api
+
+
+  final LocalAuthentication auth = LocalAuthentication();
+  bool authenticated = false;
   
   @override
   void initState() {
     super.initState();
     emailController.addListener(_validateInput);
     passwordController.addListener(_validateInput);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) { 
+      _checkBiometric();
+    });
+    _checkDeviceSupport();
+    /* auth.isDeviceSupported().then(
+      (bool isSupported) => setState(() {}),
+    ); */
+    
+  }
+
+  Future<void> _checkDeviceSupport() async {
+    try{
+      bool isSupported = await auth.isDeviceSupported();
+      setState(() {
+        authenticated = isSupported;
+      });
+    }catch(e){
+      showMessage('Error checking device support: $e');
+    }
   }
 
   void _validateInput() {
@@ -47,6 +75,99 @@ class _SignInState extends State<SignIn> {
   bool _isPasswordValidFunction(String password) {
     final RegExp passwordRegex = RegExp(r'^(?=.[a-zA-Z]).{8,}$');
     return passwordRegex.hasMatch(password);
+  }
+
+  //authentication
+  Future<void> biometricAuthentication() async {
+    bool deviceSupportsBiometric = false;
+    try{
+      bool authenticated = await auth.authenticate(
+        localizedReason: 'Unlock Adoptify through your biometric ID',
+        options: const AuthenticationOptions(
+          stickyAuth: true,
+          useErrorDialogs: false,
+          biometricOnly: true,
+        ),
+      );
+      if(authenticated){
+        Navigator.pushReplacement(
+          context, 
+          MaterialPageRoute( 
+            builder: (context) => const BottomNaviBar(),
+          ),
+        );
+      }else{
+        showDialog(
+          context: context, 
+          builder: (context) => AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+            title: Text('Authentication Failed', style: bodyLSemibold),
+            content: Text('Biometric authentication failed, please try again.', style: bodyMRegular),
+            actions: <Widget>[
+              TextButton(
+                onPressed: (){
+                  Navigator.pop(context);
+                }, 
+                child: Text('OK', style: bodyLBold)
+              ),
+            ],
+          )
+        );
+      }
+    }catch(e){
+      if(!deviceSupportsBiometric){
+        showDialog(
+          context: context, 
+          builder: (context) => AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+            title: Text('Biometric Authentication Not Supported', style: bodyLSemibold),
+            content: Text('No biometric enrolled on this device.', style: bodyMRegular),
+            actions: <Widget>[
+              TextButton(
+                onPressed: (){
+                  Navigator.pop(context);
+                }, 
+                child: Text('OK', style: bodyLBold)
+              ),
+            ],
+          )
+        );
+      }
+      setState(() {
+        
+      });
+
+    }
+  }
+
+  Future<void> _getAvailableBiometrics() async {
+    List<BiometricType> availableBiometrics = await auth.getAvailableBiometrics();
+
+    print('List of available biometrics: $availableBiometrics');
+
+    if(!mounted){
+      return;
+    }
+  }
+
+  Future<void> _checkBiometric() async {
+    try{
+      showMessage('Checking the biometrics...');
+    }catch(e){
+      showMessage('Error: $e');
+    }
+  }
+
+  void showMessage(String message){
+    if(mounted){
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(context.tr(message))),
+      );
+    }
   }
 
   @override
@@ -69,13 +190,13 @@ class _SignInState extends State<SignIn> {
                   children: [
                     Row(
                       children: [
-                        Text('Welcome Back!', style: heading3Bold),
+                        Flexible(child: Text(context.tr('Welcome Back!'), style: heading3Bold, overflow: TextOverflow.ellipsis,maxLines: 2)),
                         Image.asset('assets/image/hi.png'),
                       ],
                     ),
-                    Text('Let\'s continue the journey with your furry friends.',style: bodyXLRegular),
+                    Text(context.tr('Let\'s continue the journey with your furry friends.'),style: bodyXLRegular),
                     const SizedBox(height: 15),
-                    Text('Email', style: heading6Bold),
+                    Text(context.tr('Email'), style: heading6Bold),
                     const SizedBox(height: 5),
                     TextField(
                       onChanged: (value){
@@ -92,13 +213,13 @@ class _SignInState extends State<SignIn> {
                           borderSide: BorderSide.none,                
                         ),
                         isDense: true,
-                        hintText: 'Email',
+                        hintText: context.tr('Email'),
                         hintStyle: bodyLRegular,
                         prefixIcon: const Icon(IconlyLight.message),
                       ),
                     ),
                     const SizedBox(height: 15),
-                    Text('Password', style: heading6Bold),
+                    Text(context.tr('Password'), style: heading6Bold),
                     const SizedBox(height: 5),
                     TextField(
                       onChanged:(value){
@@ -124,7 +245,7 @@ class _SignInState extends State<SignIn> {
                           borderSide: BorderSide.none,                
                         ),
                         isDense: true,
-                        hintText: 'Password',
+                        hintText: context.tr('Password'),
                         hintStyle: bodyLRegular,
                         prefixIcon: const Icon(IconlyLight.lock),
                       ),
@@ -152,23 +273,28 @@ class _SignInState extends State<SignIn> {
                               activeColor: primaryOrange.shade900,
                             ),
                               
-                            Text('Remember me', style: bodyLRegular),
+                            Text(context.tr('Remember me'), style: bodyLRegular),
                           ],
                         ),
-                        TextButton(
-                          onPressed: (){
-                            Navigator.push(
-                              context, 
-                              MaterialPageRoute(
-                                builder: (context)=> const ResetPasswordEmail(),
-                              ),
-                            );
-                          }, 
-                          child: Text('Forgot Password?',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: primaryOrange.shade800, 
-                            fontFamily: GoogleFonts.urbanist().fontFamily),),
+                        Flexible(
+                          child: TextButton(
+                            onPressed: (){
+                              Navigator.push(
+                                context, 
+                                MaterialPageRoute(
+                                  builder: (context)=> const ResetPasswordEmail(),
+                                ),
+                              );
+                            }, 
+                            child: Text(context.tr('Forgot Password?'),
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: primaryOrange.shade800, 
+                              fontFamily: GoogleFonts.urbanist().fontFamily),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -177,7 +303,7 @@ class _SignInState extends State<SignIn> {
                     Row(
                       children: [
                         Expanded(child: Divider(color: grey.shade200),),
-                        const Text('    or    '),
+                        Text(context.tr('    or    ')),
                         Expanded(child: Divider(color: grey.shade200),),
                       ],
                     ),
@@ -205,6 +331,25 @@ class _SignInState extends State<SignIn> {
                       iconUrl: 'assets/icon/twitter_icon.png', 
                       text: 'Continue with Twitter'
                     ),
+
+                    //for biometric log in 
+                    Row(
+                      children: [
+                        Expanded(child: Divider(color: grey.shade200),),
+                        Text(context.tr('    or    ')),
+                        Expanded(child: Divider(color: grey.shade200),),
+                      ],
+                    ),
+                    const SizedBox(height: 15),
+                    Center(
+                      child: LightOrangeButton(
+                        onPressed: biometricAuthentication, 
+                        text: 'Biometric Log In',
+                      ),
+                    ),
+                     
+                    
+
                   ],
                 ),
               ),
@@ -220,6 +365,9 @@ class _SignInState extends State<SignIn> {
                     onPressed: _isEmailValid && _isPasswordValid?(){
                       showDialog(context: context, 
                       builder: (context) =>AlertDialog(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
                       contentPadding: EdgeInsets.zero,
                       content: ConstrainedBox(
                         constraints: BoxConstraints(
@@ -231,7 +379,7 @@ class _SignInState extends State<SignIn> {
                           child: Column(
                             children: [
                               SizedBox(
-                                height: 45, width: 45,
+                                height: 50, width: 50,
                                 child: CircularProgressIndicator(
                                   strokeWidth: 7.0,
                                   backgroundColor: Colors.white,
@@ -240,7 +388,7 @@ class _SignInState extends State<SignIn> {
                                 ),
                               ),
                               const SizedBox(height: 28.0),
-                              Text('Sign in...', style: heading6Semibold)
+                              Text(context.tr('Sign in...'), style: heading6Semibold)
                             ],
                           )
                         ),
@@ -265,7 +413,7 @@ class _SignInState extends State<SignIn> {
                     ),
                       fixedSize: MaterialStateProperty.all<Size>(const Size.fromHeight(50)),
                     ),
-                    child: Text('Sign in', 
+                    child: Text(context.tr('Sign in'), 
                       style: TextStyle(
                         fontFamily: GoogleFonts.urbanist().fontFamily,
                         fontWeight: FontWeight.bold,
@@ -289,4 +437,9 @@ class _SignInState extends State<SignIn> {
     passwordController.dispose();
     super.dispose();
   }
+
+
+
+
+
 }

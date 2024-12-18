@@ -1,3 +1,6 @@
+import 'package:adoptify/Pages/aboutMessages/videoCallPage.dart';
+import 'package:adoptify/Pages/aboutMessages/chatOwnerPage.dart';
+import 'package:adoptify/Pages/aboutMessages/voiceCallPage.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
 import 'package:adoptify/dataModel/callsHistoryDataModel.dart';
@@ -18,14 +21,15 @@ class MessagePage extends StatefulWidget {
 
 int selectedIndex = 0;
 
-List<String> get messageOrChats {
+List<String> messageOrChats(BuildContext context){
   //int chatUnreadCount = 
-  return ["Chats", "Calls"];
+  return [context.tr("Chats"), context.tr("Calls")];
 }
 
 class _MessagePageState extends State<MessagePage> {
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         leading: Image.asset('assets/logo/paw_small.png'),
@@ -51,7 +55,7 @@ class _MessagePageState extends State<MessagePage> {
             FlutterToggleTab(
               width: 92,
               borderRadius: 5,
-              labels: messageOrChats, 
+              labels: messageOrChats(context), 
               selectedBackgroundColors: [primaryOrange.shade700],
               selectedTextStyle: bodyLBold.copyWith(color: Colors.white),
               unSelectedBackgroundColors: [Theme.of(context).colorScheme.secondary],
@@ -80,7 +84,9 @@ class _MessagePageState extends State<MessagePage> {
           final messageList = temporaryChatEg[index];
           final latestMessage = messageList.messageList.last;
           final formattedTime = DateFormat('HH:mm').format(latestMessage.messageSentDateNTime);
-      
+          
+          //petOraganizationName in chatList = petOraganizationName in messageInboxData
+
           return ListTile(
             leading: Container(
               width: 50, height: 50,
@@ -88,7 +94,7 @@ class _MessagePageState extends State<MessagePage> {
                 shape: BoxShape.circle,
                 image: DecorationImage(
                   image: AssetImage(messageList.petOrganizationPicUrl),
-                )
+                ),
               ),
               
             ),
@@ -132,7 +138,14 @@ class _MessagePageState extends State<MessagePage> {
               ],
             ),
 
-            onTap: (){},
+            onTap: (){
+              Navigator.push(
+                context, 
+                MaterialPageRoute(
+                  builder: (context) => ChatOwnerPage(chat: messageList),
+                ),
+              );
+            },
             
           );
         }
@@ -177,7 +190,7 @@ class _MessagePageState extends State<MessagePage> {
                 shape: BoxShape.circle,
                 image: DecorationImage(
                   image: AssetImage(calls.petOrganizationPicUrl),
-                )
+                ),
               ),              
             ),
 
@@ -195,7 +208,24 @@ class _MessagePageState extends State<MessagePage> {
               calls.isVoiceCall?  IconlyLight.call: IconlyLight.video, color: primaryOrange.shade900
             ),
 
-            onTap: (){},
+            onTap: (){
+              if(calls.isVoiceCall){
+                Navigator.push(
+                  context, 
+                  MaterialPageRoute(
+                    builder: (context)=> VoiceCallPage(callHistory: calls),
+                  ),
+                );
+              }else{
+                Navigator.push(
+                  context, 
+                  MaterialPageRoute(
+                    builder: (context)=> VideoCallPage(isVoiceCall: false, petOraganizationName: calls.petOrganizationName),
+                  ),
+                );
+              }
+              
+            },
 
           );
         }

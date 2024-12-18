@@ -85,5 +85,12 @@
 		<string>en</string>
 	</array>
 
+	<key>NSCameraUsageDescription</key>
+	<string>Allow access to camera for video calls</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Allow access to microphone for voice calls</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Why is my app authenticating using face id?</string>
+
 </dict>
 </plist>

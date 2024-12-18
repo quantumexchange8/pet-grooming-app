@@ -45,7 +45,7 @@ class _AppLanguagePageState extends State<AppLanguagePage> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.onPrimary,
       appBar: AppBar(
-        title: Text('App Language', style: heading4Bold),
+        title: Text(context.tr('App Language'), style: heading4Bold),
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.onPrimary,
       ),
@@ -128,7 +128,7 @@ class _AppLanguagePageState extends State<AppLanguagePage> {
                 flagPath, width: 60, height: 40,
               ),
               const SizedBox(width: 10),
-              Text(language, style: heading6Semibold),
+              Text(context.tr(language), style: heading6Semibold),
             ],
           ),
           if(isSelected)

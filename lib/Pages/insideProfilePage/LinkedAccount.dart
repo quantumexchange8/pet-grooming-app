@@ -1,5 +1,6 @@
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -35,7 +36,7 @@ class _LinkedAccountState extends State<LinkedAccount> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.onPrimary,
       appBar: AppBar(
-        title: Text('Linked Accounts', style: heading4Bold),
+        title: Text(context.tr('Linked Accounts'), style: heading4Bold),
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.onPrimary,
       ),
@@ -80,13 +81,13 @@ class _LinkedAccountState extends State<LinkedAccount> {
               children: [
                 Image.asset(iconUrl, width: 50, height: 50),
                 const SizedBox(width: 10),
-                Text(platform, style: heading6Bold.copyWith(fontSize: 15)),
+                Text(context.tr(platform), style: heading6Bold.copyWith(fontSize: 15)),
               ],
             ),
             TextButton(
               onPressed: () => _toggleConnection(platform), 
               child: Text(
-                _isConnected[platform]! ? 'Connected': 'Connect', 
+                _isConnected[platform]! ? context.tr('Connected'): context.tr('Connect'), 
                 style: bodyXLBold.copyWith(fontSize: 15, color: _isConnected[platform]! ? Theme.of(context).colorScheme.primary:primaryOrange.shade900),
               ),
             ),

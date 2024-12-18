@@ -1,6 +1,7 @@
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
 import 'package:adoptify/widgets/ProfileDetailSelection.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
@@ -15,6 +16,7 @@ class AccountSecurity extends StatefulWidget {
 
 class _AccountSecurityState extends State<AccountSecurity> {
 
+//for the biometric (local_auth), enable the function here 
   final Map<String, bool> _switchStates = {
     'Biometric ID': false,
     'Face ID': false,
@@ -49,7 +51,7 @@ class _AccountSecurityState extends State<AccountSecurity> {
   Widget build(BuildContext context) {
     return Scaffold(
        appBar: AppBar(
-        title: Text('Account & Security', style: heading4Bold),
+        title: Text(context.tr('Account & Security'), style: heading4Bold),
         centerTitle: true,
         
       ),
@@ -60,7 +62,7 @@ class _AccountSecurityState extends State<AccountSecurity> {
               padding: const EdgeInsets.all(15),
               child: Column(
                 children: [
-                  switchBuilder('Biometric ID'),
+                  switchBuilder('Biometric ID'),// iphone only got face id
                   const SizedBox(height: 15),
                   switchBuilder('Face ID'),
                   const SizedBox(height: 15),
@@ -83,7 +85,7 @@ class _AccountSecurityState extends State<AccountSecurity> {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 15, right: 40),
-              child: Text('Manage your account on the various devices you own.', style: bodyLRegular),
+              child: Text(context.tr('Manage your account on the various devices you own.'), style: bodyLRegular),
             ),
             const SizedBox(height: 15),
 
@@ -93,18 +95,18 @@ class _AccountSecurityState extends State<AccountSecurity> {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 15, right: 40),
-              child: Text('Temporarily deactivate your account. Easily reactivate when you\'re ready.', style: bodyLRegular),
+              child: Text(context.tr('Temporarily deactivate your account. Easily reactivate when you\'re ready.'), style: bodyLRegular),
             ),
             const SizedBox(height: 15),
 
             ListTile(
-              title: Text('Delete Account', style: heading6Bold.copyWith(color: const Color(0xFFF75555)),),
+              title: Text(context.tr('Delete Account'), style: heading6Bold.copyWith(color: const Color(0xFFF75555)),),
               trailing: const Icon(IconlyLight.arrow_right_2, size:20),
               onTap: (){},
             ),
             Padding(
               padding: const EdgeInsets.only(left: 15, right: 40),
-              child: Text('Permanently remove your account and data. Proceed with caution.', style: bodyLRegular),
+              child: Text(context.tr('Permanently remove your account and data. Proceed with caution.'), style: bodyLRegular),
             ),
           ],
         ),
@@ -116,7 +118,7 @@ class _AccountSecurityState extends State<AccountSecurity> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(label, style: heading5Semibold),
+        Text(context.tr(label), style: heading5Semibold),
         Switch(
           value: _switchStates[label] ?? false,
           onChanged: (value){

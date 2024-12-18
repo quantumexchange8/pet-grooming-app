@@ -2,6 +2,7 @@ import 'package:adoptify/Pages/SignUp/selectMatchAnimal.dart';
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:group_button/group_button.dart';
@@ -46,15 +47,15 @@ class _ChoicePageState extends State<ChoicePage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Tell us about yourself', style: heading3Bold),
+                    Text(context.tr('Tell us about yourself'), style: heading3Bold),
                     const SizedBox(height: 10),
-                    Text('Are you a Pet Owner or Organization ready to find loving homes? Or a Pet Adopter looking for your new best friend?',style: bodyXLRegular),
+                    Text(context.tr('Are you a Pet Owner or Organization ready to find loving homes? Or a Pet Adopter looking for your new best friend?'),style: bodyXLRegular),
                     const SizedBox(height: 30),
                     Center(
                       child: GroupButton( //editing ing
                         buttons: [
-                          "Pet Owner or Organization",
-                          "Pet Adopter"
+                          context.tr("Pet Owner or Organization"),
+                          context.tr("Pet Adopter")
                         ],
                         maxSelected: 1,
                         options: GroupButtonOptions(
@@ -95,7 +96,7 @@ class _ChoicePageState extends State<ChoicePage> {
                         Navigator.push(
                           context, 
                           MaterialPageRoute(
-                            builder: (context)=> MatchAnimal(),
+                            builder: (context)=> const MatchAnimal(),
                           ),
                         );
                       }, 

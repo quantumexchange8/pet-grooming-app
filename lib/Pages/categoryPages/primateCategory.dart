@@ -1,11 +1,11 @@
-import 'package:adoptify/const/constant.dart';
+import 'package:adoptify/Pages/aboutPetPages/petDetailPage.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
-import 'package:adoptify/controllers/favouriteController.dart';
-import 'package:adoptify/dataModel/primatesDataModel.dart';
+import 'package:adoptify/dataModel/animalDetailDataModel.dart';
+import 'package:adoptify/widgets/petDisplayCard.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:iconly/iconly.dart';
-import 'package:provider/provider.dart';
 
 class PrimateCategory extends StatefulWidget {
   const PrimateCategory({super.key});
@@ -18,23 +18,24 @@ class _PrimateCategoryState extends State<PrimateCategory> {
   @override
   Widget build(BuildContext context) {
 
-    List<PrimateDataModel> primateList = PrimateDataModel.primateCategoryList;
+    //List<PrimateDataModel> primateList = PrimateDataModel.primateCategoryList;
+    List<PetDetailDataModel> primateList = PetDetailDataModel.petDetailList.where((pet) => pet.petType == 'Primates').toList();
 
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(IconlyLight.arrow_left), 
+          icon: const Icon(IconlyLight.arrow_left), 
           onPressed: (){
             Navigator.pop(context);
           },
         ),
-        title: Text('Primates', style: heading4Bold),
+        title: Text(context.tr('Primates'), style: heading4Bold),
         centerTitle: true,
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 10.0),
             child: IconButton(
-              icon: Icon(IconlyLight.search),
+              icon: const Icon(IconlyLight.search),
               onPressed: (){},
             ),
           ),
@@ -42,10 +43,10 @@ class _PrimateCategoryState extends State<PrimateCategory> {
       ),
 
       body: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.only(top: 10.0, left: 10.0),
         child: GridView.builder(
           itemCount: primateList.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             mainAxisSpacing: 8,
             crossAxisSpacing: 8,
@@ -53,89 +54,25 @@ class _PrimateCategoryState extends State<PrimateCategory> {
           ), 
           itemBuilder: (context, index){
             final primate = primateList[index];
-            final isFavourite = context.watch<FavouriteController>().isPrimateFavourite(primate); // Check favorite status once
+            //final isFavourite = context.watch<FavouriteController>().isPetAdoptionFavourite(primate); // Check favorite status once
 
-                    return Padding(
-                      padding: const EdgeInsets.only(right: 15.0),
-                      child: Container(
-                        width: 140.0,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5.0),
-                          color: Colors.white,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Stack(
-                              children: [
-                                // Pet Image
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                  child: Image.asset(
-                                    primate.primatePic,
-                                    width: double.infinity,
-                                    height: 170.0,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-
-                                // Favourite Icon Positioned in the top right
-                                Positioned(
-                                  right: 5,
-                                  top: 5,
-                                  child: Container(
-                                    width: 25,
-                                    height: 25,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: primaryOrange.shade800,
-                                    ),
-                                    child: FittedBox(
-                                      child: IconButton(
-                                        icon: Icon(
-                                          isFavourite? IconlyBold.heart: IconlyLight.heart,                        
-                                          color: Colors.white, 
-                                        ),
-                                        iconSize: 35.0,
-                                        onPressed: () {
-                                          context.read<FavouriteController>().togglePrimateFavourite(primate);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ), 
-                              ],
-                            ),
-
-                            // Pet Information (Name, Location, Breed)
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(primate.primateName, style: bodyLSemibold),
-                                  const SizedBox(height: 5),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        IconlyBold.location,
-                                        size: 10,
-                                        color: primaryOrange.shade800,
-                                      ),
-                                      const SizedBox(width: 4),
-                                      Text(primate.distancePrimate, style: bodyXSRegular),
-                                      const SizedBox(width: 8),
-                                      Text('·', style: bodyXSRegular),
-                                      const SizedBox(width: 8),
-                                      Flexible(
-                                        child: Text(primate.primateBreed, style: bodyXSRegular, overflow: TextOverflow.ellipsis, maxLines: 1)
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+                    return GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                          context, 
+                          MaterialPageRoute(
+                            builder: (context) => PetDetailPage(petDetails: primate),
+                          ),
+                        );
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 15.0),
+                        child: PetCardDisplay(
+                          petImage: primate.petImage, 
+                          petName: primate.petName, 
+                          petDistance: primate.distanceFromPet, 
+                          petBreed: primate.petBreed, 
+                          pet: primate
                         ),
                       ),
                     );

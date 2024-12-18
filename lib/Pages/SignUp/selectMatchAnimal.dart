@@ -10,6 +10,7 @@ import 'package:adoptify/Pages/SignUp/reptileBreed.dart';
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
@@ -54,33 +55,44 @@ class _MatchAnimalState extends State<MatchAnimal> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Let\'s Find Your Match!', style: heading3Bold),
+                    Text(context.tr('Let\'s Find Your Match!'), style: heading3Bold),
                     const SizedBox(height: 10),
-                    Text('What type of animal are you looking to adopt? Don\'t worry, you can always change this later.',style: bodyXLRegular),
+                    Text(context.tr('What type of animal are you looking to adopt? Don\'t worry, you can always change this later.'),style: bodyXLRegular),
                     const SizedBox(height: 30),
                     
                     Center(
                      child: GroupButton<String>(
                         buttons: [
-                          "Dogs", "Cats", "Rabbits", "Birds", "Reptiles", "Fish", "Primates", "Horses", "Other"
+                          context.tr("Dogs"), context.tr("Cats"), context.tr("Rabbits"), context.tr("Birds"), context.tr("Reptiles"), context.tr("Fish"), context.tr("Primates"), context.tr("Horses"), context.tr("Other")
                         ],
                         maxSelected: 1,
-                        onSelected: (button, index, isSelected){
+                        onSelected: (button, index, isSelected) {
                           setState(() {
-                            selectedAnimal = button;
+                            selectedAnimal = [
+                              "Dogs",
+                              "Cats",
+                              "Rabbits",
+                              "Birds",
+                              "Reptiles",
+                              "Fish",
+                              "Primates",
+                              "Horses",
+                              "Other"
+                            ][index];
                           });
                         },
+
                         buttonBuilder: (selected, button, context) {
                           final Map<String,String> images = {
-                            "Dogs": "assets/buttonPic/dog.png",
-                            "Cats": "assets/buttonPic/cat.png",
-                            "Rabbits": "assets/buttonPic/rabbit.png",
-                            "Birds": "assets/buttonPic/bird.png",
-                            "Reptiles": "assets/buttonPic/snake.png",
-                            "Fish": "assets/buttonPic/fish.png",
-                            "Primates": "assets/buttonPic/monkey.png",
-                            "Horses": "assets/buttonPic/horse.png",
-                            "Other": "assets/buttonPic/other.png",
+                            context.tr("Dogs"): "assets/buttonPic/dog.png",
+                            context.tr("Cats"): "assets/buttonPic/cat.png",
+                            context.tr("Rabbits"): "assets/buttonPic/rabbit.png",
+                            context.tr("Birds"): "assets/buttonPic/bird.png",
+                            context.tr("Reptiles"): "assets/buttonPic/snake.png",
+                            context.tr("Fish"): "assets/buttonPic/fish.png",
+                            context.tr("Primates"): "assets/buttonPic/monkey.png",
+                            context.tr("Horses"): "assets/buttonPic/horse.png",
+                            context.tr("Other"): "assets/buttonPic/other.png",
                           };
 
                           return Container(
@@ -148,7 +160,7 @@ class _MatchAnimalState extends State<MatchAnimal> {
                               Navigator.push(
                                 context, 
                                 MaterialPageRoute(
-                                  builder: (context)=> DogBreedPage(),
+                                  builder: (context)=> const DogBreedPage(),
                                 ),
                               );
                               break;
@@ -156,7 +168,7 @@ class _MatchAnimalState extends State<MatchAnimal> {
                               Navigator.push(
                                   context, 
                                   MaterialPageRoute(
-                                    builder: (context)=> CatBreedPage(),
+                                    builder: (context)=> const CatBreedPage(),
                                   ),
                                 );
                               break;
@@ -164,7 +176,7 @@ class _MatchAnimalState extends State<MatchAnimal> {
                               Navigator.push(
                                   context, 
                                   MaterialPageRoute(
-                                    builder: (context)=> RabbitBreedPage(),
+                                    builder: (context)=> const RabbitBreedPage(),
                                   ),
                                 );
                               break;
@@ -172,7 +184,7 @@ class _MatchAnimalState extends State<MatchAnimal> {
                               Navigator.push(
                                   context, 
                                   MaterialPageRoute(
-                                    builder: (context)=> BirdBreedPage(),
+                                    builder: (context)=> const BirdBreedPage(),
                                   ),
                                 );
                               break;
@@ -180,7 +192,7 @@ class _MatchAnimalState extends State<MatchAnimal> {
                               Navigator.push(
                                   context, 
                                   MaterialPageRoute(
-                                    builder: (context)=> ReptilesBreedPage(),
+                                    builder: (context)=> const ReptilesBreedPage(),
                                   ),
                                 );
                               break;
@@ -188,7 +200,7 @@ class _MatchAnimalState extends State<MatchAnimal> {
                               Navigator.push(
                                   context, 
                                   MaterialPageRoute(
-                                    builder: (context)=> FishBreedPage(),
+                                    builder: (context)=> const FishBreedPage(),
                                   ),
                                 );
                               break;
@@ -196,7 +208,7 @@ class _MatchAnimalState extends State<MatchAnimal> {
                               Navigator.push(
                                   context, 
                                   MaterialPageRoute(
-                                    builder: (context)=> PrimatesBreedPage(),
+                                    builder: (context)=> const PrimatesBreedPage(),
                                   ),
                                 );
                               break;
@@ -204,7 +216,7 @@ class _MatchAnimalState extends State<MatchAnimal> {
                               Navigator.push(
                                   context, 
                                   MaterialPageRoute(
-                                    builder: (context)=> HorseBreedPage(),
+                                    builder: (context)=> const HorseBreedPage(),
                                   ),
                                 );
                               break;
@@ -212,7 +224,7 @@ class _MatchAnimalState extends State<MatchAnimal> {
                               Navigator.push(
                                   context, 
                                   MaterialPageRoute(
-                                    builder: (context)=> OtherBreedPage(),
+                                    builder: (context)=> const OtherBreedPage(),
                                   ),
                                 );
                               break;

@@ -122,17 +122,23 @@ class _HomePageState extends State<HomePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Pets Near You', style: heading5Bold),
-                  TextButton(
-                    onPressed: (){}, 
-                    child: Row(
-                      children: [
-                        Text('View All', style: bodyLBold.copyWith(color: primaryOrange.shade800)),
-                        const SizedBox(width: 10),
-                        Icon(IconlyLight.arrow_right, color: primaryOrange.shade800),
-                      ],
+                  Flexible(
+                    flex: 6,
+                    child: Text(context.tr('Pets Near You'), style: heading5Bold, overflow: TextOverflow.ellipsis, maxLines: 1)
+                  ),
+                  Flexible(
+                    flex: 4,
+                    child: TextButton(
+                      onPressed: (){}, 
+                      child: Row(
+                        children: [
+                          Text(context.tr('View All'), style: bodyLBold.copyWith(color: primaryOrange.shade800)),
+                          const SizedBox(width: 10),
+                          Icon(IconlyLight.arrow_right, color: primaryOrange.shade800),
+                        ],
+                      ),
+                      
                     ),
-                    
                   ),
                 ],
               ),
@@ -141,7 +147,7 @@ class _HomePageState extends State<HomePage> {
 
               //add horizontal scroll pet card
               SizedBox(
-                height: 200.0,
+                height: 210.0,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: petCardList.length,
@@ -155,7 +161,7 @@ class _HomePageState extends State<HomePage> {
                         width: 140.0,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5.0),
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.background,
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -240,25 +246,31 @@ class _HomePageState extends State<HomePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Based on Your Preferences', style: heading5Bold),
+                  Flexible(
+                    flex: 6,
+                    child: Text(context.tr('Based on Your Preferences'), style: heading5Bold, overflow: TextOverflow.ellipsis, maxLines: 1),
+                  ),
                   //const SizedBox(width: 15),
-                  TextButton(
-                    onPressed: (){}, 
-                    child: Row(
-                      children: [
-                        Text('View All', style: bodyLBold.copyWith(color: primaryOrange.shade800)),
-                        const SizedBox(width: 10),
-                        Icon(IconlyLight.arrow_right, color: primaryOrange.shade800),
-                      ],
+                  Flexible(
+                    flex: 4,
+                    child: TextButton(
+                      onPressed: (){}, 
+                      child: Row(
+                        children: [
+                          Text(context.tr('View All'), style: bodyLBold.copyWith(color: primaryOrange.shade800)),
+                          const SizedBox(width: 10),
+                          Icon(IconlyLight.arrow_right, color: primaryOrange.shade800),
+                        ],
+                      ),
+                      
                     ),
-                    
                   ),
                 ],
               ),
 
               const SizedBox(height: 10),
               SizedBox(
-                height: 200.0,
+                height: 210.0,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: petCardList.length,
@@ -272,7 +284,7 @@ class _HomePageState extends State<HomePage> {
                         width: 140.0,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5.0),
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.background,
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -372,7 +384,7 @@ class _HomePageState extends State<HomePage> {
             ),
             fixedSize: MaterialStateProperty.all<Size>(const Size.fromHeight(60)),
             side: MaterialStateProperty.all<BorderSide>(
-              BorderSide(color: grey.shade300),
+              BorderSide(color: grey.shade600),
             ),
           ),
           child: Image.asset(image, width: 30, height: 30),

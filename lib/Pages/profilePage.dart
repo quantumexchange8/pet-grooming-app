@@ -4,13 +4,13 @@ import 'package:adoptify/Pages/insideProfilePage/EditNotiSetting.dart';
 import 'package:adoptify/Pages/insideProfilePage/EditProfile.dart';
 import 'package:adoptify/Pages/insideProfilePage/HelpNSupport.dart';
 import 'package:adoptify/Pages/insideProfilePage/LinkedAccount.dart';
+import 'package:adoptify/Pages/onBoardingPages/welcomeScreen.dart';
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
 import 'package:adoptify/Pages/insideProfilePage/Appearance.dart';
 import 'package:adoptify/widgets/ProfileMenu.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:editable_image/editable_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //import 'package:group_button/group_button.dart';
@@ -94,7 +94,7 @@ class _ProfilePageState extends State<ProfilePage> {
             //for List of buttons
             ListTile(
               leading: isLightMode? Image.asset('assets/icon/pawIcon_black.png'): Image.asset('assets/icon/pawIcon_white.png'),
-              title: Text('My Pet Preferences', style: heading6Bold),
+              title: Text(context.tr('My Pet Preferences'), style: heading6Bold),
               trailing: const Icon(IconlyLight.arrow_right_2, size:20),
               onTap: (){
                 showModalBottomSheet<void>(
@@ -116,7 +116,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               children: <Widget>[
                                 Padding(
                                   padding: const EdgeInsets.all(10.0),
-                                  child: Text('My Pet Preferences', style: heading4Bold),
+                                  child: Text(context.tr('My Pet Preferences'), style: heading4Bold),
                                 ),
                                 Divider(thickness: 1, color: grey.shade300, height: 15.0),
                                 Wrap(
@@ -322,7 +322,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
             ListTile(
               leading: const Icon(IconlyLight.logout, color: Color(0xFFF75555)),
-              title: Text('Logout', style: heading6Bold.copyWith(color:const Color(0xFFF75555))),
+              title: Text(context.tr('Logout'), style: heading6Bold.copyWith(color:const Color(0xFFF75555))),
               onTap: (){
                 showModalBottomSheet(
                   backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
@@ -338,10 +338,10 @@ class _ProfilePageState extends State<ProfilePage> {
                               children: <Widget>[
                                 Padding(
                                   padding: const EdgeInsets.only(top: 30.0),
-                                  child: Text('Logout',style: heading4Bold.copyWith(color: const Color(0xFFF75555)),),
+                                  child: Text(context.tr('Logout'),style: heading4Bold.copyWith(color: const Color(0xFFF75555)),),
                                 ),
                                 Divider(thickness: 1, color: grey.shade300, height: 60),
-                                Text('Are you sure you want to log out?', style: heading5Medium),
+                                Text(context.tr('Are you sure you want to log out?'), style: heading5Medium),
                                 Divider(thickness: 1, color: grey.shade300, height: 60),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -358,8 +358,13 @@ class _ProfilePageState extends State<ProfilePage> {
                                         Expanded(
                                           child: OrangeButton(
                                             onPressed: () {
-                                              //save function
-                                              Navigator.pop(context);
+                                              //later use the logout function (create void function)
+                                              Navigator.pushReplacement(
+                                                context, 
+                                                MaterialPageRoute(
+                                                  builder: (context) => const WelcomePage(),
+                                                ),
+                                              );
                                             },
                                             text: 'Yes, Logout',
                                           ),

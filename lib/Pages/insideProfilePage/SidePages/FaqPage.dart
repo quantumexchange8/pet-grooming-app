@@ -1,6 +1,7 @@
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
 import 'package:adoptify/dataModel/faqDataModel.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -26,7 +27,7 @@ class _FAQPageState extends State<FAQPage> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.onPrimary,
       appBar: AppBar(
-        title: Text('FAQ', style: heading4Bold),
+        title: Text(context.tr('FAQ'), style: heading4Bold),
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.onPrimary,
       ),
@@ -46,7 +47,7 @@ class _FAQPageState extends State<FAQPage> {
                 autofocus: false,
                 controller: searchController,
                 decoration: InputDecoration(
-                  hintText: 'Search',
+                  hintText: context.tr('Search'),
                   hintStyle: bodyLRegular.copyWith(color: grey.shade400),
                   prefixIcon: const Icon(IconlyLight.search, size: 20),
                   prefixIconColor: grey.shade400,
@@ -119,7 +120,7 @@ class _FAQPageState extends State<FAQPage> {
 
   Widget selectionFAQ(String selectedQues, String label, Function(String) onSelected){
     return ChoiceChip(
-      label: Text(label),
+      label: Text(context.tr(label)),
       labelStyle: bodyLSemibold.copyWith(
         color: selectedQues == label? Colors.white : Theme.of(context).colorScheme.primary,
       ), 
@@ -147,7 +148,7 @@ class _FAQPageState extends State<FAQPage> {
     return Column(
       children: [
         ExpansionTile(
-          title: Text(title, style: heading6Bold),
+          title: Text(context.tr(title), style: heading6Bold),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8)
           ),
@@ -165,7 +166,7 @@ class _FAQPageState extends State<FAQPage> {
               ),
             ),
             ListTile(
-              title: Text(explanation, style: bodyLMedium),
+              title: Text(context.tr(explanation), style: bodyLMedium),
             ),
           ],
           

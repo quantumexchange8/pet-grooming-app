@@ -1025,15 +1025,6 @@ class PetDetailDataModel{
     ),
 
 
-
-
-
-
-
-
-
-
-
   ];
 
 }

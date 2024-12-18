@@ -2,13 +2,12 @@ import 'package:adoptify/Pages/aboutPetPages/petDetailPage.dart';
 import 'package:adoptify/Pages/aboutPetPages/searchPage.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
-import 'package:adoptify/controllers/favouriteController.dart';
-import 'package:adoptify/dataModel/animalDataModel.dart';
 import 'package:adoptify/dataModel/animalDetailDataModel.dart';
+import 'package:adoptify/widgets/petDisplayCard.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:iconly/iconly.dart';
-import 'package:provider/provider.dart';
 
 class SearchResult extends StatefulWidget {
   final String selectedPetType;
@@ -27,13 +26,12 @@ class _SearchResultState extends State<SearchResult> {
     super.initState();
     selectedPetCategory = widget.selectedPetType;
   }
-  
-  List<AnimalDataModel> getFilteredAnimals(){
+
+  List<PetDetailDataModel> getFilteredAnimals(){
     if(selectedPetCategory == 'All'){
-      return AnimalDataModel.animalAnimalegoryList;
+      return PetDetailDataModel.petDetailList;
     }else{
-      return AnimalDataModel.animalAnimalegoryList.where((animal) => animal.animalType == selectedPetCategory)
-        .toList();
+      return PetDetailDataModel.petDetailList.where((pet) => pet.petType == selectedPetCategory).toList();
     }
   }
 
@@ -63,25 +61,25 @@ class _SearchResultState extends State<SearchResult> {
   @override
   Widget build(BuildContext context) {
     
-    List<AnimalDataModel> animalList = getFilteredAnimals();
+    List<PetDetailDataModel> animalList = getFilteredAnimals();
 
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(IconlyLight.arrow_left), 
+          icon: const Icon(IconlyLight.arrow_left), 
           onPressed: (){
             Navigator.pop(context);
           },
         ),
-        title: Text('Search Results', style: heading4Bold),
+        title: Text(context.tr('Search Results'), style: heading4Bold),
         centerTitle: true,
         actions: [
           IconButton(
-            icon: Icon(IconlyLight.search, size: 25), 
+            icon: const Icon(IconlyLight.search, size: 25), 
             onPressed: (){
               Navigator.push(
                 context, 
-                MaterialPageRoute(builder: (context)=> SearchPage()),
+                MaterialPageRoute(builder: (context)=> const SearchPage()),
               );
             },
           ),
@@ -167,11 +165,11 @@ class _SearchResultState extends State<SearchResult> {
               itemCount: animalList.length,
               itemBuilder: (context, index){
                 final animal = animalList[index];
-                final isFavourite = context.watch<FavouriteController>().isAnimalFavourite(animal);
+                //final isFavourite = context.watch<FavouriteController>().isPetAdoptionFavourite(animal);
 
                   return InkWell(
                     onTap: (){
-                      final petDetail = getPetDetailsByName(animal.animalName);
+                      final petDetail = getPetDetailsByName(animal.petName);
                       if(petDetail !=null){
                         Navigator.push(
                           context, 
@@ -183,87 +181,13 @@ class _SearchResultState extends State<SearchResult> {
                         //need snackbar
                       }
                     },
-                     child: Container(
-                        width: 140.0,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5.0),
-                          color: Theme.of(context).colorScheme.background,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Stack(
-                              children: [
-                                // Pet Image
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                  child: Image.asset(
-                                    animal.animalPic,
-                                    width: double.infinity,
-                                    height: 170.0,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                     
-                                // Favourite Icon Positioned in the top right
-                                Positioned(
-                                  right: 5,
-                                  top: 5,
-                                  child: Container(
-                                    width: 25,
-                                    height: 25,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: primaryOrange.shade800,
-                                    ),
-                                    child: FittedBox(
-                                      child: IconButton(
-                                        icon: Icon(
-                                          isFavourite? IconlyBold.heart: IconlyLight.heart,                        
-                                          color: Colors.white, 
-                                        ),
-                                        iconSize: 35.0,
-                                        onPressed: () {
-                                          context.read<FavouriteController>().toggleAllAnimalFavourite(animal);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ), 
-                              ],
-                            ),
-                     
-                            // Pet Information (Name, Location, Breed)
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(animal.animalName, style: bodyLSemibold),
-                                  const SizedBox(height: 5),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        IconlyBold.location,
-                                        size: 10,
-                                        color: primaryOrange.shade800,
-                                      ),
-                                      const SizedBox(width: 4),
-                                      Text(animal.distanceAnimal, style: bodyXSRegular),
-                                      const SizedBox(width: 8),
-                                      Text('·', style: bodyXSRegular),
-                                      const SizedBox(width: 8),
-                                      Flexible(
-                                        child: Text(animal.animalBreed, style: bodyXSRegular,overflow: TextOverflow.ellipsis, maxLines: 1)
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                     child: PetCardDisplay(
+                      petImage: animal.petImage, 
+                      petName: animal.petName, 
+                      petDistance: animal.distanceFromPet, 
+                      petBreed: animal.petBreed, 
+                      pet: animal,
+                      )
                    );
 
 
@@ -289,7 +213,7 @@ class _SearchResultState extends State<SearchResult> {
         children: [
           Image.asset(url, width: 15,height: 15),
           const SizedBox(width: 3),
-          Text(label),
+          Text(context.tr(label)),
         ],
       ), 
       selected: selectedValue == label,
@@ -304,7 +228,7 @@ class _SearchResultState extends State<SearchResult> {
       },
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(25),
-        side: BorderSide(color: grey.shade300),
+        side: BorderSide(color: grey.shade600),
       ),
     );
   }

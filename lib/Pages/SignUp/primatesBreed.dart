@@ -2,6 +2,7 @@ import 'package:adoptify/Pages/SignUp/finalStepUserInfo.dart';
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
@@ -45,9 +46,9 @@ class _PrimatesBreedPageState extends State<PrimatesBreedPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Breed Preferences', style: heading3Bold),
+                    Text(context.tr('Breed Preferences'), style: heading3Bold),
                     const SizedBox(height: 10),
-                    Text('Specify your preferences for the breed of the animal you\'d like to adopt, based on your previous choice. Select all that apply.',style: bodyXLRegular),
+                    Text(context.tr('Specify your preferences for the breed of the animal you\'d like to adopt, based on your previous choice. Select all that apply.'),style: bodyXLRegular),
                     const SizedBox(height: 30),
                     
                     Center(

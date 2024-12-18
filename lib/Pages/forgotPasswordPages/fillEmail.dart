@@ -1,6 +1,7 @@
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
 import 'package:adoptify/Pages/forgotPasswordPages/OTPcode.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
@@ -31,14 +32,14 @@ class _ResetPasswordEmailState extends State<ResetPasswordEmail> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text('Forgot Your Password?', style: heading3Bold),
+                      Flexible(child: Text(context.tr('Forgot Your Password?'), style: heading3Bold.copyWith(fontSize: 31), overflow: TextOverflow.ellipsis, maxLines: 2)),
                       Image.asset('assets/image/key.png'),
                     ],
                   ),
                   const SizedBox(height: 10),
-                  Text('We\'ve got you covered. Enter your registered email to rest your password. We will send an OTP code to your email for the next steps.',style: bodyXLRegular),
+                  Text(context.tr('We\'ve got you covered. Enter your registered email to reset your password. We will send an OTP code to your email for the next steps.'),style: bodyXLRegular),
                   const SizedBox(height: 35),
-                  Text('Your Registered Email', style: heading6Bold, textAlign: TextAlign.start,),
+                  Text(context.tr('Your Registered Email'), style: heading6Bold, textAlign: TextAlign.start,),
                   const SizedBox(height: 10),
                   TextField(
                     //onChanged:,
@@ -51,7 +52,7 @@ class _ResetPasswordEmailState extends State<ResetPasswordEmail> {
                         borderSide: BorderSide.none,                
                       ),
                       isDense: true,
-                      hintText: 'Email',
+                      hintText: context.tr('Email'),
                       hintStyle: bodyLRegular,
                       prefixIcon: const Icon(IconlyLight.message),
                     ),

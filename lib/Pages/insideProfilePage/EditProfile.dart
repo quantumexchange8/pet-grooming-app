@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
 import 'package:country_code_picker/country_code_picker.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:editable_image/editable_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class _EditProfileState extends State<EditProfile> {
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneNoController = TextEditingController();
   //TextEditingController bdController = TextEditingController();
-  final gender = ['Male', 'Female'];
+  
   String? selectedGender = 'Male';
   DateTime? selectedDate;
 
@@ -42,9 +43,12 @@ class _EditProfileState extends State<EditProfile> {
 
   @override
   Widget build(BuildContext context) {
+
+    final gender = [context.tr('Male'), context.tr('Female')];
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('My Profile', style: heading4Bold),
+        title: Text(context.tr('My Profile'), style: heading4Bold),
         centerTitle: true,
         actions: [
           IconButton(
@@ -78,7 +82,7 @@ class _EditProfileState extends State<EditProfile> {
              
               //full name
               const SizedBox(height: 20),
-              Text('Full Name', style: heading6Bold),
+              Text(context.tr('Full Name'), style: heading6Bold),
               const SizedBox(height: 5),
               TextField(
                 /* onChanged: (value){
@@ -103,7 +107,7 @@ class _EditProfileState extends State<EditProfile> {
           
               //email
               const SizedBox(height: 20),
-              Text('Email', style: heading6Bold),
+              Text(context.tr('Email'), style: heading6Bold),
                 const SizedBox(height: 5),
                 TextField(
                   /* onChanged: (value){
@@ -129,7 +133,7 @@ class _EditProfileState extends State<EditProfile> {
 
               //phone no
               const SizedBox(height: 20),
-              Text('Phone Number', style: heading6Bold),
+              Text(context.tr('Phone Number'), style: heading6Bold),
               const SizedBox(height: 5),
               TextField(
                 /* onChanged: (value){
@@ -166,7 +170,7 @@ class _EditProfileState extends State<EditProfile> {
 
               //gender
               const SizedBox(height: 20),
-              Text('Gender', style: heading6Bold),
+              Text(context.tr('Gender'), style: heading6Bold),
                 const SizedBox(height: 5),
                 DropdownButtonFormField<String>(
                   decoration: InputDecoration(
@@ -186,12 +190,13 @@ class _EditProfileState extends State<EditProfile> {
                       selectedGender = gender;
                     });
                   },
-                  value: selectedGender,
+                  value: selectedGender == 'Male'? 
+                          context.tr('Male'): context.tr('Female'),
                 ),
 
               //birthday
               const SizedBox(height: 20),
-              Text('Birthdate', style: heading6Bold),
+              Text(context.tr('Birthdate'), style: heading6Bold),
               const SizedBox(height: 5),
               TextField(
                 decoration: InputDecoration(

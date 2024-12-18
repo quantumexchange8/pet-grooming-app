@@ -4,6 +4,7 @@ import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
 import 'package:adoptify/Pages/forgotPasswordPages/resetPassword.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -75,13 +76,13 @@ class _OTPcodeState extends State<OTPcode> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text('Enter OTP Code', style: heading3Bold),
+                      Text(context.tr('Enter OTP Code'), style: heading3Bold),
                       const SizedBox(width: 5),
                       Image.asset('assets/image/lock_key.png'),
                     ],
                   ),
                   const SizedBox(height: 10),
-                  Text('Please check your email inbox for a message from Adoptify. Enter the one-time verification code below.',style: bodyXLRegular),
+                  Text(context.tr('Please check your email inbox for a message from Adoptify. Enter the one-time verification code below.'),style: bodyXLRegular),
                   const SizedBox(height: 35),
 
                   PinCodeTextField(
@@ -116,9 +117,9 @@ class _OTPcodeState extends State<OTPcode> {
                         text: TextSpan(
                           style: bodyLRegular,
                           children: <TextSpan>[
-                            TextSpan(text: 'You can resend the code in ', style: TextStyle(color: Theme.of(context).colorScheme.primary)),
+                            TextSpan(text: context.tr('You can resend the code in '), style: TextStyle(color: Theme.of(context).colorScheme.primary)),
                             TextSpan(text: '${_countdown.toString()} ', style: TextStyle(color: primaryOrange.shade800)),
-                            TextSpan(text: 'seconds.', style: TextStyle(color: Theme.of(context).colorScheme.primary)),
+                            TextSpan(text: '${context.tr('seconds')}.', style: TextStyle(color: Theme.of(context).colorScheme.primary)),
                           ],
                         ),
                       ),
@@ -134,7 +135,7 @@ class _OTPcodeState extends State<OTPcode> {
                         onPressed: (){
                           _resendOtp();
                         }, 
-                      child: Text('Resend code', style: bodyLMedium),
+                      child: Text(context.tr('Resend code'), style: bodyLMedium),
                       ),
                     ],
                   ),

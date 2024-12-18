@@ -3,6 +3,7 @@ import 'package:adoptify/Pages/SignUp/ChoicePage.dart';
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -70,13 +71,13 @@ class _SignUpState extends State<SignUp> {
                   children: [
                     Row(
                       children: [
-                        Text('Join Adoptify Today', style: heading3Bold),
+                        Expanded(child: Text(context.tr('Join Adoptify Today'), style: heading3Bold, maxLines: 2,)),
                         Image.asset('assets/image/paws.png'),
                       ],
                     ),
-                    Text('A world of furry possibilities awaits you.',style: bodyXLRegular),
+                    Text(context.tr('A world of furry possibilities awaits you.'),style: bodyXLRegular),
                     const SizedBox(height: 15),
-                    Text('Email', style: heading6Bold),
+                    Text(context.tr('Email'), style: heading6Bold),
                     const SizedBox(height: 5),
                     TextField(
                       onChanged:(value){
@@ -93,13 +94,13 @@ class _SignUpState extends State<SignUp> {
                           borderSide: BorderSide.none,                
                         ),
                         isDense: true,
-                        hintText: 'Email',
+                        hintText: context.tr('Email'),
                         hintStyle: bodyLRegular,
                         prefixIcon: const Icon(IconlyLight.message),
                       ),
                     ),
                     const SizedBox(height: 15),
-                    Text('Password', style: heading6Bold),
+                    Text(context.tr('Password'), style: heading6Bold),
                     const SizedBox(height: 5),
                     TextField(
                       onChanged:(value){
@@ -125,7 +126,7 @@ class _SignUpState extends State<SignUp> {
                           borderSide: BorderSide.none,                
                         ),
                         isDense: true,
-                        hintText: 'Password',
+                        hintText: context.tr('Password'),
                         hintStyle: bodyLRegular,
                         prefixIcon: const Icon(IconlyLight.lock),
                       ),
@@ -154,10 +155,10 @@ class _SignUpState extends State<SignUp> {
                           TextSpan(
                             children: [
                               TextSpan(
-                                text: 'I agree to Adoptify ', style: bodyLRegular),
+                                text: context.tr('I agree to Adoptify '), style: bodyLRegular),
                               
                               TextSpan(
-                                text: 'Terms & Conditions',
+                                text: context.tr('Terms & Conditions'),
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: primaryOrange.shade800,
@@ -179,29 +180,35 @@ class _SignUpState extends State<SignUp> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('Already have an account?', style: bodyLRegular),
-                        TextButton(
-                          onPressed: (){
-                            Navigator.push(
-                              context, 
-                              MaterialPageRoute(
-                                builder: (context)=>const SignIn(),
-                              ),
-                            );
-                          }, 
-                          child: Text('Sign in',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: primaryOrange.shade800, 
-                            fontFamily: GoogleFonts.urbanist().fontFamily),),
+                        Text(context.tr('Already have an account?'), style: bodyLRegular),
+                        Flexible(
+                          child: TextButton(
+                            onPressed: (){
+                              Navigator.push(
+                                context, 
+                                MaterialPageRoute(
+                                  builder: (context)=>const SignIn(),
+                                ),
+                              );
+                            }, 
+                            child: Text(context.tr('Sign in'),
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: primaryOrange.shade800, 
+                              fontFamily: GoogleFonts.urbanist().fontFamily),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                            ),
+                          ),
                         ),
                       ],
                     ),
+
                     const SizedBox(height: 25),
                     Row(
                       children: [
                         Expanded(child: Divider(color: grey.shade200),),
-                        const Text('    or    '),
+                        Text(context.tr('    or    ')),
                         Expanded(child: Divider(color: grey.shade200),),
                       ],
                     ),
@@ -242,20 +249,24 @@ class _SignUpState extends State<SignUp> {
                   Expanded(
                     child: FilledButton(
                     onPressed: _isEmailValid && _isPasswordValid?(){
-                      showDialog(context: context, 
-                      builder: (context) =>AlertDialog(
-                      contentPadding: EdgeInsets.zero,
-                      content: ConstrainedBox(
-                        constraints: BoxConstraints(
-                          maxHeight: MediaQuery.of(context).size.height * 0.20, 
-                          
-                        ),
+                      showDialog(
+                        context: context, 
+                        builder: (context) => AlertDialog(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        contentPadding: EdgeInsets.zero,
+                        content: ConstrainedBox(
+                          constraints: BoxConstraints(
+                            maxHeight: MediaQuery.of(context).size.height * 0.20, 
+                            
+                          ),
                         child: Padding(
                           padding: const EdgeInsets.all(25.0),
                           child: Column(
                             children: [
                               SizedBox(
-                                height: 45, width: 45,
+                                height: 50, width: 50,
                                 child: CircularProgressIndicator(
                                   strokeWidth: 7.0,
                                   backgroundColor: Colors.white,
@@ -264,7 +275,7 @@ class _SignUpState extends State<SignUp> {
                                 ),
                               ),
                               const SizedBox(height: 28.0),
-                              Text('Sign up...', style: heading6Semibold)
+                              Text(context.tr('Sign up...'), style: heading6Semibold)
                             ],
                           )
                         ),
@@ -289,14 +300,14 @@ class _SignUpState extends State<SignUp> {
                     ),
                       fixedSize: MaterialStateProperty.all<Size>(const Size.fromHeight(50)),
                     ),
-                    child: Text('Sign up', 
+                    child: Text(context.tr('Sign up'), 
                       style: TextStyle(
                         fontFamily: GoogleFonts.urbanist().fontFamily,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                         ),
                       ),
-                  ),
+                    ),
                   ),
                 ],
               ),

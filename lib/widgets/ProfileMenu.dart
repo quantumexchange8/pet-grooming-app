@@ -1,4 +1,5 @@
 import 'package:adoptify/const/urbanist_textStyle.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -22,7 +23,7 @@ class ProfileMenu extends StatelessWidget {
     return ListTile(
       onTap: onPress,
       leading:Icon(icon),
-      title: Text(topic, style: heading6Bold),
+      title: Text(context.tr(topic), style: heading6Bold),
       trailing: const Icon(IconlyLight.arrow_right_2, size:20),
     );
   }

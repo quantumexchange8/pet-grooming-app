@@ -1,4 +1,5 @@
 import 'package:adoptify/const/constant.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,7 +21,7 @@ class OrangeButton extends StatelessWidget {
         backgroundColor: MaterialStateColor.resolveWith((states) => primaryOrange.shade900),
         fixedSize: MaterialStateProperty.all<Size>(const Size.fromHeight(50)),
       ),
-      child: Text(text, 
+      child: Text(context.tr(text), 
         style: TextStyle(
           fontFamily: GoogleFonts.urbanist().fontFamily,
           fontWeight: FontWeight.bold,
@@ -54,7 +55,7 @@ class LightOrangeButton extends StatelessWidget {
         backgroundColor: MaterialStateColor.resolveWith((states) => Theme.of(context).colorScheme.tertiary),
         fixedSize: MaterialStateProperty.all<Size>(const Size.fromHeight(50)),
       ),
-      child: Text(text, 
+      child: Text(context.tr(text), 
         style: TextStyle(
           color: textColor, 
           fontFamily: GoogleFonts.urbanist().fontFamily,
@@ -91,7 +92,7 @@ class GreyOutlineButton extends StatelessWidget {
         children: [
           Image(image: AssetImage(iconUrl)),
           const SizedBox(width: 50),
-          Text(text),
+          Text(context.tr(text)),
         ],
       ),
     );

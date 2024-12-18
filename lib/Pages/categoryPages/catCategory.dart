@@ -1,10 +1,10 @@
-import 'package:adoptify/const/constant.dart';
+import 'package:adoptify/Pages/aboutPetPages/petDetailPage.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
-import 'package:adoptify/controllers/favouriteController.dart';
-import 'package:adoptify/dataModel/catDataModel.dart';
+import 'package:adoptify/dataModel/animalDetailDataModel.dart';
+import 'package:adoptify/widgets/petDisplayCard.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
-import 'package:provider/provider.dart';
 
 class CatCategory extends StatefulWidget {
   const CatCategory({super.key});
@@ -17,7 +17,9 @@ class _CatCategoryState extends State<CatCategory> {
   @override
   Widget build(BuildContext context) {
 
-    List<CatDataModel> catList = CatDataModel.catCategoryList;
+    //List<CatDataModel> catList = CatDataModel.catCategoryList;
+    List<PetDetailDataModel> catList = PetDetailDataModel.petDetailList
+                                      .where((pet) => pet.petType == 'Cats').toList();
     
 
     return Scaffold(
@@ -28,7 +30,7 @@ class _CatCategoryState extends State<CatCategory> {
             Navigator.pop(context);
           },
         ),
-        title: Text('Cats', style: heading4Bold),
+        title: Text(context.tr('Cats'), style: heading4Bold),
         centerTitle: true,
         actions: [
           Padding(
@@ -42,7 +44,7 @@ class _CatCategoryState extends State<CatCategory> {
       ),
 
       body: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.only(top: 10.0, left: 10.0),
         child: GridView.builder(
           itemCount: catList.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -53,89 +55,25 @@ class _CatCategoryState extends State<CatCategory> {
           ), 
           itemBuilder: (context, index){
             final cat = catList[index];
-            final isFavourite = context.watch<FavouriteController>().isCatFavourite(cat); // Check favorite status once
-
-                    return Padding(
-                      padding: const EdgeInsets.only(right: 15.0),
-                      child: Container(
-                        width: 140.0,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5.0),
-                          color: Colors.white,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Stack(
-                              children: [
-                                // Pet Image
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                  child: Image.asset(
-                                    cat.catPic,
-                                    width: double.infinity,
-                                    height: 170.0,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-
-                                // Favourite Icon Positioned in the top right
-                                Positioned(
-                                  right: 5,
-                                  top: 5,
-                                  child: Container(
-                                    width: 25,
-                                    height: 25,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: primaryOrange.shade800,
-                                    ),
-                                    child: FittedBox(
-                                      child: IconButton(
-                                        icon: Icon(
-                                          isFavourite?  IconlyBold.heart: IconlyLight.heart,                        
-                                          color: Colors.white, 
-                                        ),
-                                        iconSize: 35.0,
-                                        onPressed: () {
-                                          context.read<FavouriteController>().toggleCatFavourite(cat);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ), 
-                              ],
-                            ),
-
-                            // Pet Information (Name, Location, Breed)
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(cat.catName, style: bodyLSemibold),
-                                  const SizedBox(height: 5),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        IconlyBold.location,
-                                        size: 10,
-                                        color: primaryOrange.shade800,
-                                      ),
-                                      const SizedBox(width: 4),
-                                      Text(cat.distanceCat, style: bodyXSRegular),
-                                      const SizedBox(width: 8),
-                                      Text('·', style: bodyXSRegular),
-                                      const SizedBox(width: 8),
-                                      Flexible(
-                                        child: Text(cat.catBreed, style: bodyXSRegular,overflow: TextOverflow.ellipsis, maxLines: 1)
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+            //final isFavourite = context.watch<FavouriteController>().isPetAdoptionFavourite(cat); // Check favorite status once
+      
+                    return GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                          context, 
+                          MaterialPageRoute(
+                            builder: (context) => PetDetailPage(petDetails: cat),
+                          ),
+                        );
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 15.0),
+                        child: PetCardDisplay(
+                          petImage: cat.petImage, 
+                          petName: cat.petName, 
+                          petDistance: cat.distanceFromPet, 
+                          petBreed: cat.petBreed, 
+                          pet: cat,
                         ),
                       ),
                     );
