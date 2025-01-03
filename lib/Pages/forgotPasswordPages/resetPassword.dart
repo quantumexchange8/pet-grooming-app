@@ -38,7 +38,9 @@ class _EditNewPasswordState extends State<EditNewPassword> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(context.tr('Secure Your Account'), style: heading3Bold),
+                      Flexible(
+                        child: Text(context.tr('Secure Your Account'), style: heading3Bold, overflow: TextOverflow.ellipsis, maxLines: 2),
+                      ),
                       const SizedBox(width: 5),
                       Image.asset('assets/image/lock.png'),
                     ],
@@ -46,7 +48,7 @@ class _EditNewPasswordState extends State<EditNewPassword> {
                   const SizedBox(height: 10),
                   Text(context.tr('Almost there! Create a new password for your Adoptify account to keep it secure. Remember to choose a strong and unique password.'),style: bodyXLRegular),
                   const SizedBox(height: 35),
-                  Text(context.tr('New Password'), style: heading6Bold, textAlign: TextAlign.start,),
+                  Text(context.tr('New Password'), style: heading6Bold, textAlign: TextAlign.start),
                   const SizedBox(height: 10),
                   TextField(
                     //onChanged:,

@@ -88,7 +88,7 @@ class OwnerDetailDataModel{
 
 // petOrganization in PetDetailDataMOdel = ownerName in ownerDetailDataModel
 void displayPetsUnderOwner(OwnerDetailDataModel owner){
-  List<PetDetailDataModel> pets = PetDetailDataModel.getPetsByOwner(owner.ownerName);
+  //List<PetDetailDataModel> pets = PetDetailDataModel.getPetsByOwner(owner.ownerName);
 }
 
 //temporary data model

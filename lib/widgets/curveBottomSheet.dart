@@ -1,8 +1,6 @@
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
-import 'package:adoptify/Pages/onBoardingPages/walkthrough2.dart';
-import 'package:adoptify/Pages/onBoardingPages/walkthrough3.dart';
 import 'package:adoptify/Pages/onBoardingPages/welcomeScreen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,6 +12,7 @@ class CurveBottomSheet extends StatelessWidget {
   final String descriptionText;
   final int currentStep;
   final String page;
+  final PageController pageController;
 
   const CurveBottomSheet({
     super.key, 
@@ -21,7 +20,8 @@ class CurveBottomSheet extends StatelessWidget {
     required this.descriptionText,
     required this.currentStep,
     required this.page,
-    });
+    required this.pageController,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -111,11 +111,16 @@ Widget _buttonBuilder(BuildContext context){
           Expanded(
             child: OrangeButton(
               onPressed: (){
-                Navigator.push(
+                pageController.nextPage(
+                  duration: const Duration(milliseconds: 300), 
+                  curve: Curves.easeInOut,
+                );
+                /* Navigator.push(
                   context, 
                   MaterialPageRoute(
-                    builder: (context)=>const Walkthrough2(),),
-                );
+                    builder: (context)=> const PageTwo(),
+                  ),
+                ); */
               },  
               text: context.tr('Continue'),
             ),
@@ -146,10 +151,9 @@ Widget _buttonBuilder(BuildContext context){
           Expanded(
             child: OrangeButton(
               onPressed: (){
-                Navigator.push(
-                  context, 
-                  MaterialPageRoute(
-                    builder: (context)=>const Walkthrough3(),),
+                pageController.nextPage(
+                  duration: const Duration(milliseconds: 300), 
+                  curve: Curves.easeInOut,
                 );
               },  
               text: context.tr('Continue'),

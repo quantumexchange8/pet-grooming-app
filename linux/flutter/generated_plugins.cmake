@@ -4,6 +4,7 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   awesome_notifications
+  file_selector_linux
   flutter_localization
   flutter_webrtc
   url_launcher_linux

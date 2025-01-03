@@ -54,7 +54,7 @@ class FAQdataModel{
 
     FAQdataModel(
       faqTitle: 'Can I adopt from any location?',
-      faqExplanation: 'Yes, you can view pets from various locations. However, some shelters may have restrictions or preferences for adopters within thier area.',
+      faqExplanation: 'Yes, you can view pets from various locations. However, some shelters may have restrictions or preferences for adopters within their area.',
     ),
 
     FAQdataModel(

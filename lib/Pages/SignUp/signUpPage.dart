@@ -151,27 +151,32 @@ class _SignUpState extends State<SignUp> {
                           activeColor: primaryOrange.shade900,
                         ),
 
-                        Text.rich(
-                          TextSpan(
-                            children: [
-                              TextSpan(
-                                text: context.tr('I agree to Adoptify '), style: bodyLRegular),
-                              
-                              TextSpan(
-                                text: context.tr('Terms & Conditions'),
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: primaryOrange.shade800,
-                                  fontFamily: GoogleFonts.urbanist().fontFamily,
+                        Flexible(
+                          child: Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: context.tr('I agree to Adoptify '), style: bodyLRegular),
+                                
+                                TextSpan(
+                                  text: context.tr('Terms & Conditions'),
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: primaryOrange.shade800,
+                                    fontFamily: GoogleFonts.urbanist().fontFamily,                            
+                                  ),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      // Handle tap for terms & conditions
+                                    },
                                 ),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                    // Handle tap for terms & conditions
-                                  },
-                              ),
-
-                              TextSpan(text: '.', style: bodyLRegular),
-                            ],
+                          
+                                TextSpan(text: '.', style: bodyLRegular),
+                              ],
+                              
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
                           ),
                         ),
                       ],

@@ -91,6 +91,17 @@
 	<string>Allow access to microphone for voice calls</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Why is my app authenticating using face id?</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Allow access to gallery</string>
+
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>We need this permission to send you notifications.</string>
+
 
 </dict>
 </plist>

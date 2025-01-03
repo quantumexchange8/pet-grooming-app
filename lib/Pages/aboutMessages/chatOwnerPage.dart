@@ -7,6 +7,8 @@ import 'package:adoptify/dataModel/chatsDataModel.dart';
 import 'package:adoptify/dataModel/messageInboxData.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class ChatOwnerPage extends StatefulWidget {
   final ChatList chat;
@@ -44,6 +46,57 @@ class _ChatOwnerPageState extends State<ChatOwnerPage> {
       messageController.clear();
     }
   }
+
+  XFile? pickedFile;
+  String fileName = '';
+  String filePath = '';
+  bool checkFile = false;
+  TextEditingController _fileNameController = TextEditingController();
+
+  @override
+  void dispose(){
+    _fileNameController.dispose();
+    super.dispose();
+  }
+
+  void setFileName(){
+    setState(() {
+      _fileNameController.text = fileName;
+    });
+  }
+
+  Future<XFile?> uploadFile (BuildContext context) async {
+
+    final permissionStatus = await Permission.storage.request();
+
+    if(permissionStatus.isGranted){
+      final picker = ImagePicker();
+      final XFile? pickedFile = await picker.pickImage(source: ImageSource.gallery);
+      if(pickedFile != null){
+        return pickedFile;
+      }else{
+        showMessage('NO image selected');
+        return null;
+      }
+    }else if(permissionStatus.isPermanentlyDenied){
+      showMessage('Storage permission denied');
+      openAppSettings();
+      return null;
+    }else{
+      showMessage('Storage permissison denied');
+      return null;
+    }
+    
+  }
+
+  void showMessage(String message){
+    if(mounted){
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(message, style: bodySBold)),
+      );
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -158,7 +211,7 @@ class _ChatOwnerPageState extends State<ChatOwnerPage> {
     final TextEditingController messageController = TextEditingController();
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5),
+      padding: const EdgeInsets.symmetric(vertical: 1),
       child: Row(
         children: [
 
@@ -170,6 +223,21 @@ class _ChatOwnerPageState extends State<ChatOwnerPage> {
                 prefixIcon: IconButton(
                   icon: Icon(Icons.emoji_emotions_outlined, color: Theme.of(context).colorScheme.primary),
                   onPressed: (){},
+                ),
+                suffixIcon: IconButton(
+                  icon: Icon(Icons.attach_file_outlined, color: Theme.of(context).colorScheme.primary), 
+                  onPressed: () async {
+                    XFile? file = await uploadFile(context);
+                    if(file != null){
+                      setState(() {
+                        pickedFile = file;
+                        fileName = file.name;
+                        filePath = file.path;
+                        checkFile = true;
+                        setFileName();
+                      });
+                    }
+                  },
                 ),
                 hintText: 'Message...',
                 hintStyle: bodyLRegular.copyWith(color: grey.shade500),
@@ -192,7 +260,7 @@ class _ChatOwnerPageState extends State<ChatOwnerPage> {
           IconButton(
             onPressed: _sendMessage,
             icon: Container(
-              width: 35, height: 35,
+              width: 45, height: 45,
               decoration: BoxDecoration(
                 color: primaryOrange.shade900,
                 shape: BoxShape.circle

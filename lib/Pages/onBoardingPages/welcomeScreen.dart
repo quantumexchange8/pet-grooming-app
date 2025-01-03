@@ -66,7 +66,7 @@ class _WelcomePageState extends State<WelcomePage> {
                       Navigator.push(
                         context, 
                         MaterialPageRoute(
-                          builder: (context)=> SignUp(),
+                          builder: (context)=> const SignUp(),
                         ),
                       );
                     }, 
@@ -83,7 +83,7 @@ class _WelcomePageState extends State<WelcomePage> {
                       Navigator.push(
                         context, 
                         MaterialPageRoute(
-                          builder: (context)=> SignIn(),
+                          builder: (context)=> const SignIn(),
                         ),
                       );
                     }, 

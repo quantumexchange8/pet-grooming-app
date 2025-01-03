@@ -12,7 +12,9 @@ import 'package:adoptify/const/urbanist_textStyle.dart';
 import 'package:adoptify/controllers/favouriteController.dart';
 import 'package:adoptify/dataModel/petCardData.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
 
@@ -78,7 +80,48 @@ class _HomePageState extends State<HomePage> {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
-              Image.asset('assets/image/homepage_pic.png'),
+              //the main picture in the homepage // retrieve the orange background
+              //Image.asset('assets/image/homepage_pic.png'),
+              Container(
+                width: double.infinity,
+                //height: 200,
+                child: Stack(
+                  children: [
+                    Image.asset('assets/image/orange_homepage_bg.png', fit: BoxFit.cover),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
+                      child: Row(
+                        children: [
+                          Flexible(
+                            flex: 6,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(context.tr('Just About to Adopt?'), style: heading4Bold.copyWith(color: Colors.white)),
+                                const SizedBox(height: 5),
+                                Text(context.tr('See how you can find friends who are a match for you'), style: bodySRegular.copyWith(color: Colors.white),),
+                            
+                              ],
+                            ),
+                          ),
+                      
+                          Flexible(
+                            flex: 4,
+                            child: Image.asset('assets/image/homepage_dog.png', /* fit: BoxFit.contain */),
+                          ),
+                      
+                      
+                        ],
+                      ),
+                    ),
+
+                    
+
+                   
+                  ],
+                ),
+              ),
 
               const SizedBox(height: 15),
               Row(
@@ -131,6 +174,7 @@ class _HomePageState extends State<HomePage> {
                     child: TextButton(
                       onPressed: (){}, 
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(context.tr('View All'), style: bodyLBold.copyWith(color: primaryOrange.shade800)),
                           const SizedBox(width: 10),
@@ -256,6 +300,7 @@ class _HomePageState extends State<HomePage> {
                     child: TextButton(
                       onPressed: (){}, 
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(context.tr('View All'), style: bodyLBold.copyWith(color: primaryOrange.shade800)),
                           const SizedBox(width: 10),

@@ -21,13 +21,14 @@ class OrangeButton extends StatelessWidget {
         backgroundColor: MaterialStateColor.resolveWith((states) => primaryOrange.shade900),
         fixedSize: MaterialStateProperty.all<Size>(const Size.fromHeight(50)),
       ),
-      child: Text(context.tr(text), 
+      child: Text(
+        context.tr(text), 
         style: TextStyle(
           fontFamily: GoogleFonts.urbanist().fontFamily,
           fontWeight: FontWeight.bold,
           color: Colors.white,
-          ),
         ),
+      ),
     );
   }
 }
@@ -91,8 +92,11 @@ class GreyOutlineButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Image(image: AssetImage(iconUrl)),
-          const SizedBox(width: 50),
-          Text(context.tr(text)),
+          const Spacer(),
+          Center(
+            child: Text(context.tr(text), textAlign: TextAlign.center)
+          ),
+          const Spacer(),
         ],
       ),
     );

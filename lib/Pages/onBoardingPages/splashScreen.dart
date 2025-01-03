@@ -13,11 +13,23 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   final PageController _pageController = PageController(initialPage: 0);
   int _activePage = 0;
-  final List<Widget> _pages = [
+  /* final List<Widget> _pages = [
     const PageOne(),
     const PageTwo(),
     const PageThree(),
-  ];
+  ]; */
+  late final List<Widget> _pages;
+  
+
+  @override
+  void initState(){
+    super.initState();
+    _pages = [
+      PageOne(pageController: _pageController),
+      PageTwo(pageController: _pageController),
+      PageThree(pageController: _pageController),
+    ];
+  }
 
   void _onPageChanged(int page){
     if(page >= _pages.length){
@@ -78,7 +90,8 @@ class _SplashScreenState extends State<SplashScreen> {
 }
 
 class PageOne extends StatelessWidget {
-  const PageOne({super.key});
+  final PageController pageController;
+  const PageOne({super.key, required this.pageController});
 
   @override
   Widget build(BuildContext context) {
@@ -93,13 +106,14 @@ class PageOne extends StatelessWidget {
               ),
             ),
           ),
-          const Align(
+          Align(
             alignment: Alignment.bottomCenter,
             child: CurveBottomSheet(
               currentStep: 1,
               titleText: 'Adoptify - Where Furry Tales Begin',
               descriptionText: 'Embark on a heartwarming journey to find your perfect companion. Swipe, match, and open your heart to a new furry friend.', 
               page: 'page1',
+              pageController: pageController,
             ),
           ),
         ],
@@ -111,7 +125,8 @@ class PageOne extends StatelessWidget {
 
 
 class PageTwo extends StatelessWidget {
-  const PageTwo({super.key});
+  final PageController pageController;
+  const PageTwo({super.key, required this.pageController});
 
   @override
   Widget build(BuildContext context) {
@@ -126,13 +141,14 @@ class PageTwo extends StatelessWidget {
               ),
             ),
           ),
-          const Align(
+          Align(
             alignment: Alignment.bottomCenter,
             child: CurveBottomSheet(
               currentStep: 2,
               titleText: 'Explore a World of Companionship',
               descriptionText: 'Discover a diverse array of adorable companions, find your favorites, and let the tail-wagging adventure begin.', 
               page: 'page2',
+              pageController: pageController,
             ),
           ),
         ],
@@ -142,7 +158,8 @@ class PageTwo extends StatelessWidget {
 }
 
 class PageThree extends StatelessWidget {
-  const PageThree({super.key});
+  final PageController pageController;
+  const PageThree({super.key, required this.pageController});
 
   @override
   Widget build(BuildContext context) {
@@ -157,13 +174,14 @@ class PageThree extends StatelessWidget {
               ),
             ),
           ),
-          const Align(
+          Align(
             alignment: Alignment.bottomCenter,
             child: CurveBottomSheet(
               currentStep: 3,
               titleText: 'Connect with Caring Pet Owners Around You',
               descriptionText: 'Easily connect with pet owners, ask about animals, & make informed decisions. Adoptify is here to guide you every step of the way.', 
               page: 'page3',
+              pageController: pageController,
             ),
           ),
         ],

@@ -36,6 +36,7 @@ class _BottomNaviBarState extends State<BottomNaviBar> {
       bottomNavigationBar: Obx(
         ()=> NavigationBarTheme(
           data: NavigationBarThemeData(
+            backgroundColor: Theme.of(context).colorScheme.background,
             indicatorColor: Colors.transparent,
             labelTextStyle: MaterialStateProperty.resolveWith<TextStyle>(
               (states){
@@ -53,23 +54,23 @@ class _BottomNaviBarState extends State<BottomNaviBar> {
           onDestinationSelected: (index)=> controller.selectedIndex.value = index,
           destinations: [
             NavigationDestination(
-              icon: controller.selectedIndex.value == 0? Icon(IconlyBold.home, color: primaryOrange.shade800): Icon(IconlyLight.home),
+              icon: controller.selectedIndex.value == 0? Icon(IconlyBold.home, color: primaryOrange.shade800): const Icon(IconlyLight.home),
               label:context.tr('Home'),
             ),
             NavigationDestination(
-              icon: controller.selectedIndex.value == 1? Icon(IconlyBold.location, color: primaryOrange.shade800): Icon(IconlyLight.location), 
+              icon: controller.selectedIndex.value == 1? Icon(IconlyBold.location, color: primaryOrange.shade800): const Icon(IconlyLight.location), 
               label: context.tr('Maps'),
             ),
             NavigationDestination(
-              icon: controller.selectedIndex.value == 2? Icon(IconlyBold.heart, color: primaryOrange.shade800): Icon(IconlyLight.heart), 
+              icon: controller.selectedIndex.value == 2? Icon(IconlyBold.heart, color: primaryOrange.shade800): const Icon(IconlyLight.heart), 
               label: context.tr('Favorites'),
             ),
             NavigationDestination(
-              icon: controller.selectedIndex.value == 3? Icon(IconlyBold.chat, color: primaryOrange.shade800): Icon(IconlyLight.chat), 
+              icon: controller.selectedIndex.value == 3? Icon(IconlyBold.chat, color: primaryOrange.shade800): const Icon(IconlyLight.chat), 
               label: context.tr('Messages'),
             ),
             NavigationDestination(
-              icon: controller.selectedIndex.value == 4? Icon(IconlyBold.profile, color: primaryOrange.shade800): Icon(IconlyLight.profile), 
+              icon: controller.selectedIndex.value == 4? Icon(IconlyBold.profile, color: primaryOrange.shade800): const Icon(IconlyLight.profile), 
               label: context.tr('Account'),
             ),
           ],

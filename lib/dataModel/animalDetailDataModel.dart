@@ -1,6 +1,11 @@
+
 class PetDetailDataModel{
   final String petName;
   final String petImage;
+  final String? petImage2;
+  final String? petImage3;
+  final String? petImage4;
+  final String? petImage5;
   final String petType;
   final String distanceFromPet;
   final String petBreed;
@@ -18,6 +23,10 @@ class PetDetailDataModel{
   PetDetailDataModel({
     required this.petName,
     required this.petImage,
+    this.petImage2,
+    this.petImage3,
+    this.petImage4,
+    this.petImage5,
     required this.petType,
     required this.distanceFromPet,
     required this.petBreed,
@@ -36,6 +45,10 @@ class PetDetailDataModel{
   PetDetailDataModel copyWith({
     String? petName,
     String? petImage,
+    String? petImage2,
+    String? petImage3,
+    String? petImage4,
+    String? petImage5,
     String? petType,
     String? distanceFromPet,
     String? petBreed,
@@ -53,6 +66,10 @@ class PetDetailDataModel{
     return PetDetailDataModel(
       petName: petName?? this.petName, 
       petImage: petImage?? this.petImage, 
+      petImage2: petImage2?? this.petImage2,
+      petImage3: petImage3?? this.petImage3,
+      petImage4: petImage4?? this.petImage4,
+      petImage5: petImage5?? this.petImage5,
       petType: petType?? this.petType,
       distanceFromPet: distanceFromPet?? this.distanceFromPet,
       petBreed: petBreed?? this.petBreed,
@@ -73,6 +90,10 @@ class PetDetailDataModel{
   Map<String, dynamic> toJson() => {
     'petName': petName,
     'petImage': petImage,
+    'petImage2': petImage2,
+    'petImage3': petImage3,
+    'petImage4': petImage4,
+    'petImage5': petImage5,
     'petType': petType,
     'distanceFromPet': distanceFromPet,
     'petBreed': petBreed,
@@ -91,6 +112,10 @@ class PetDetailDataModel{
   factory PetDetailDataModel.fromJson(Map<String, dynamic>json) => PetDetailDataModel(
     petName: json['petName'], 
     petImage: json['petImage'], 
+    petImage2: json['petImage2'],
+    petImage3: json['petImage3'],
+    petImage4: json['petImage4'],
+    petImage5: json['petImage5'],
     petType: json['petType'],
     distanceFromPet: json['distanceFromPet'], 
     petBreed: json['petBreed'],
@@ -110,12 +135,26 @@ class PetDetailDataModel{
     return petDetailList.where((element) => element.petOrganization == ownerName).toList();
   }
 
+  int getTotalPhotoCount(){
+    int count = 0;
+    if(petImage.isNotEmpty) count++;
+    if(petImage2 != null && petImage2!.isNotEmpty) count++;
+    if(petImage3 != null && petImage3!.isNotEmpty) count++;
+    if(petImage4 != null && petImage4!.isNotEmpty) count++;
+    if(petImage5 != null && petImage5!.isNotEmpty) count++;
+    return count;
+  }
+
+  
+
 
   static List<PetDetailDataModel> petDetailList = [
     //cat
     PetDetailDataModel(
       petName: 'Mochi', 
       petImage: 'assets/image/mochi_cat.png', 
+      petImage2: 'assets/image/catMochi.jpg',
+      petImage3: 'assets/image/catMochi3.jpg',
       petType: 'Cats', 
       distanceFromPet: '1.2km', 
       petBreed: 'Abyssinian', 
@@ -130,10 +169,12 @@ class PetDetailDataModel{
       petGender: 'Male', 
       petSize: 'Medium', 
     ),
+    
 
     PetDetailDataModel(
       petName: 'Casper', 
       petImage: 'assets/image/casper_cat.png', 
+      petImage2: 'assets/image/catCasper2.jpeg',
       petType: 'Cats', 
       distanceFromPet: '1.2km', 
       petBreed: 'Manx', 
@@ -298,6 +339,7 @@ class PetDetailDataModel{
     PetDetailDataModel(
       petName: 'Scout',
       petImage: 'assets/image/scout_dog.png',
+      petImage2: 'assets/image/dogScout2.png',
       petType: 'Dogs',
       distanceFromPet: '1.7km',
       petBreed: 'Afghan Hound',
@@ -1024,7 +1066,13 @@ class PetDetailDataModel{
       petSize: 'Small',
     ),
 
+    
+
 
   ];
+
+  
+
+  
 
 }

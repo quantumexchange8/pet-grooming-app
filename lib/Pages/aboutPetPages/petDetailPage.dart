@@ -1,18 +1,20 @@
-
 import 'package:adoptify/Pages/aboutMessages/chatOwnerPage.dart';
 import 'package:adoptify/Pages/aboutOrganizationPages/ownerDetailPage.dart';
 import 'package:adoptify/const/buttonStyle.dart';
 import 'package:adoptify/const/constant.dart';
 import 'package:adoptify/const/urbanist_textStyle.dart';
 import 'package:adoptify/controllers/favouriteController.dart';
+import 'package:adoptify/controllers/petPhotoSlider.dart';
 import 'package:adoptify/dataModel/animalDetailDataModel.dart';
 import 'package:adoptify/dataModel/chatsDataModel.dart';
 import 'package:adoptify/dataModel/ownerDetailDataModel.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
@@ -54,6 +56,18 @@ class _PetDetailPageState extends State<PetDetailPage> {
     );
   }
 
+  PetPhotoSlider photoSliderController = PetPhotoSlider.instance;
+
+  @override
+  void initState(){
+    super.initState();
+
+    photoSliderController = Get.put(PetPhotoSlider());
+    photoSliderController.setTotalPhotos(widget.petDetails);
+    
+  }
+
+
   /* Future<void> _sharePetInfo() async {
     try{
       String assetPath = widget.petDetails.petImage;
@@ -79,6 +93,16 @@ class _PetDetailPageState extends State<PetDetailPage> {
   Widget build(BuildContext context) {
 
     final isFavourite = context.watch<FavouriteController>().isPetAdoptionFavourite(widget.petDetails);
+
+    final controller = Get.put(PetPhotoSlider());
+
+    List<String> petImages = [
+      widget.petDetails.petImage,
+      if(widget.petDetails.petImage2 != null) widget.petDetails.petImage2!,
+      if(widget.petDetails.petImage3 != null) widget.petDetails.petImage3!,
+      if(widget.petDetails.petImage4 != null) widget.petDetails.petImage4!,
+      if(widget.petDetails.petImage5 != null) widget.petDetails.petImage5!,
+    ];
 
     return Scaffold(
       appBar: AppBar(
@@ -118,10 +142,58 @@ class _PetDetailPageState extends State<PetDetailPage> {
                 padding: const EdgeInsets.all(12.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: [                 
+                    // Pet picture // design to swipe the picture
                     
-                    // Pet picture
-                    Container(
+
+                    //number about the page
+                    Stack(
+                      //alignment: Alignment.bottomCenter,
+                      children: [
+                        CarouselSlider(
+                      items: petImages.map((imageUrl){
+                        return ClipRRect(
+                          borderRadius: BorderRadius.circular(10.0),
+                          child: Image.asset(
+                            imageUrl, fit: BoxFit.cover, width: double.infinity, /* height: 350 */
+                          ),
+                        );
+                      }).toList(),
+
+                      options: CarouselOptions(
+                        autoPlay: false,
+                        viewportFraction: 1,
+                        onPageChanged: (index, reason) => controller.updatePhotoIndicator(index),
+                        height: 380,
+                      ),
+                    ),
+
+                        //page no
+                        Positioned(
+                          bottom: 10,
+                          left: 0,
+                          right: 0,
+                          child: Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                              decoration: BoxDecoration(
+                                color: grey.shade900.withOpacity(0.6),
+                                borderRadius: BorderRadius.circular(25.0),
+                              ),
+                              child: Obx(()=> Text(
+                                        '${controller.carouselCurrentIndex.value +1}/${photoSliderController.totalPhotos.value}',  //(index)
+                                         style: bodyMSemibold.copyWith(color: Colors.white),
+                                      ),
+                                     ),
+                            ),
+                          ),
+                          
+                        ),
+                      ],
+                    ),
+
+                    /* Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15), // problem cannot show the rounded edge
                       ),
@@ -131,7 +203,7 @@ class _PetDetailPageState extends State<PetDetailPage> {
                         height: 300, // Adjust height as needed for a larger display
                         fit: BoxFit.cover, // Ensures the image fills the space
                       ),
-                    ),
+                    ), */
 
               
                     const SizedBox(height: 10),
