@@ -1,6 +1,6 @@
-import 'package:adoptify/controllers/favouriteController.dart';
-import 'package:adoptify/Pages/onBoardingPages/boardingScreen.dart';
-import 'package:adoptify/controllers/petPhotoSlider.dart';
+import 'package:adoptify/controllers/favourite_controller.dart';
+import 'package:adoptify/Pages/onBoardingPages/boarding_screen.dart';
+import 'package:adoptify/controllers/pet_photo_slider.dart';
 import 'package:adoptify/theme/themes.dart';
 import 'package:adoptify/theme/themes_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
